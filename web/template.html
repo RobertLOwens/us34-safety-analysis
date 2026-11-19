@@ -11,7 +11,7 @@
   --bg: #eef1f0; --panel: #e2e7e5; --ink: #172022; --muted: #55646a; --rule: #c8d0ce;
   --road: #3a474b; --halo: #eef1f0; --town: #36608f; --town-fill: rgba(54, 96, 143, 0.07); --fire: #7b3fa0; --treat: #0b8f8a; --treat2: #8fd3cf;
   --s-estes: #5571a6; --s-canyon: #b05c27; --s-mouth: #74872a; --s-love: #2b7880;
-  --k: #bf2f2a; --a: #dd772b; --dot: #7b888c;
+  --k: #bf2f2a; --a: #dd772b; --dot: #7b888c; --heat: #e0301e;
   --elk: #8b5a2a; --deer: #2f7a56; --eb: #c98a10; --wb: #7448b0;
   --sign: #176b45; --sign-ink: #ffffff; --hi: rgba(191, 47, 42, 0.10);
   --sev-lo: #f2dcae; --sev-hi: #9c1d1a;
@@ -23,14 +23,14 @@
   --bg: #11171a; --panel: #182125; --ink: #e2e8e7; --muted: #95a4a8; --rule: #2b373b;
   --road: #c7d1d0; --halo: #11171a; --town: #8db4e2; --town-fill: rgba(141, 180, 226, 0.07); --fire: #9a5cc6; --treat: #2ec4b6; --treat2: #1f6f6a;
   --s-estes: #8aa3d6; --s-canyon: #e08a50; --s-mouth: #a9bd55; --s-love: #5fb3bb;
-  --k: #f05a50; --a: #f39b50; --dot: #7f8f93;
+  --k: #f05a50; --a: #f39b50; --dot: #7f8f93; --heat: #ff4b33;
   --elk: #d39a5e; --deer: #63c193; --eb: #f0b840; --wb: #ab87e6;
   --sign: #1d8a59; --sign-ink: #ffffff; --hi: rgba(240, 90, 80, 0.14); --sev-lo: #5e5236; --sev-hi: #ff5a48; color-scheme: dark; } }
 :root[data-theme="dark"] {
   --bg: #11171a; --panel: #182125; --ink: #e2e8e7; --muted: #95a4a8; --rule: #2b373b;
   --road: #c7d1d0; --halo: #11171a; --town: #8db4e2; --town-fill: rgba(141, 180, 226, 0.07); --fire: #9a5cc6; --treat: #2ec4b6; --treat2: #1f6f6a;
   --s-estes: #8aa3d6; --s-canyon: #e08a50; --s-mouth: #a9bd55; --s-love: #5fb3bb;
-  --k: #f05a50; --a: #f39b50; --dot: #7f8f93;
+  --k: #f05a50; --a: #f39b50; --dot: #7f8f93; --heat: #ff4b33;
   --elk: #d39a5e; --deer: #63c193; --eb: #f0b840; --wb: #ab87e6;
   --sign: #1d8a59; --sign-ink: #ffffff; --hi: rgba(240, 90, 80, 0.14); --sev-lo: #5e5236; --sev-hi: #ff5a48; color-scheme: dark; }
 
@@ -194,6 +194,11 @@ label.chk i { width: 10px; height: 10px; border-radius: 50%; display: inline-blo
 .rank { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: var(--ink); color: var(--bg); font: 600 11px/18px var(--f-mono); text-align: center; margin-right: 6px; }
 #map .overlay.alt { stroke: var(--s-love); }
 #map text { font-family: var(--f-mono); fill: var(--ink); paint-order: stroke; stroke: var(--halo); stroke-linejoin: round; }
+#map .heat circle { fill: var(--heat); stroke: none; }
+#map .heatlbl text { font-size: 11px; font-weight: 700; fill: #fff; stroke: rgba(0,0,0,0.45); stroke-width: 2.5px; pointer-events: none; }
+.legend .heatkey { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.legend .heatkey span { display: inline-flex; align-items: center; gap: 4px; }
+.legend .heatkey i { display: inline-block; border-radius: 50%; background: var(--heat); opacity: 0.75; filter: blur(1.5px); }
 #map text.place { font-family: var(--f-display); font-weight: 600; }
 #map .mpsign rect { fill: var(--sign); }
 #map .mpsign text { fill: var(--sign-ink); stroke: none; font-weight: 500; }
@@ -595,7 +600,13 @@ let W = 0, H = 0, proj, gRoot, view = null, curStep = "overview", kNow = 1;
 const STEPS = {
   overview: {range: [61, 92], legend: () => legendSections("US 34 corridor"), draw: drawNone},
   sections: {range: [61, 92], legend: () => legendSections("Four sections"), draw: drawNone},
-  density: {range: [61, 92], legend: () => legendRows("All crashes, 2019–2025", [["--dot", "One crash"]]), draw: () => drawPts(CR, c => "--dot", 1.6, 0.55)},
+  density: {range: [61, 92], legend: () => {
+      const H = heatBins(), size = n => (2 * heatR(n, H.max)).toFixed(0);
+      return `<div class="t">All crashes, 2019–2025</div><div class="row">Red glow: crashes per ¼ mile</div>` +
+        `<div class="heatkey">${[10, 50, H.max].map(n => `<span><i style="width:${size(n)}px;height:${size(n)}px"></i>${n}</span>`).join("")}</div>` +
+        `<div class="row">Busiest: ${H.peaks.map(b => `MP ${b.mp.toFixed(2)}–${(b.mp + 0.25).toFixed(2)} (${b.n})`).join(", ")}</div>` +
+        `<div class="row"><i style="background:var(--dot)"></i>One crash</div>`; },
+    draw: () => { drawHeat(); drawPts(CR, c => "--dot", 1.6, 0.55); }},
   severe: {range: [61, 92], legend: () => {
       if (!kaSel) return legendRows("Fatal and serious", [["--k", "Fatal (K)"], ["--a", "Serious injury (A)"]], "Click a bar in the crash-type chart to pick out those crashes");
       const n = CR.filter(kaMatch).length, what = kaSel.sev === "K" ? "fatal" : kaSel.sev === "A" ? "serious-injury" : "fatal or serious";
@@ -714,6 +725,8 @@ function buildMap() {
   proj = d3.geoMercator().fitExtent([[24, 24], [W - 24, H - 24]], gj);
   LINE.forEach(p => { [p.x, p.y] = proj([p.lon, p.lat]); });
   CR.forEach(c => { [c.x, c.y] = proj([c.lon, c.lat]); });
+  mapSvg.append("defs").append("filter").attr("id", "heatblur").attr("x", "-100%").attr("y", "-100%").attr("width", "300%").attr("height", "300%")
+    .append("feGaussianBlur").attr("stdDeviation", 4);
   gRoot = mapSvg.append("g");
   if (DATA.terrain) {
     const t = DATA.terrain, [x0, y0] = proj([t.w, t.n]), [x1, y1] = proj([t.e, t.s]);
@@ -735,6 +748,7 @@ function buildMap() {
       .attr("stroke-width", 4.5).attr("vector-effect", "non-scaling-stroke");
   });
   gRoot.append("g").attr("class", "overlays");
+  gRoot.append("g").attr("class", "heat");
   gRoot.append("g").attr("class", "pts-a");
   gRoot.append("g").attr("class", "pts");
   gRoot.append("g").attr("class", "pts-b");
@@ -980,6 +994,29 @@ function curvePts(a, b) {
   return out;
 }
 function drawNone() {}
+/* hot spots: crashes per quarter mile, drawn as blurred circles that keep their
+   screen size at every zoom; the 3 biggest peaks (at least 1 mi apart) get labels */
+let HEAT = null;
+function heatBins() {
+  if (HEAT) return HEAT;
+  const bins = d3.rollups(CR, v => ({n: v.length, x: d3.mean(v, c => c.x), y: d3.mean(v, c => c.y)}), c => Math.floor(c.mp * 4) / 4)
+    .map(([mp, b]) => ({mp, ...b})).sort((a, b) => b.n - a.n);
+  const peaks = [];
+  bins.forEach(b => { if (peaks.length < 3 && peaks.every(p => Math.abs(p.mp - b.mp) >= 1)) peaks.push(b); });
+  return HEAT = {bins, peaks, max: bins[0].n};
+}
+const heatR = (n, max) => 2 + 22 * Math.sqrt(n / max);
+function drawHeat() {
+  const H = heatBins(), g = gRoot.select(".heat");
+  H.bins.slice().reverse().forEach(b => g.append("g").attr("class", "scalable").attr("data-x", b.x).attr("data-y", b.y)
+    .attr("transform", `translate(${b.x},${b.y}) scale(${1 / kNow})`)
+    .append("circle").attr("r", heatR(b.n, H.max)).attr("filter", "url(#heatblur)")
+    .attr("opacity", 0.1 + 0.75 * Math.sqrt(b.n / H.max))
+    .append("title").text(`MP ${b.mp.toFixed(2)}–${(b.mp + 0.25).toFixed(2)}: ${b.n} crashes, 2019–2025`));
+  H.peaks.forEach((b, i) => gRoot.select(".pins").append("g").attr("class", "scalable heatlbl").attr("data-x", b.x).attr("data-y", b.y)
+    .attr("transform", `translate(${b.x},${b.y}) scale(${1 / kNow})`)
+    .append("text").attr("y", 4).attr("text-anchor", "middle").text(b.n));
+}
 function drawPts(rows, col, r, op, layer) {
   const g = gRoot.select(layer === "a" ? ".pts-a" : layer === "b" ? ".pts-b" : ".pts");
   const rf = typeof r === "function" ? r : () => r;
@@ -1000,6 +1037,7 @@ function setStep(id, instant) {
   gRoot.selectAll(".pts circle, .pts-a circle, .pts-b circle").remove();
   gRoot.select(".overlays").selectAll("*").remove();
   gRoot.select(".pins").selectAll("*").remove();
+  gRoot.select(".heat").selectAll("*").remove();
   gRoot.selectAll(".road").classed("muted-road", ["density", "severe", "moto", "when", "alcohol", "lighting", "projects", "goals", "wildlife", "glare", "canyon", "curves", "explore"].includes(id));
   st.draw();
   const target = id === "curves" && curveFocus != null ? viewFor(focusRange(), 12)
