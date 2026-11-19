@@ -1,0 +1,26 @@
+,date,hour,mp,segment,severity,crash_type,first_he,road_condition,lighting,weather,tu1_action
+0,2022-01-07,13.0,67.15,Big Thompson Canyon,A,Overturning/Rollover,Delineator/Milepost,Icy,Daylight,Clear,Too Fast for Conditions
+1,2022-04-17,15.0,66.92,Big Thompson Canyon,A,Overturning/Rollover,Overturning/Rollover,Dry,Daylight,Clear,Careless Driving 
+2,2022-05-05,11.0,66.97,Big Thompson Canyon,A,Overturning/Rollover,Delineator/Milepost,Dry,Daylight,Clear,Lane Violation
+3,2022-06-19,14.0,79.896,Big Thompson Canyon,A,Rear to Rear,Guardrail Face,Dry,Daylight,Cloudy,Other Contributing Action (Describe in Narrative)
+4,2022-06-26,12.0,70.1,Big Thompson Canyon,A,Embankment,Sign,Dry,Daylight,Clear,Careless Driving 
+5,2022-07-03,16.0,78.85,Big Thompson Canyon,A,Front to Front,Front to Front,Dry,Daylight,Cloudy,Lane Violation
+6,2022-08-17,11.0,84.782,Canyon mouth to Loveland,K,Overturning/Rollover,Front to Front,Dry,Daylight,Clear,Improper Passing on Left
+7,2022-08-22,14.0,67.319,Big Thompson Canyon,A,Tree,Delineator/Milepost,Dry,Daylight,Clear,Careless Driving 
+8,2022-08-23,22.0,65.941,Big Thompson Canyon,A,Overturning/Rollover,Delineator/Milepost,Dry,Dark – Unlighted,Clear,Careless Driving 
+9,2022-08-27,20.0,91.761,Loveland (urban),A,Front to Side,Front to Side,Dry,Dark – Lighted,Clear,Careless Driving 
+10,2022-09-04,19.0,89.46,Loveland (urban),K,Front to Side,Front to Side,Dry,Daylight,Clear,Careless Driving 
+11,2023-01-07,15.0,62.507,Estes Park (town),A,Pedestrian,Pedestrian,Dry,Daylight,Clear,Improper Turn
+12,2023-02-15,8.0,88.127,Loveland (urban),A,Overturning/Rollover,Embankment,Icy,Daylight,Snow,Too Fast for Conditions
+13,2023-04-07,3.0,71.498,Big Thompson Canyon,A,Embankment,Delineator/Milepost,Dry,Dark – Unlighted,Clear,Lane Violation
+14,2023-05-28,10.0,84.099,Canyon mouth to Loveland,A,Front to Front,Front to Front,Dry,Daylight,Clear,Speeding
+15,2023-06-08,9.0,64.437,Estes Park (town),A,Front to Side,Front to Side,Dry,Daylight,Clear,Failed to Yield ROW
+16,2023-06-20,20.0,71.797,Big Thompson Canyon,A,Overturning/Rollover,Overturning/Rollover,Dry,Dawn or Dusk,Cloudy,Careless Driving 
+17,2023-07-24,15.0,73.076,Big Thompson Canyon,A,Overturning/Rollover,Overturning/Rollover,Wet,Daylight,Rain,Careless Driving 
+18,2023-07-29,14.0,84.466,Canyon mouth to Loveland,A,Overturning/Rollover,Side to Side-Same Direction,Dry,Daylight,Clear,Failed to Yield ROW
+19,2023-08-03,13.0,79.664,Big Thompson Canyon,A,Tree,Tree,Dry,Daylight,Cloudy,Careless Driving 
+20,2023-08-19,8.0,75.437,Big Thompson Canyon,A,Sign,Sign,Dry,Daylight,Clear,Lane Violation
+21,2023-08-30,20.0,71.802,Big Thompson Canyon,A,Overturning/Rollover,Large Rocks or Boulder,Dry,Dark – Unlighted,Clear,Careless Driving 
+22,2023-09-04,13.0,82.151,Big Thompson Canyon,K,Other Fixed Object (Describe in Narrative),Other Fixed Object (Describe in Narrative),Dry,Daylight,Wind,Careless Driving 
+23,2023-09-07,12.0,79.937,Big Thompson Canyon,A,Bicycle/Motorized Bicycle,Bicycle/Motorized Bicycle,Dry,Daylight,Clear,Improper Passing on Left
+24,2023-09-27,13.0,72.168,Big Thompson Canyon,A,Front to Side,Side to Side-Opposite Direction,Dry,Daylight,Clear,Careless Driving 

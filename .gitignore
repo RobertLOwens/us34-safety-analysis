@@ -1,0 +1,12 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# CDOT statewide crash listings: large, download by hand (see README)
+*.xlsx
+~$*
+
+# Local tooling and OS files
+.claude/
+.DS_Store

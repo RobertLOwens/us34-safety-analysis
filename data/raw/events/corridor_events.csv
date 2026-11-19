@@ -1,0 +1,7 @@
+start_date,end_date,mp_from,mp_to,event_type,description,source
+2013-09-12,2013-11-11,62.0,88.0,closure,"September 2013 flood destroyed sections of US 34; canyon closed until temporary repairs reopened both directions",https://www.kunc.org/national/2013-11-21/as-u-s-highway-34-reopens-flood-damage-still-visible
+2013-11-11,2016-10-01,62.0,88.0,temporary_alignment,"Canyon open on temporary flood repairs pending permanent reconstruction",https://kiewit.com/?p=63576
+2016-10-01,2019-01-31,65.0,85.0,construction,"Permanent flood repair reconstruction (Kiewit, ~$280M); intermittent closures and work zones",https://www.enr.com/articles/46455-project-of-the-year-best-highwaybridge-us-34-permanent-repairs-project
+2017-10-02,2018-05-24,65.0,83.0,closure,"Long-term closure through the canyon for reconstruction; last long-term closure ended May 24 2018",https://www.codot.gov/news/2018/may/us-34-canyon-reopens-for-good-on-thursday-may-24
+2020-10-16,2020-11-30,65.0,85.0,closure,"Cameron Peak Fire: canyon closed to through traffic (Mall Rd MP 65 to east of Dam Store MP 85) for evacuations; end date approximate",https://www.codot.gov/news/2020/october-2020/us34-firerelatedclosure
+2025-06-02,2025-06-05,77.4,77.4,maintenance,"Rock scaling at MP 77.4 below Drake",https://estesvalleyvoice.com/2025/05/31/big-thompson-canyon-road-work-this-week/

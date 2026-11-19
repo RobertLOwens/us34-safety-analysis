@@ -1,0 +1,5 @@
+segment,length_mi,aadt_2025,speed_min,speed_max,lanes_max,shoulder_ft,pct_shoulder_le_4ft,curv_deg_per_mi,elev_change_m
+Estes Park (town),4.0,8932.4,35,45,4,6.4,17.7,91.3,92.6
+Big Thompson Canyon,18.5,6042.9,35,55,2,7.2,33.8,249.5,649.8
+Canyon mouth to Loveland,4.5,8508.0,45,55,2,8.3,13.1,86.6,107.2
+Loveland (urban),4.0,23189.7,35,45,4,2.0,81.0,52.5,20.0

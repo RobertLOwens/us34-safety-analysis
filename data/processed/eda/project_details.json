@@ -1,0 +1,207 @@
+{
+ "Curve delineation package": {
+  "existing": [
+   "chevrons",
+   "rails"
+  ],
+  "what": "Chevron signs on every canyon curve, plus sequential flashing chevrons on the 10 worst curves, so drivers see how sharp each bend is in time to slow down. The 60% reduction counts only at those 10 curves; 16% elsewhere.",
+  "targets": "Fixed-object and rollover crashes on canyon curves",
+  "ranges": [
+   [
+    65,
+    83.5
+   ]
+  ],
+  "show": "curves",
+  "sources": [
+   [
+    "FHWA: Enhanced delineation for horizontal curves",
+    "https://highways.dot.gov/safety/proven-safety-countermeasures/enhanced-delineation-horizontal-curves"
+   ]
+  ]
+ },
+ "Center line rumble strips": {
+  "existing": [
+   "clrs"
+  ],
+  "what": "Grooves milled into the center line that rumble when a driver drifts toward oncoming traffic.",
+  "targets": "Head-on and opposite-direction sideswipe crashes, MP 65\u201388 (same-direction sideswipes left out)",
+  "ranges": [
+   [
+    65,
+    88
+   ]
+  ],
+  "show": "range",
+  "sources": [
+   [
+    "FHWA: Longitudinal rumble strips on two-lane roads",
+    "https://highways.dot.gov/safety/proven-safety-countermeasures/longitudinal-rumble-strips-and-stripes-two-lane-roads"
+   ]
+  ]
+ },
+ "Wider edge lines": {
+  "existing": [
+   "none:edge line width"
+  ],
+  "what": "6-inch edge lines instead of 4-inch, painted at the next restriping, so the road edge is easier to see at night and in bad weather.",
+  "targets": "Run-off-road, head-on and opposite-direction sideswipe crashes away from intersections, MP 65\u201388",
+  "ranges": [
+   [
+    65,
+    88
+   ]
+  ],
+  "show": "range",
+  "sources": [
+   [
+    "FHWA: Wider edge lines",
+    "https://highways.dot.gov/safety/proven-safety-countermeasures/wider-edge-lines"
+   ]
+  ]
+ },
+ "High-friction surface on worst curves": {
+  "existing": [
+   "chevrons",
+   "rails",
+   "none:pavement friction"
+  ],
+  "what": "A bonded high-friction aggregate overlay on the worst curves, giving tires more grip when drivers brake or steer hard.",
+  "targets": "Crashes on the curves with the most excess crashes after Empirical Bayes screening",
+  "ranges": [
+   [
+    66.85,
+    67.35
+   ],
+   [
+    70.5,
+    72.2
+   ],
+   [
+    81.9,
+    82.55
+   ]
+  ],
+  "show": "curves",
+  "sources": [
+   [
+    "FHWA: Pavement friction management",
+    "https://highways.dot.gov/safety/proven-safety-countermeasures/pavement-friction-management"
+   ]
+  ]
+ },
+ "Shoulder rumble strips where shoulders allow": {
+  "existing": [
+   "shoulders",
+   "srs",
+   "rails"
+  ],
+  "what": "Rumble strips on the shoulder that alert drivers drifting off the road, only where the shoulder is wide enough: MP 75.5\u201388 where CDOT records 4 ft or more. Street View shows 1\u20133 ft against rock through MP 65\u201375.5, so that stretch is left out.",
+  "targets": "Fixed-object and rollover crashes where the shoulder is 4 ft or wider, MP 75.5\u201388",
+  "ranges": [
+   [
+    75.5,
+    88
+   ]
+  ],
+  "show": "range",
+  "sources": [
+   [
+    "FHWA: Longitudinal rumble strips on two-lane roads",
+    "https://highways.dot.gov/safety/proven-safety-countermeasures/longitudinal-rumble-strips-and-stripes-two-lane-roads"
+   ]
+  ]
+ },
+ "Intersection redesign (roundabout or RCUT)": {
+  "existing": [
+   "signals"
+  ],
+  "what": "Rebuild Loveland's two unsignalized intersections with the most angle and turning crashes as a roundabout or a restricted-crossing U-turn. Most of Loveland's angle crashes, and half its severe ones, are at signals, which this does not treat.",
+  "targets": "Angle and turning crashes at the 2 busiest unsignalized intersections",
+  "ranges": [
+   [
+    89.30000000000001,
+    89.5
+   ],
+   [
+    90.0,
+    90.19999999999999
+   ]
+  ],
+  "show": "range",
+  "sources": [
+   [
+    "FHWA: Roundabouts",
+    "https://highways.dot.gov/safety/proven-safety-countermeasures/roundabouts"
+   ],
+   [
+    "FHWA: Reduced left-turn conflict intersections",
+    "https://highways.dot.gov/safety/proven-safety-countermeasures/reduced-left-turn-conflict-intersections"
+   ]
+  ]
+ },
+ "SafetyEdge at next repaving": {
+  "existing": [
+   "shoulders",
+   "rails",
+   "none:pavement edge shape"
+  ],
+  "what": "A 30\u00b0 sloped pavement edge, shaped during repaving, so a tire that drops off the edge can climb back on without the driver over-steering.",
+  "targets": "Run-off-road, head-on and opposite-direction sideswipe crashes, MP 65\u201388",
+  "ranges": [
+   [
+    65,
+    88
+   ]
+  ],
+  "show": "range",
+  "sources": [
+   [
+    "FHWA: SafetyEdge",
+    "https://highways.dot.gov/safety/proven-safety-countermeasures/safetyedgesm"
+   ]
+  ]
+ },
+ "Lighting gaps": {
+  "existing": [
+   "signals",
+   "none:street lighting"
+  ],
+  "what": "Light the Loveland intersections that are dark now. Officers recorded most night crashes at Loveland intersections as already lighted, so only the unlit ones count.",
+  "targets": "Night crashes at unlit Loveland intersections",
+  "ranges": [
+   [
+    88,
+    92.1
+   ]
+  ],
+  "show": "range",
+  "sources": [
+   [
+    "FHWA: Lighting",
+    "https://highways.dot.gov/safety/proven-safety-countermeasures/lighting"
+   ]
+  ]
+ },
+ "Signal backplates": {
+  "existing": [
+   "signals",
+   "none:backplates on each signal"
+  ],
+  "what": "Black backplates with a reflective yellow border on the signal heads, so signals stand out against the sky and stay visible in a power outage.",
+  "targets": "Angle and turning crashes at Loveland signals",
+  "ranges": [
+   [
+    88,
+    92.1
+   ]
+  ],
+  "show": "range",
+  "sources": [
+   [
+    "FHWA: Backplates with retroreflective borders",
+    "https://highways.dot.gov/safety/proven-safety-countermeasures/backplates-retroreflective-borders"
+   ]
+  ]
+ }
+}

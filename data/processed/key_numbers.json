@@ -1,0 +1,15 @@
+{
+  "crashes": 1436,
+  "ka": 72,
+  "k": 14,
+  "killed": 17,
+  "canyon_crashes": 338,
+  "canyon_ka": 41,
+  "canyon_ka_rate": 14.6,
+  "loveland_ka_rate": 8.7,
+  "corridor_ka_rate": 10.3,
+  "canyon_vs_loveland": 1.7,
+  "canyon_curves": 89,
+  "rural_package_mid": 30,
+  "loveland_package_mid": 1
+}

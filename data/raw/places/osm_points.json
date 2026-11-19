@@ -1,0 +1,174 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-19T18:44:21Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 151456880,
+  "lat": 40.4538722,
+  "lon": -105.4491614,
+  "tags": {
+    "ele": "2200",
+    "gnis:feature_id": "177630",
+    "name": "Glen Haven",
+    "place": "hamlet",
+    "wikidata": "Q5567797"
+  }
+},
+{
+  "type": "node",
+  "id": 151877452,
+  "lat": 40.4319423,
+  "lon": -105.3393131,
+  "tags": {
+    "ele": "1878",
+    "gnis:feature_id": "177661",
+    "name": "Drake",
+    "place": "hamlet",
+    "wikidata": "Q5305577"
+  }
+},
+{
+  "type": "node",
+  "id": 8089109478,
+  "lat": 40.3962542,
+  "lon": -105.0716666,
+  "tags": {
+    "amenity": "fire_station",
+    "check_date": "2025-06-21",
+    "name": "Loveland Fire Rescue Authority",
+    "phone": "+1-970-962-2471"
+  }
+},
+{
+  "type": "way",
+  "id": 337429756,
+  "center": {
+    "lat": 40.4389771,
+    "lon": -105.0756820
+  },
+  "tags": {
+    "addr:city": "Loveland",
+    "addr:housenumber": "251",
+    "addr:postcode": "80538",
+    "addr:state": "CO",
+    "addr:street": "Knobcone Drive",
+    "amenity": "fire_station",
+    "building": "yes",
+    "name": "Fire Station 5",
+    "operator": "Loveland Fire Rescue Authority",
+    "website": "https://lfra.org/"
+  }
+},
+{
+  "type": "way",
+  "id": 467982723,
+  "center": {
+    "lat": 40.4289646,
+    "lon": -105.3183124
+  },
+  "tags": {
+    "addr:city": "Drake",
+    "addr:housenumber": "1461",
+    "addr:postcode": "80515",
+    "addr:state": "CO",
+    "addr:street": "Big Thompson Canyon Road",
+    "amenity": "fire_station",
+    "building": "yes",
+    "name": "Fire Station 8",
+    "operator": "Loveland Fire Rescue Authority",
+    "website": "https://lfra.org"
+  }
+},
+{
+  "type": "way",
+  "id": 852521545,
+  "center": {
+    "lat": 40.4195277,
+    "lon": -105.1899128
+  },
+  "tags": {
+    "addr:city": "Loveland",
+    "addr:housenumber": "2629",
+    "addr:postcode": "80537",
+    "addr:state": "CO",
+    "addr:street": "North County Road 27",
+    "amenity": "fire_station",
+    "building": "yes",
+    "name": "Fire Station 7",
+    "operator": "Loveland Fire Rescue Authority",
+    "start_date": "2020-03-13",
+    "website": "https://lfra.org"
+  }
+},
+{
+  "type": "way",
+  "id": 864487618,
+  "center": {
+    "lat": 40.4495528,
+    "lon": -105.3312867
+  },
+  "tags": {
+    "addr:city": "Drake",
+    "addr:housenumber": "100",
+    "addr:postcode": "80515",
+    "addr:state": "CO",
+    "addr:street": "Palisade Mountain Drive",
+    "amenity": "fire_station",
+    "building": "yes",
+    "name": "Fire Station 9",
+    "operator": "Loveland Fire Rescue Authority",
+    "website": "https://lfra.org"
+  }
+},
+{
+  "type": "way",
+  "id": 1075376669,
+  "center": {
+    "lat": 40.4213799,
+    "lon": -105.1197519
+  },
+  "tags": {
+    "addr:city": "Loveland",
+    "addr:housenumber": "3070",
+    "addr:postcode": "80538",
+    "addr:state": "CO",
+    "addr:street": "West 29th Street",
+    "amenity": "fire_station",
+    "building": "yes",
+    "layer": "1",
+    "name": "Fire Station 2",
+    "operator": "Loveland Fire Rescue Authority",
+    "website": "https://lfra.org/about-us/fire-stations/"
+  }
+},
+{
+  "type": "way",
+  "id": 1105247369,
+  "center": {
+    "lat": 40.3832635,
+    "lon": -105.1155155
+  },
+  "tags": {
+    "addr:city": "Loveland",
+    "addr:housenumber": "900",
+    "addr:postcode": "80537",
+    "addr:state": "CO",
+    "addr:street": "South Wilson Avenue",
+    "amenity": "fire_station",
+    "building": "yes",
+    "layer": "1",
+    "name": "Fire Station 3",
+    "operator": "Loveland Fire Rescue Authority",
+    "source": "microsoft/BuildingFootprints",
+    "website": "https://lfra.org"
+  }
+}
+
+  ]
+}

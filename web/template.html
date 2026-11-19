@@ -1,0 +1,1157 @@
+<meta charset="utf-8">
+<title>US 34 Canyon Safety</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a reading column on the left, a sticky corridor map on the right that
+   pans and zooms to each section of the story; on phones the map pins to the top. */
+:root {
+  --bg: #eef1f0; --panel: #e2e7e5; --ink: #172022; --muted: #55646a; --rule: #c8d0ce;
+  --road: #3a474b; --halo: #eef1f0; --town: #36608f; --town-fill: rgba(54, 96, 143, 0.07); --fire: #7b3fa0; --treat: #0b8f8a; --treat2: #8fd3cf;
+  --s-estes: #5571a6; --s-canyon: #b05c27; --s-mouth: #74872a; --s-love: #2b7880;
+  --k: #bf2f2a; --a: #dd772b; --dot: #7b888c;
+  --elk: #8b5a2a; --deer: #2f7a56; --eb: #c98a10; --wb: #7448b0;
+  --sign: #176b45; --sign-ink: #ffffff; --hi: rgba(191, 47, 42, 0.10);
+  --sev-lo: #f2dcae; --sev-hi: #9c1d1a;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11171a; --panel: #182125; --ink: #e2e8e7; --muted: #95a4a8; --rule: #2b373b;
+  --road: #c7d1d0; --halo: #11171a; --town: #8db4e2; --town-fill: rgba(141, 180, 226, 0.07); --fire: #9a5cc6; --treat: #2ec4b6; --treat2: #1f6f6a;
+  --s-estes: #8aa3d6; --s-canyon: #e08a50; --s-mouth: #a9bd55; --s-love: #5fb3bb;
+  --k: #f05a50; --a: #f39b50; --dot: #7f8f93;
+  --elk: #d39a5e; --deer: #63c193; --eb: #f0b840; --wb: #ab87e6;
+  --sign: #1d8a59; --sign-ink: #ffffff; --hi: rgba(240, 90, 80, 0.14); --sev-lo: #5e5236; --sev-hi: #ff5a48; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #11171a; --panel: #182125; --ink: #e2e8e7; --muted: #95a4a8; --rule: #2b373b;
+  --road: #c7d1d0; --halo: #11171a; --town: #8db4e2; --town-fill: rgba(141, 180, 226, 0.07); --fire: #9a5cc6; --treat: #2ec4b6; --treat2: #1f6f6a;
+  --s-estes: #8aa3d6; --s-canyon: #e08a50; --s-mouth: #a9bd55; --s-love: #5fb3bb;
+  --k: #f05a50; --a: #f39b50; --dot: #7f8f93;
+  --elk: #d39a5e; --deer: #63c193; --eb: #f0b840; --wb: #ab87e6;
+  --sign: #1d8a59; --sign-ink: #ffffff; --hi: rgba(240, 90, 80, 0.14); --sev-lo: #5e5236; --sev-hi: #ff5a48; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.6; }
+.wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.story { min-width: 0; padding-block: 24px min(40vh, 360px); padding-right: 40px; }
+.mapcol { min-width: 0; }
+.sticky { position: sticky; top: env(safe-area-inset-top, 0px); height: min(100vh, 900px); padding-block: 16px; display: flex; flex-direction: column; gap: 8px; }
+
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; text-wrap: balance; margin: 0; letter-spacing: 0.005em; }
+h1 { font-size: clamp(44px, 6vw, 76px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; }
+h2 { font-size: clamp(30px, 3.4vw, 40px); }
+h3 { font-size: 22px; }
+p { margin: 0; max-width: 62ch; }
+.muted { color: var(--muted); }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.mp { display: inline-flex; align-items: center; gap: 4px; font-family: var(--f-mono); font-size: 12px; font-weight: 500;
+  background: var(--sign); color: var(--sign-ink); border-radius: 3px; padding: 1px 6px; white-space: nowrap; vertical-align: 1px; }
+
+.hero { display: flex; flex-direction: column; gap: 18px; padding-block: 24px 48px; border-bottom: 1px solid var(--rule); }
+.hero .lede { font-size: 19px; line-height: 1.5; max-width: 34ch; }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.tile { display: flex; flex-direction: column; gap: 2px; border-top: 3px solid var(--ink); padding-top: 8px; }
+.tile.red { border-top-color: var(--k); }
+.tile b { font-family: var(--f-display); font-size: 40px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.tile span { font-size: 13px; color: var(--muted); line-height: 1.3; }
+
+.step { display: flex; flex-direction: column; gap: 14px; padding-block: 56px; border-bottom: 1px solid var(--rule); min-height: min(70vh, 620px); justify-content: center; }
+.step:last-child { border-bottom: 0; }
+.step .num { font-family: var(--f-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.08em; }
+.step ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; max-width: 62ch; }
+.step.active h2 { color: var(--ink); }
+.big { font-family: var(--f-display); font-size: 56px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.big small { font-family: var(--f-body); font-size: 15px; font-weight: 400; color: var(--muted); margin-left: 6px; }
+.figure { display: flex; flex-direction: column; gap: 6px; }
+.figure .cap { font-size: 12px; color: var(--muted); }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { fill: var(--muted); font-family: var(--f-mono); font-size: 11px; }
+.chart .lbl { fill: var(--ink); font-family: var(--f-body); font-size: 12px; }
+.chart .val { fill: var(--ink); font-family: var(--f-mono); font-size: 11px; }
+.chart .grid line { stroke: var(--rule); }
+.chart .axis path, .chart .axis line { stroke: var(--rule); }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--f-mono); font-size: 13px; }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: 0; }
+
+/* map panel */
+.mapbox { position: relative; flex: 1 1 auto; min-height: 0; background: var(--panel); border-radius: 6px; overflow: hidden; }
+#map { width: 100%; height: 100%; display: block; }
+.legend { position: absolute; left: 12px; top: 12px; display: flex; flex-direction: column; gap: 4px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+  padding: 8px 10px; border-radius: 4px; font-size: 12px; max-width: 60%; }
+.legend .t { font-family: var(--f-display); font-size: 17px; font-weight: 600; line-height: 1.1; }
+.legend .ramp { height: 8px; border-radius: 2px; margin: 4px 0 2px; width: 150px; max-width: 100%; }
+.legend .row { display: flex; align-items: center; gap: 6px; color: var(--muted); line-height: 1.3; }
+.legend .row i { flex: none; width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.legend .row i.bar { width: 18px; height: 4px; border-radius: 2px; }
+.north { position: absolute; right: 12px; top: 12px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+  font-family: var(--f-mono); font-size: 11px; color: var(--muted); line-height: 1.1; }
+.north select { font-family: var(--f-body); font-size: 12px; color: var(--ink); background: var(--bg); border: 1px solid var(--rule);
+  border-radius: 4px; padding: 4px 6px; max-width: 150px; cursor: pointer; }
+.north select:focus-visible { outline: 2px solid var(--sign); outline-offset: 1px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.step { cursor: default; }
+.profile { flex: none; height: 86px; }
+#prof { width: 100%; height: 100%; display: block; }
+#map .road-halo { fill: none; stroke: var(--halo); stroke-linecap: round; stroke-linejoin: round; }
+#map .road { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+#map .muted-road { stroke: var(--road); opacity: 0.35; }
+#map .overlay { fill: none; stroke: var(--k); stroke-linecap: round; opacity: 0.85; }
+#map .terrain { opacity: 0.42; mix-blend-mode: multiply; pointer-events: none; }
+#map.noterrain .terrain { display: none; }
+#map circle.hit { cursor: pointer; }
+#map circle.sel { stroke: var(--ink); }
+.filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; margin: 14px 0 6px; font-size: 13px; }
+.filters label { display: flex; flex-direction: column; gap: 3px; color: var(--muted); min-width: 0; }
+.filters select { font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; padding: 5px 6px; min-width: 0; }
+.filters fieldset { grid-column: 1 / -1; border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+.filters legend { color: var(--muted); padding: 0; margin-bottom: 3px; width: 100%; }
+label.chk { flex-direction: row !important; align-items: center; gap: 5px !important; color: var(--ink) !important; cursor: pointer; }
+label.chk i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.north label.terr { font-size: 12px; color: var(--muted) !important; }
+.count { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.card { border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; font-size: 13px; background: var(--panel); }
+.card h3 { margin: 0 0 6px; font-family: var(--f-display); font-size: 18px; }
+.card dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 0; }
+.card dt { color: var(--muted); } .card dd { margin: 0; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) #map .terrain { mix-blend-mode: screen; opacity: 0.16; } }
+:root[data-theme="dark"] #map .terrain { mix-blend-mode: screen; opacity: 0.16; }
+#map .curve { fill: none; stroke-linecap: round; }
+#map .rankpin circle { fill: var(--ink); stroke: var(--halo); stroke-width: 1.5; }
+#map .rankpin text { fill: var(--bg); stroke: none; font-weight: 600; }
+#curvetable td:first-child { white-space: nowrap; }
+#curvetable tbody tr { cursor: pointer; }
+#curvetable tbody tr:hover td { background: var(--hi); }
+#curvetable tbody tr.on td { background: var(--hi); font-weight: 600; }
+#curvetable tbody tr:focus-visible { outline: 2px solid var(--sign); outline-offset: -2px; }
+#map .rankpin { cursor: pointer; }
+#map .rankpin.on circle { fill: var(--k); }
+#map { touch-action: pan-y; }
+#map.grab { cursor: grab; } #map.grabbing { cursor: grabbing; }
+.zoomctl { position: absolute; right: 12px; bottom: 12px; display: flex; flex-direction: column; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; background: var(--bg); }
+.zoomctl button { font: 600 16px/1 var(--f-mono); color: var(--ink); background: var(--bg); border: 0; width: 30px; height: 30px; cursor: pointer; }
+.zoomctl button + button { border-top: 1px solid var(--rule); }
+.zoomctl button:hover { background: var(--hi); }
+.zoomctl button:focus-visible { outline: 2px solid var(--sign); outline-offset: -2px; }
+.mapkey { position: absolute; left: 12px; bottom: 12px; display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 11px; color: var(--muted);
+  background: color-mix(in srgb, var(--bg) 85%, transparent); padding: 4px 8px; border-radius: 4px; max-width: calc(100% - 70px); }
+.mapkey span { display: inline-flex; align-items: center; gap: 4px; }
+.mapkey i { display: inline-block; width: 12px; height: 12px; font: 700 8px/12px var(--f-mono); text-align: center; font-style: normal; }
+.mapkey i.town { border: 1.5px dashed var(--town); background: var(--town-fill); border-radius: 2px; }
+.mapkey i.fire { background: var(--fire); color: #fff; border-radius: 2px; }
+.mapkey i.fork { width: 9px; height: 9px; background: var(--ink); transform: rotate(45deg); margin: 0 2px; }
+#map .town { fill: var(--town-fill); stroke: var(--town); stroke-width: 1.5; stroke-dasharray: 5 3; }
+#map .townlbl { font-family: var(--f-body); font-size: 10.5px; fill: var(--town); font-style: italic; }
+#map .sideroad { fill: none; stroke: var(--road); stroke-width: 2.5; opacity: 0.8; stroke-linecap: round; }
+#map .lm-fire rect { fill: var(--fire); stroke: var(--halo); stroke-width: 1.5; }
+#map .lm-fire text.ic { fill: #fff; stroke: none; font-weight: 700; }
+#map .lm-fork rect { fill: var(--ink); stroke: var(--halo); stroke-width: 1.5; }
+#map .lm text.nm { font-size: 10.5px; stroke-width: 3; }
+#map.noplaces .placeslayer, .mapcol:has(#map.noplaces) .mapkey { display: none; }
+#map .treat { fill: none; stroke: var(--treat); stroke-width: 15; opacity: 0.9; stroke-linecap: round; stroke-linejoin: round; }
+#map .treat.treat2 { stroke: var(--treat2); }
+#map .treat.treat0 { stroke: var(--road); opacity: 0.6; stroke-width: 9; }
+#map .rail { fill: none; stroke: var(--ink); stroke-width: 3.5; stroke-dasharray: 5 2; stroke-linecap: butt; }
+#map .sig rect { fill: #1d2326; stroke: var(--halo); stroke-width: 1.5; }
+#map .sv rect { stroke: var(--halo); stroke-width: 1.5; }
+#map .sv.yes rect { fill: var(--sign); } #map .sv.no rect { fill: var(--muted); } #map .sv.unclear rect { fill: var(--bg); stroke: var(--muted); }
+#map .svg rect { fill: var(--ink); stroke: var(--halo); stroke-width: 1.5; } #map .svg.no rect { fill: var(--bg); stroke: var(--ink); }
+#map .sv text { fill: #fff; stroke: none; font-weight: 700; } #map .sv.unclear text { fill: var(--ink); }
+.legend .row i.treatkey { height: 8px; background: var(--treat); } .legend .row i.treat2key { height: 8px; background: var(--treat2); }
+.legend .row i.treat0key { height: 5px; background: var(--road); opacity: .6; }
+.legend .row i.railkey { height: 4px; background: repeating-linear-gradient(90deg, var(--ink) 0 5px, transparent 5px 7px); }
+.legend .row i.sigkey { width: 6px; height: 13px; border-radius: 2px; background: linear-gradient(#e5483b 0 33%, #f2b632 33% 66%, #3fb26b 66%); }
+.legend .row i.svkey { border-radius: 2px; } .legend .row i.svkey.yes { background: var(--sign); } .legend .row i.svkey.no { background: var(--muted); }
+.legend .row i.svgkey { border-radius: 1px; width: 8px; height: 8px; background: var(--ink); } .legend .row i.svgkey.no { background: var(--bg); border: 1px solid var(--ink); }
+.legend .row i.svkey.unclear { background: var(--bg); border: 1px solid var(--muted); }
+#chPri .prisel { fill: transparent; }
+#chPri .prihit { fill: transparent; cursor: pointer; outline: none; }
+#chPri g:hover > .prisel, #chPri g.on > .prisel { fill: var(--hi); }
+#chPri .prihit:focus-visible { stroke: var(--sign); stroke-width: 2; }
+#chPri g.on text.lbl { font-weight: 700; }
+.projcard { margin-top: 10px; }
+.projcard p { margin: 0 0 8px; font-size: 13px; }
+.projcard dl { grid-template-columns: minmax(0, 9.5em) 1fr; }
+.projcard .src { margin-top: 8px; font-size: 12px; }
+.projcard .btns { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.projcard button { font: inherit; font-size: 12px; color: var(--ink); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 4px 8px; cursor: pointer; }
+.projcard button:hover { background: var(--hi); }
+#chKaType .kaseg { cursor: pointer; transition: opacity .15s; }
+#chKaType .kaseg:hover { opacity: 0.8; }
+#chKaType .kaseg:focus-visible { outline: 2px solid var(--sign); outline-offset: 1px; }
+#chKaType.picking .kaseg:not(.on) { opacity: 0.25; }
+#chKaType.picking .kalbl:not(.on) { opacity: 0.5; }
+#curveCard { margin-top: 10px; }
+#curveCard button { font: inherit; font-size: 12px; color: var(--ink); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 4px 8px; cursor: pointer; margin-top: 8px; }
+.rank { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: var(--ink); color: var(--bg); font: 600 11px/18px var(--f-mono); text-align: center; margin-right: 6px; }
+#map .overlay.alt { stroke: var(--s-love); }
+#map text { font-family: var(--f-mono); fill: var(--ink); paint-order: stroke; stroke: var(--halo); stroke-linejoin: round; }
+#map text.place { font-family: var(--f-display); font-weight: 600; }
+#map .mpsign rect { fill: var(--sign); }
+#map .mpsign text { fill: var(--sign-ink); stroke: none; font-weight: 500; }
+#map circle { stroke: var(--halo); }
+#prof .area { fill: var(--rule); }
+#prof .win { fill: var(--hi); stroke: var(--k); stroke-width: 1; }
+#prof text { fill: var(--muted); font-family: var(--f-mono); font-size: 10px; }
+#prof .ln { fill: none; stroke: var(--muted); stroke-width: 1; }
+
+.src { font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+.src a { color: var(--ink); }
+a { color: var(--ink); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--sign); outline-offset: 2px; }
+
+@media (max-width: 899px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); }
+  .mapcol { order: -1; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); }
+  .sticky { position: static; height: min(46vh, 420px); padding-block: 8px; }
+  .profile { height: 56px; }
+  .story { padding-right: 0; padding-block: 8px min(30vh, 260px); }
+  .step { min-height: min(60vh, 520px); padding-block: 40px; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .legend { font-size: 11px; max-width: 72%; }
+  .legend .t { font-size: 15px; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+  <main class="story" id="story">
+    <header class="hero step" data-step="overview" data-label="Overview">
+      <div class="eyebrow">CDOT route 034A · <span class="mp">MP 61</span> to <span class="mp">MP 92</span></div>
+      <h1>US 34, Estes Park to Loveland</h1>
+      <p class="lede">Thirty-one miles from downtown Estes Park, down Big Thompson Canyon, to US 287 in Loveland. Where people get hurt, why, and what would prevent it.</p>
+      <div class="tiles" id="tiles"></div>
+      <p class="muted" style="font-size:13px">Crash records 2019–2025 (the seven full years since the canyon was rebuilt) unless noted. Scroll to follow the map.</p>
+    </header>
+
+    <section class="step" data-step="sections" data-label="Sections">
+      <div class="num">THE CORRIDOR</div>
+      <h2>Four very different roads in one route</h2>
+      <p>The corridor drops about 750 m (2,500 ft) from Estes Park to Loveland. Town streets at the top, an 18.5-mile two-lane canyon, a short rural stretch past the canyon mouth, then a four-lane urban arterial.</p>
+      <div class="tbl"><table id="segtable"></table></div>
+    </section>
+
+    <section class="step" data-step="density" data-label="All crashes">
+      <div class="num">WHERE CRASHES HAPPEN</div>
+      <h2>Most crashes are in Loveland. The worst ones are in the canyon.</h2>
+      <p><span id="loveShare"></span> Loveland's crashes are mostly low-speed rear-end and turning crashes. Mile for mile the canyon has fewer crashes, but nearly half of them injure someone.</p>
+      <div class="figure"><svg class="chart" id="chSeg"></svg><div class="cap">Fatal and serious crashes per 100 million vehicle-miles, 2019–2025. CDOT crash listings; CDOT AADT history.</div></div>
+    </section>
+
+    <section class="step" data-step="severe" data-label="Fatal and serious">
+      <div class="num">FATAL AND SERIOUS</div>
+      <h2><span id="kaN"></span> fatal or serious crashes in seven years</h2>
+      <p><span id="kaText"></span> The canyon had 41 of them, and 7 of the 14 fatal crashes.</p>
+      <div class="figure"><svg class="chart" id="chTrend"></svg><div class="cap">Fatal and serious crashes per 100 million vehicle-miles by year, whole corridor, 2007–2025. The shaded band is the 2016–2019 canyon reconstruction.</div></div>
+      <p class="muted">The severe-crash rate fell to about 6 during the rebuild, when traffic was slowed and often closed, then returned to about 13 by 2021–2024.</p>
+      <p id="kaTypeText"></p>
+      <div class="figure"><svg class="chart" id="chKaType"></svg><div class="cap">Fatal and serious crashes by crash type, whole corridor, 2019–2025. Crash type as coded in CDOT's crash listings, grouped.</div></div>
+    </section>
+
+    <section class="step" data-step="canyon" data-label="Canyon curves">
+      <div class="num">BIG THOMPSON CANYON · <span class="mp">MP 65</span>–<span class="mp">MP 83.5</span></div>
+      <h2>Curves and run-off-road crashes</h2>
+      <ul>
+        <li>75% of canyon crashes happen on a curve, and 72% involve a single vehicle.</li>
+        <li>25 of the canyon's 41 fatal or serious crashes hit a fixed object or rolled over.</li>
+        <li>The densest cluster of severe crashes is <span class="mp">MP 70</span>–<span class="mp">MP 72</span>, with 11.</li>
+        <li>The severe-crash rate is 14.6 per 100 million vehicle-miles, 1.7 times Loveland's.</li>
+      </ul>
+    </section>
+
+    <section class="step" data-step="curves" data-label="Worst curves">
+      <div class="num">CURVE BY CURVE · <span class="mp">MP 65</span>–<span class="mp">MP 88</span></div>
+      <h2>The tightest curves crash most, and a few stand out</h2>
+      <p>A curve inventory from CDOT's centerline finds 89 curves in the canyon, 4.8 per mile. Curves under 250 ft averaged 6.8 crashes each, more than three times the gentler ones. Curves that bend to the driver's left had twice the severe crashes of right-hand curves (21 against 11), mostly vehicles leaving the outside edge.</p>
+      <p class="muted" style="font-size:13px">Click a numbered pin or a row to zoom to that curve.</p>
+      <div class="tbl"><table id="curvetable"></table></div>
+      <div class="card" id="curveCard" hidden></div>
+      <p class="muted" style="font-size:13px">2019–2025. Expected = the average for curves of that length in MP 65–88. Counts at one curve are small; a road safety audit should confirm these on site.</p>
+    </section>
+
+    <section class="step" data-step="peers" data-label="Other canyons" id="peerStep">
+      <div class="num">COMPARED WITH OTHER CANYONS</div>
+      <h2 id="peerHead">How Big Thompson Canyon compares</h2>
+      <p id="peerText"></p>
+      <div class="figure"><svg class="chart" id="chPeer"></svg><div class="cap">Fatal and serious crashes per 100 million vehicle-miles, 2019–2025, with 95% intervals. Same CDOT crash listings and AADT method for every road, so US 34 shows 14.1 here against 14.6 from its own segment-level volumes elsewhere on this page.</div></div>
+    </section>
+
+    <section class="step" data-step="moto" data-label="Motorcycles">
+      <div class="num">MOTORCYCLES</div>
+      <h2>5% of crashes, 33% of the severe ones</h2>
+      <p>Motorcycles were involved in 24 of the 72 fatal or serious crashes. In the canyon, 12 of the 29 motorcycle crashes were fatal or serious. Most happen April to September.</p>
+    </section>
+
+    <section class="step" data-step="when" data-label="Crashes in the dark">
+      <div class="num">WHEN</div>
+      <h2>Winter and night carry extra risk</h2>
+      <p>Summer has the most crashes because it has the most traffic. Per mile driven, November to February is about 55% riskier than June to September.</p>
+      <div class="figure"><svg class="chart" id="chMonth"></svg><div class="cap">Crashes per million vehicle-miles by month, 2019–2025. CDOT counter 000205 monthly traffic.</div></div>
+      <div class="figure"><svg class="chart" id="chHour"></svg><div class="cap">Share of crashes and share of traffic by hour of day. 9 pm to 5 am has 12% of crashes but 4% of traffic.</div></div>
+    </section>
+
+    <section class="step" data-step="alcohol" data-label="Impaired driving">
+      <div class="num">DRIVER FACTORS</div>
+      <h2>Impairment is a canyon problem at night</h2>
+      <p>Alcohol or drugs were suspected in 7% of crashes but 19% of fatal or serious ones. 47 of the 103 impaired-driving crashes were in the canyon, and 39% happened between 9 pm and 5 am.</p>
+      <div class="tbl"><table id="drvtable"></table></div>
+      <p class="muted">Phone use is recorded in only 2 crashes, almost certainly an undercount.</p>
+    </section>
+
+    <section class="step" data-step="wildlife" data-label="Wildlife">
+      <div class="num">WILDLIFE · <span class="mp">MP 84</span>–<span class="mp">MP 90</span></div>
+      <h2>100 wildlife crashes, none fatal or serious</h2>
+      <p>Deer (48) and elk (43) are about even. 73 of the 100 are between the canyon mouth and west Loveland, where CPW maps elk winter range and highway crossings. November is the peak month, and 57 happened on dark, unlighted road.</p>
+    </section>
+
+    <section class="step" data-step="glare" data-label="Sun glare">
+      <div class="num">SUN GLARE · 2007–2025</div>
+      <h2>Low sun ahead adds crashes where the road runs open and straight</h2>
+      <p>Eastbound drivers with the morning sun ahead, and westbound drivers with the evening sun ahead, crash more often than their share of traffic predicts in Loveland and just past the canyon mouth. In the canyon, walls block the low sun.</p>
+      <div class="tbl"><table id="glaretable"></table></div>
+    </section>
+
+    <section class="step" data-step="lighting" data-label="Lighting">
+      <div class="num">LIGHTING</div>
+      <h2>Street lights stop at <span class="mp">MP 88.5</span></h2>
+      <p>Crash reports show lit roadway only in Loveland from MP 88.5 east and in downtown Estes Park. Only 5 of 146 "dark, lighted" crashes fall between MP 65 and 88.5. Everything between is dark at night.</p>
+    </section>
+
+    <section class="step" data-step="projects" data-label="Projects">
+      <div class="num">WHAT WOULD HELP</div>
+      <h2>Low-cost lane-departure fixes on the two-lane highway rank first</h2>
+      <p>Each project's estimate applies FHWA's published crash reductions to the crashes it treats. At current rates the corridor would see about 103 fatal or serious crashes in the next 10 years.</p>
+      <p class="muted" style="font-size:13px">Click a project to see where it goes, the crashes it targets, and how the estimate was made.</p>
+      <div class="figure"><svg class="chart" id="chPri"></svg><div class="cap">Estimated fatal or serious crashes prevented over 10 years (low to high). Rows overlap and cannot be added.</div></div>
+      <div class="card projcard" id="projCard" hidden></div>
+      <p id="pkgText"></p>
+    </section>
+
+    <section class="step" data-step="goals" data-label="Goal">
+      <div class="num">GOAL</div>
+      <h2>Halve fatal and serious crashes</h2>
+      <p>The proposed corridor goal is 5 or fewer fatal or serious crashes a year, down from about 10, with zero as the long-term aim under Colorado's Strategic Highway Safety Plan. A road safety audit of the canyon is the next step to pick the first curves to treat.</p>
+      <div class="src">
+        <div>Sources: <a href="https://www.codot.gov/safety/traffic-safety/data-analysis/crash-data" target="_blank" rel="noopener">CDOT crash listings</a> · <a href="https://dtdapps.codot.gov/otis" target="_blank" rel="noopener">CDOT OTIS</a> (roadway, AADT, counter 000205) · <a href="https://highways.dot.gov/safety/proven-safety-countermeasures" target="_blank" rel="noopener">FHWA Proven Safety Countermeasures</a> · <a href="https://transportationsafety.colorado.gov/strategic-highway-safety-plan" target="_blank" rel="noopener">Colorado SHSP</a> · CPW species activity mapping · USGS elevation.</div>
+        <div>Built from the US 34 analysis scripts (<code>build_web.py</code>). Goals and cost classes are proposals, not CDOT targets.</div>
+      </div>
+    </section>
+
+    <section class="step explore" data-step="explore" data-label="Explore">
+      <div class="num">EXPLORE · 2019–2025</div>
+      <h2>Find any crash</h2>
+      <p>Filter the crashes, then click a dot on the map for its details.</p>
+      <div class="filters" id="filters">
+        <label>Section <select id="fSeg"></select></label>
+        <label>Crash type <select id="fCat"></select></label>
+        <label>From <select id="fY0"></select></label>
+        <label>To <select id="fY1"></select></label>
+        <fieldset><legend>Severity</legend><span id="fSev"></span></fieldset>
+        <fieldset><legend>Only</legend>
+          <label class="chk"><input type="checkbox" id="fMoto"> Motorcycle</label>
+          <label class="chk"><input type="checkbox" id="fAlc"> Alcohol or drugs</label>
+          <label class="chk"><input type="checkbox" id="fDark"> Dark</label>
+          <label class="chk"><input type="checkbox" id="fCurve"> On a curve</label>
+        </fieldset>
+      </div>
+      <p class="count" id="fCount" aria-live="polite"></p>
+      <div class="card" id="crashCard" hidden></div>
+    </section>
+  </main>
+
+  <aside class="mapcol" aria-label="Corridor map">
+    <div class="sticky">
+      <div class="mapbox">
+        <svg id="map" role="img" aria-label="Map of US 34 from Estes Park to Loveland"></svg>
+        <div class="legend" id="legend"></div>
+        <div class="north"><label for="viewPick" class="sr">Map view</label><select id="viewPick" aria-label="Map view"></select><label class="chk terr"><input type="checkbox" id="terrOn" checked> Terrain</label><label class="chk terr"><input type="checkbox" id="placesOn" checked> Towns, landmarks</label><span>N ↑</span></div>
+        <div class="zoomctl" role="group" aria-label="Map zoom">
+          <button type="button" id="zIn" aria-label="Zoom in" title="Zoom in">+</button>
+          <button type="button" id="zOut" aria-label="Zoom out" title="Zoom out">−</button>
+          <button type="button" id="zReset" aria-label="Reset map view" title="Reset view">⟲</button>
+        </div>
+        <div class="mapkey" id="mapKey"><span><i class="town"></i>Town limits</span><span><i class="fire">F</i>Fire station</span><span><i class="fork"></i>Junction</span></div>
+      </div>
+      <div class="profile"><svg id="prof" aria-hidden="true"></svg></div>
+    </div>
+  </aside>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+const DATA = /*__DATA__*/null;
+const SEGS = DATA.segments;
+const fmt = d3.format(",");
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const segIdx = mp => mp < 65 ? 0 : mp < 83.5 ? 1 : mp < 88 ? 2 : 3;
+const SEGVAR = ["--s-estes", "--s-canyon", "--s-mouth", "--s-love"];
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+/* Severity color: fatal + serious crashes per 100M vehicle-miles on one ramp
+   from 0 to the worst section, so color differences match rate differences. */
+const SEV_MAX = d3.max(DATA.segments, d => d.ka_per_100mvmt);
+const CORR_RATE = DATA.totals.corridor_ka_rate;
+const sevColor = v => d3.interpolateLab(css("--sev-lo"), css("--sev-hi"))(Math.min(1, v / SEV_MAX));
+const segSev = i => sevColor(DATA.segments[i].ka_per_100mvmt);
+
+// crash rows: [lat, lon, mp, sev, cat, light, flags, species, dir, year]
+const CR = DATA.crashes.map(r => ({lat: r[0], lon: r[1], mp: r[2], sev: r[3], cat: r[4], light: r[5],
+  moto: r[6].includes("m"), alc: r[6].includes("a"), curve: r[6].includes("c"), glare: r[6].includes("g"),
+  wild: r[6].includes("w"), sp: r[7], dir: r[8], year: r[9], date: r[10], hour: r[11], surf: r[12],
+  veh: r[13], seg: r[14]}));
+const KA = c => c.sev === "K" || c.sev === "A";
+
+/* ---------------- static text and tables ---------------- */
+const T = DATA.totals;
+document.getElementById("tiles").innerHTML = [
+  [fmt(T.crashes), "crashes, 2019–2025", ""],
+  [T.ka, "fatal or serious crashes", "red"],
+  [T.killed, "people killed", "red"],
+  ["41 of 72", "severe crashes in the canyon", ""]
+].map(([b, s, c]) => `<div class="tile ${c}"><b>${b}</b><span>${s}</span></div>`).join("");
+document.getElementById("kaN").textContent = T.ka;
+document.getElementById("kaText").textContent = `${T.k} were fatal, killing ${T.killed}.`;
+const love = SEGS[3];
+document.getElementById("loveShare").textContent = `Loveland's 4 miles had ${fmt(love.crashes)} of the ${fmt(T.crashes)} crashes (${Math.round(100 * love.crashes / T.crashes)}%).`;
+
+document.getElementById("segtable").innerHTML = `<thead><tr><th>Section</th><th>Mileposts</th><th class="n">Crashes</th><th class="n">Fatal or serious</th><th class="n">Injury share</th></tr></thead><tbody>` +
+  SEGS.map((s, i) => `<tr><td><span class="swatch" style="background:${segSev(i)}"></span>${s.name}</td><td class="n" style="text-align:left">${s.a}–${s.b}</td><td class="n">${fmt(s.crashes)}</td><td class="n">${s.ka}</td><td class="n">${Math.round(s.pct_injury)}%</td></tr>`).join("") + `</tbody>`;
+
+const drvRows = DATA.drivers.filter(d => !d.factor.startsWith("  "));
+document.getElementById("drvtable").innerHTML = `<thead><tr><th>First-driver factor</th><th class="n">Crashes</th><th class="n">Fatal or serious</th><th class="n">Share of severe</th></tr></thead><tbody>` +
+  drvRows.map(d => `<tr><td>${d.factor}</td><td class="n">${fmt(d.crashes)}</td><td class="n">${d.ka}</td><td class="n">${Math.round(d.pct_of_ka)}%</td></tr>`).join("") + `</tbody>`;
+
+document.getElementById("glaretable").innerHTML = `<thead><tr><th>Section</th><th class="n">EB, morning sun</th><th class="n">vs expected</th><th class="n">WB, evening sun</th><th class="n">vs expected</th></tr></thead><tbody>` +
+  SEGS.map(s => { const e = DATA.glare.find(g => g.segment === s.name && g.dir === "EB"), w = DATA.glare.find(g => g.segment === s.name && g.dir === "WB");
+    const x = v => `${v.toFixed(1)}×`;
+    return `<tr><td>${s.name}</td><td class="n">${e.sun_ahead}</td><td class="n">${x(e.ratio)}</td><td class="n">${w.sun_ahead}</td><td class="n">${x(w.ratio)}</td></tr>`; }).join("") + `</tbody>`;
+
+document.getElementById("curvetable").innerHTML = `<thead><tr><th>Curve</th><th class="n">Radius</th><th class="n">Crashes (exp.)</th><th class="n">Fatal or serious (exp.)</th></tr></thead><tbody>` +
+  DATA.topCurves.map((c, i) => `<tr tabindex="0" data-i="${i}" aria-label="Zoom to curve ${i + 1}"><td><span class="rank">${i + 1}</span>MP ${c.mp_start.toFixed(2)}–${c.mp_end.toFixed(2)}</td><td class="n">${c.min_radius_ft} ft</td><td class="n">${c.crashes} (${c.exp_crashes.toFixed(0)})</td><td class="n">${c.ka}${c.k ? ", " + c.k + " fatal" : ""} (${c.exp_ka.toFixed(1)})</td></tr>`).join("") + `</tbody>`;
+
+const pk = DATA.packages;
+{ const r = n => Math.round(n), rng = q => r(q.ka_10yr_low) === r(q.ka_10yr_high) ? `about ${r(q.ka_10yr_mid)}` : `${r(q.ka_10yr_low)}–${r(q.ka_10yr_high)} (midpoint ${r(q.ka_10yr_mid)})`;
+  const mid = pk[0].ka_10yr_mid + pk[1].ka_10yr_mid, hi = pk[0].ka_10yr_high + pk[1].ka_10yr_high, goal = 103 / 2;
+  document.getElementById("pkgText").textContent = `Combined, the rural two-lane package would prevent ${rng(pk[0])} fatal or serious crashes in 10 years and the Loveland intersection package ${rng(pk[1])}. ` +
+    (mid >= goal ? `Together the midpoints, about ${r(mid)} of 103, would meet the goal of halving them.`
+     : hi >= goal ? `Together the midpoints, about ${r(mid)} of 103, fall short of halving them (${r(goal)}); only the upper ends reach it.`
+     : `Together the midpoints, about ${r(mid)} of 103, go about ${r(100 * mid / goal)}% of the way to halving them (${r(goal)}); even the upper ends (${r(hi)}) fall short, so the goal needs more than these engineering projects.`); }
+
+/* ---------------- small charts ---------------- */
+function svgSize(sel, w, h) { return d3.select(sel).attr("viewBox", `0 0 ${w} ${h}`).attr("preserveAspectRatio", "xMinYMin meet"); }
+
+function chartSeg() {
+  const W = 520, rowH = 30, m = {l: 170, r: 50, t: 4, b: 4}, H = m.t + m.b + rowH * SEGS.length;
+  const s = svgSize("#chSeg", W, H);
+  const x = d3.scaleLinear().domain([0, d3.max(SEGS, d => d.ka_per_100mvmt)]).range([m.l, W - m.r]);
+  const g = s.selectAll("g").data(SEGS).join("g").attr("transform", (d, i) => `translate(0,${m.t + i * rowH})`);
+  g.append("text").attr("class", "lbl").attr("x", 0).attr("y", rowH / 2 + 4).text(d => d.name);
+  g.append("rect").attr("x", m.l).attr("y", 6).attr("height", rowH - 12).attr("rx", 2)
+    .attr("width", d => x(d.ka_per_100mvmt) - m.l).attr("fill", (d, i) => segSev(i));
+  g.append("text").attr("class", "val").attr("x", d => x(d.ka_per_100mvmt) + 6).attr("y", rowH / 2 + 4).text(d => d.ka_per_100mvmt.toFixed(1));
+  s.append("line").attr("x1", x(CORR_RATE)).attr("x2", x(CORR_RATE)).attr("y1", 0).attr("y2", H - m.b + 2)
+    .attr("style", "stroke:var(--ink);stroke-width:1.5;stroke-dasharray:3 3");
+  s.append("text").attr("x", x(CORR_RATE)).attr("y", H + 12).attr("text-anchor", "middle").text(`corridor ${CORR_RATE.toFixed(1)}`);
+  s.attr("viewBox", `0 0 ${W} ${H + 16}`);
+}
+
+function chartTrend() {
+  const W = 520, H = 200, m = {l: 32, r: 12, t: 10, b: 24};
+  const s = svgSize("#chTrend", W, H), d = DATA.byYear;
+  const x = d3.scaleLinear().domain([2007, 2025]).range([m.l, W - m.r]);
+  const y = d3.scaleLinear().domain([0, Math.ceil(d3.max(d, v => v.ka_per_100mvmt) / 5) * 5]).range([H - m.b, m.t]);
+  s.append("rect").attr("x", x(2015.5)).attr("width", x(2019.5) - x(2015.5)).attr("y", m.t).attr("height", H - m.b - m.t).attr("style", "fill:var(--hi)");
+  s.append("g").attr("class", "grid").selectAll("line").data(y.ticks(4)).join("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y).attr("y2", y);
+  s.append("g").selectAll("text").data(y.ticks(4)).join("text").attr("x", m.l - 6).attr("y", v => y(v) + 4).attr("text-anchor", "end").text(v => v);
+  s.append("g").selectAll("text").data([2007, 2010, 2013, 2016, 2019, 2022, 2025]).join("text").attr("x", x).attr("y", H - 6).attr("text-anchor", "middle").text(v => v);
+  s.append("path").datum(d).attr("d", d3.line().x(v => x(v.year)).y(v => y(v.ka_per_100mvmt))).attr("style", "fill:none;stroke:var(--k);stroke-width:2");
+  s.append("g").selectAll("circle").data(d).join("circle").attr("cx", v => x(v.year)).attr("cy", v => y(v.ka_per_100mvmt)).attr("r", 3).attr("style", "fill:var(--k)");
+}
+
+function chartKaType() {
+  const ka = CR.filter(KA);
+  const d = d3.rollups(ka, v => ({k: v.filter(c => c.sev === "K").length, a: v.filter(c => c.sev === "A").length}), c => c.cat || "Other")
+    .map(([cat, n]) => ({cat, ...n, n: n.k + n.a})).sort((p, q) => q.n - p.n || q.k - p.k);
+  const dep = d.filter(v => v.cat === "Fixed object" || v.cat === "Rollover");
+  const depN = d3.sum(dep, v => v.n), depK = d3.sum(dep, v => v.k), ho = d.find(v => v.cat === "Head-on");
+  $("kaTypeText").textContent = `Leaving the road caused the most harm: fixed-object and rollover crashes were ${depN} of the ${ka.length} (${depK} fatal).` +
+    (ho ? ` Head-on crashes were fewer, ${ho.n}, but ${ho.k} of them were fatal.` : "");
+  const W = 520, rowH = 26, m = {l: 130, r: 70, t: 22, b: 4}, H = m.t + m.b + rowH * d.length;
+  const s = svgSize("#chKaType", W, H);
+  const x = d3.scaleLinear().domain([0, d3.max(d, v => v.n)]).nice().range([m.l, W - m.r]);
+  s.append("g").attr("class", "grid").selectAll("line").data(x.ticks(4)).join("line").attr("x1", x).attr("x2", x).attr("y1", m.t - 4).attr("y2", H - m.b);
+  s.append("g").selectAll("text").data(x.ticks(4)).join("text").attr("x", x).attr("y", 10).attr("text-anchor", "middle").text(v => v);
+  const g = s.append("g").selectAll("g").data(d).join("g").attr("transform", (v, i) => `translate(0,${m.t + i * rowH})`);
+  g.append("text").attr("class", "lbl").attr("x", 0).attr("y", rowH / 2 + 4).text(v => v.cat);
+  const bar = (sel, sev) => sel.attr("class", "kaseg").attr("data-cat", v => v.cat).attr("data-sev", sev)
+    .attr("tabindex", 0).attr("role", "button")
+    .attr("aria-label", v => `Show ${sev === "K" ? v.k + " fatal" : v.a + " serious-injury"} ${v.cat.toLowerCase()} crashes on the map`)
+    .on("click", (e, v) => { e.stopPropagation(); selectKa(v.cat, sev); })
+    .on("keydown", (e, v) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectKa(v.cat, sev); } });
+  bar(g.filter(v => v.k).append("rect").attr("x", m.l).attr("y", 5).attr("height", rowH - 10).attr("width", v => x(v.k) - m.l).attr("style", "fill:var(--k)"), "K");
+  bar(g.filter(v => v.a).append("rect").attr("x", v => x(v.k) + (v.k ? 1 : 0)).attr("y", 5).attr("height", rowH - 10)
+    .attr("width", v => Math.max(0, x(v.n) - x(v.k) - (v.k ? 1 : 0))).attr("style", "fill:var(--a)"), "A");
+  g.select("text.lbl").attr("class", "lbl kalbl").style("cursor", "pointer")
+    .on("click", (e, v) => { e.stopPropagation(); selectKa(v.cat, null); });
+  g.append("text").attr("class", "val").attr("x", v => x(v.n) + 6).attr("y", rowH / 2 + 4).text(v => v.k ? `${v.n} · ${v.k} fatal` : v.n);
+  g.append("title").text(v => `${v.cat}: ${v.k} fatal, ${v.a} serious injury`);
+  const key = s.append("g").attr("transform", `translate(${W - m.r - 150},${H + 6})`);
+  [["--k", "Fatal"], ["--a", "Serious injury"]].forEach(([c, l], i) => {
+    key.append("rect").attr("x", i * 62).attr("y", 0).attr("width", 10).attr("height", 10).attr("rx", 2).attr("style", `fill:var(${c})`);
+    key.append("text").attr("x", i * 62 + 14).attr("y", 9).text(l); });
+  s.attr("viewBox", `0 0 ${W} ${H + 20}`);
+}
+
+function chartMonth() {
+  const W = 520, H = 160, m = {l: 32, r: 8, t: 8, b: 22};
+  const s = svgSize("#chMonth", W, H), d = DATA.byMonth;
+  const x = d3.scaleBand().domain(d.map(v => v.month)).range([m.l, W - m.r]).padding(0.25);
+  const y = d3.scaleLinear().domain([0, d3.max(d, v => v.rate_per_mvmt) * 1.1]).range([H - m.b, m.t]);
+  s.append("g").attr("class", "grid").selectAll("line").data(y.ticks(3)).join("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y).attr("y2", y);
+  s.append("g").selectAll("text").data(y.ticks(3)).join("text").attr("x", m.l - 6).attr("y", v => y(v) + 4).attr("text-anchor", "end").text(v => v);
+  const winter = mo => [11, 12, 1, 2].includes(mo);
+  s.append("g").selectAll("rect").data(d).join("rect").attr("x", v => x(v.month)).attr("width", x.bandwidth()).attr("y", v => y(v.rate_per_mvmt))
+    .attr("height", v => y(0) - y(v.rate_per_mvmt)).attr("rx", 2).attr("style", v => `fill:var(${winter(v.month) ? "--s-estes" : "--dot"})`);
+  s.append("g").selectAll("text").data(d).join("text").attr("x", v => x(v.month) + x.bandwidth() / 2).attr("y", H - 6).attr("text-anchor", "middle").text(v => "JFMAMJJASOND"[v.month - 1]);
+}
+
+function chartHour() {
+  const W = 520, H = 150, m = {l: 32, r: 8, t: 8, b: 22};
+  const s = svgSize("#chHour", W, H), d = DATA.byHour;
+  const x = d3.scaleLinear().domain([0, 23]).range([m.l, W - m.r]);
+  const y = d3.scaleLinear().domain([0, d3.max(d, v => Math.max(v.pct_crashes, v.pct_traffic)) * 1.1]).range([H - m.b, m.t]);
+  s.append("rect").attr("x", m.l).attr("width", x(4.5) - m.l).attr("y", m.t).attr("height", H - m.b - m.t).attr("style", "fill:var(--hi)");
+  s.append("rect").attr("x", x(20.5)).attr("width", W - m.r - x(20.5)).attr("y", m.t).attr("height", H - m.b - m.t).attr("style", "fill:var(--hi)");
+  s.append("g").attr("class", "grid").selectAll("line").data(y.ticks(3)).join("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y).attr("y2", y);
+  s.append("g").selectAll("text").data(y.ticks(3)).join("text").attr("x", m.l - 6).attr("y", v => y(v) + 4).attr("text-anchor", "end").text(v => v + "%");
+  s.append("g").selectAll("text").data([0, 6, 12, 18, 23]).join("text").attr("x", x).attr("y", H - 6).attr("text-anchor", "middle").text(v => v === 0 ? "12 am" : v === 12 ? "noon" : v === 6 ? "6 am" : v === 18 ? "6 pm" : "11 pm");
+  s.append("path").datum(d).attr("d", d3.line().x(v => x(v.hour)).y(v => y(v.pct_traffic)).curve(d3.curveMonotoneX)).attr("style", "fill:none;stroke:var(--dot);stroke-width:2;stroke-dasharray:4 3");
+  s.append("path").datum(d).attr("d", d3.line().x(v => x(v.hour)).y(v => y(v.pct_crashes)).curve(d3.curveMonotoneX)).attr("style", "fill:none;stroke:var(--k);stroke-width:2");
+  const lab = [[d3.maxIndex(d, v => v.pct_crashes), "crashes", "--k", -8], [10, "traffic", "--dot", 14]];
+  lab.forEach(([i, t, c, dy]) => s.append("text").attr("x", x(d[i].hour)).attr("y", y(i === 10 ? d[i].pct_traffic : d[i].pct_crashes) + dy).attr("style", `fill:var(${c})`).attr("text-anchor", "middle").text(t));
+}
+
+function chartPeer() {
+  const d = DATA.peers;
+  if (!d.length) { document.getElementById("peerStep").remove(); return; }
+  const us = d.find(v => v.route === "034A");
+  const rank = [...d].sort((p, q) => q.ka_per_100mvmt - p.ka_per_100mvmt).findIndex(v => v.route === "034A") + 1;
+  const others = d.filter(v => v.route !== "034A"), avg = d3.sum(others, v => v.ka) / d3.sum(others, v => v.ka / v.ka_per_100mvmt);
+  document.getElementById("peerText").textContent = `Of ${d.length} two-lane Colorado canyon highways, Big Thompson Canyon ranks ${rank === 1 ? "highest" : "#" + rank} for fatal and serious crashes per mile driven: ${us.ka_per_100mvmt.toFixed(1)} per 100 million vehicle-miles, against ${avg.toFixed(1)} for the other six combined.`;
+  const W = 520, rowH = 30, m = {l: 190, r: 46, t: 4, b: 20}, H = m.t + m.b + rowH * d.length;
+  const s = svgSize("#chPeer", W, H);
+  const x = d3.scaleLinear().domain([0, d3.max(d, v => v.ka_per_100mvmt_hi)]).nice().range([m.l, W - m.r]);
+  s.append("g").attr("class", "grid").selectAll("line").data(x.ticks(4)).join("line").attr("x1", x).attr("x2", x).attr("y1", m.t).attr("y2", H - m.b);
+  s.append("g").selectAll("text").data(x.ticks(4)).join("text").attr("x", x).attr("y", H - 4).attr("text-anchor", "middle").text(v => v);
+  const g = s.append("g").selectAll("g").data(d).join("g").attr("transform", (v, i) => `translate(0,${m.t + i * rowH})`);
+  const isUs = v => v.route === "034A";
+  g.append("text").attr("class", v => isUs(v) ? "lbl" : "").attr("x", 0).attr("y", rowH / 2 + 4).text(v => v.corridor);
+  g.append("line").attr("x1", v => x(v.ka_per_100mvmt_lo)).attr("x2", v => x(v.ka_per_100mvmt_hi)).attr("y1", rowH / 2).attr("y2", rowH / 2)
+    .attr("style", v => `stroke:var(${isUs(v) ? "--k" : "--dot"});stroke-width:2;opacity:.6`);
+  g.append("circle").attr("cx", v => x(v.ka_per_100mvmt)).attr("cy", rowH / 2).attr("r", 5).attr("style", v => `fill:var(${isUs(v) ? "--k" : "--dot"})`);
+  g.append("text").attr("class", "val").attr("x", v => x(v.ka_per_100mvmt_hi) + 6).attr("y", rowH / 2 + 4).text(v => v.ka_per_100mvmt.toFixed(1));
+}
+
+function chartPri() {
+  const d = DATA.priorities, W = 520, rowH = 34, m = {l: 214, r: 34, t: 18, b: 4}, H = m.t + m.b + rowH * d.length;
+  const s = svgSize("#chPri", W, H);
+  const x = d3.scaleLinear().domain([0, 25]).range([m.l, W - m.r]);
+  s.append("g").attr("class", "grid").selectAll("line").data(x.ticks(5)).join("line").attr("x1", x).attr("x2", x).attr("y1", m.t - 4).attr("y2", H - m.b);
+  s.append("g").selectAll("text").data(x.ticks(5)).join("text").attr("x", x).attr("y", 10).attr("text-anchor", "middle").text(v => v);
+  const g = s.append("g").selectAll("g").data(d).join("g").attr("transform", (v, i) => `translate(0,${m.t + i * rowH})`);
+  g.append("text").attr("class", "lbl").attr("x", 0).attr("y", 13).text((v, i) => `${i + 1}. ${v.project.replace(" where shoulders allow", "").replace(" (roundabout or RCUT)", "")}`);
+  const m1 = n => (n / 1e6).toFixed(n % 1e6 === 0 ? 0 : 2).replace(/0$/, "");
+  const money = v => v.cost_high >= 1e6 ? `$${m1(v.cost_low)}–${m1(v.cost_high)}M` : `$${Math.round(v.cost_low / 1e3)}–${Math.round(v.cost_high / 1e3)}K`;
+  g.append("text").attr("x", 0).attr("y", 27)
+    .text(v => `${money(v)} · benefit-cost ${v.bc_mid >= 100 ? "100+" : Math.round(v.bc_mid)}${v.status && /already/i.test(v.status) ? " · may exist" : ""}`)
+    .append("title").text(v => `${v.where.replace(/-/g, "–")}${v.status ? ". " + v.status : ""}`);
+  const rural = v => !/Loveland/.test(v.where);
+  g.append("line").attr("x1", v => x(v.ka_prevented_10yr_low)).attr("x2", v => x(v.ka_prevented_10yr_high)).attr("y1", 14).attr("y2", 14)
+    .attr("style", v => `stroke:var(${rural(v) ? "--s-canyon" : "--s-love"});stroke-width:6;stroke-linecap:round;opacity:.45`);
+  g.append("circle").attr("cx", v => x((v.ka_prevented_10yr_low + v.ka_prevented_10yr_high) / 2)).attr("cy", 14).attr("r", 5)
+    .attr("style", v => `fill:var(${rural(v) ? "--s-canyon" : "--s-love"});stroke:var(--bg);stroke-width:1.5`);
+  g.insert("rect", ":first-child").attr("class", "prisel").attr("x", -4).attr("y", -2).attr("width", W + 4).attr("height", rowH - 2).attr("rx", 3);
+  g.append("rect").attr("class", "prihit").attr("x", -4).attr("y", -2).attr("width", W + 4).attr("height", rowH - 2)
+    .attr("tabindex", 0).attr("role", "button").attr("aria-label", v => `Show details for ${v.project}`)
+    .on("click", (e, v) => { e.stopPropagation(); focusProject(d.indexOf(v)); })
+    .on("keydown", (e, v) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); focusProject(d.indexOf(v)); } });
+  g.append("text").attr("class", "val").attr("x", v => x(v.ka_prevented_10yr_high) + 8).attr("y", 18)
+    .text(v => v.ka_prevented_10yr_low === v.ka_prevented_10yr_high ? Math.round(v.ka_prevented_10yr_low) : v.ka_prevented_10yr_low === 0 ? `≤${Math.round(v.ka_prevented_10yr_high)}` : `${Math.round(v.ka_prevented_10yr_low)}–${Math.round(v.ka_prevented_10yr_high)}`);
+}
+
+/* ---------------- map ---------------- */
+const LINE = DATA.line.map(([mp, lat, lon, el]) => ({mp, lat, lon, el}));
+const mapSvg = d3.select("#map");
+let W = 0, H = 0, proj, gRoot, view = null, curStep = "overview", kNow = 1;
+
+const STEPS = {
+  overview: {range: [61, 92], legend: () => legendSections("US 34 corridor"), draw: drawNone},
+  sections: {range: [61, 92], legend: () => legendSections("Four sections"), draw: drawNone},
+  density: {range: [61, 92], legend: () => legendRows("All crashes, 2019–2025", [["--dot", "One crash"]]), draw: () => drawPts(CR, c => "--dot", 1.6, 0.55)},
+  severe: {range: [61, 92], legend: () => {
+      if (!kaSel) return legendRows("Fatal and serious", [["--k", "Fatal (K)"], ["--a", "Serious injury (A)"]], "Click a bar in the crash-type chart to pick out those crashes");
+      const n = CR.filter(kaMatch).length, what = kaSel.sev === "K" ? "fatal" : kaSel.sev === "A" ? "serious-injury" : "fatal or serious";
+      return legendRows(`${kaSel.cat}: ${n} ${what}`, [...(kaSel.sev !== "A" ? [["--k", "Fatal (K)"]] : []), ...(kaSel.sev !== "K" ? [["--a", "Serious injury (A)"]] : []), ["--dot", "Other fatal or serious crashes"]],
+        "Click the bar again to show all"); },
+    draw: () => {
+      if (!kaSel) return drawPts(CR.filter(KA), c => c.sev === "K" ? "--k" : "--a", c => c.sev === "K" ? 5.5 : 4, 0.95);
+      drawPts(CR.filter(c => KA(c) && !kaMatch(c)), () => "--dot", 2.6, 0.45, "a");
+      drawPts(CR.filter(kaMatch), c => c.sev === "K" ? "--k" : "--a", 6.5, 1, "b"); }},
+  canyon: {range: [65, 83.5], legend: () => legendRows("Canyon, MP 65–83.5", [["--k", "Fatal or serious"], ["--dot", "Other crash on a curve"]], "MP 70–72: 11 severe crashes"), draw: () => {
+    drawPts(CR.filter(c => c.mp >= 65 && c.mp < 83.5 && c.curve && !KA(c)), () => "--dot", 2, 0.5, "a");
+    drawPts(CR.filter(c => c.mp >= 65 && c.mp < 83.5 && KA(c)), () => "--k", 4.5, 0.95, "b");
+    drawOverlay([[70, 72]], ""); }},
+  curves: {range: [65, 83.5], legend: () => curveFocus != null ? legendRows(`Curve ${curveFocus + 1}, MP ${DATA.topCurves[curveFocus].mp_start.toFixed(2)}–${DATA.topCurves[curveFocus].mp_end.toFixed(2)}`, SEVS.map(([k, l, v]) => [v, l]), "All crashes nearby, 2019–2025") : `<div class="t">Crashes per curve, 2019–2025</div><div class="row">Curve color: crashes on it</div><div class="ramp" style="background:linear-gradient(90deg, ${sevColor(0)}, ${sevColor(SEV_MAX)})"></div><div class="row"><span>0</span><span style="margin-left:auto">${CURVE_MAX}+</span></div><div class="row"><i style="background:var(--ink)"></i>Fatal or serious crash</div><div class="row">Numbers: top 7 curves</div>`,
+    draw: () => {
+      const path = d3.line().x(p => p.x).y(p => p.y);
+      DATA.curves.forEach(([a, b, rad, n]) => gRoot.select(".overlays").append("path").attr("class", "curve")
+        .attr("d", path(curvePts(a, b))).attr("stroke", sevColor(SEV_MAX * Math.min(1, n / CURVE_MAX)))
+        .attr("stroke-width", 9).attr("vector-effect", "non-scaling-stroke"));
+      if (curveFocus == null) drawPts(CR.filter(c => c.mp >= 65 && c.mp < 88 && KA(c)), () => "--ink", 3, 0.85, "b");
+      else { const [a, b] = focusRange(), order = {O: 0, C: 1, B: 2, A: 3, K: 4};
+        drawPts(CR.filter(c => c.mp >= a && c.mp <= b).sort((p, q) => order[p.sev] - order[q.sev]), c => SEVCOL[c.sev], c => KA(c) ? 6 : 4.5, 0.95, "b"); }
+      DATA.topCurves.forEach((c, i) => { const p = curvePts(c.mp_start, c.mp_end), m = p[Math.floor(p.length / 2)];
+        const g = gRoot.select(".pins").append("g").attr("class", "scalable rankpin").classed("on", i === curveFocus).attr("data-x", m.x).attr("data-y", m.y)
+          .attr("transform", `translate(${m.x},${m.y}) scale(${1 / kNow})`).on("click", () => focusCurve(i));
+        g.append("title").text(`Curve ${i + 1}: zoom in`);
+        g.append("circle").attr("r", 9).attr("cy", -16);
+        g.append("text").attr("y", -12).attr("text-anchor", "middle").attr("font-size", 11).text(i + 1); });
+    }},
+  explore: {range: [61, 92], legend: () => legendRows("Crashes by severity", SEVS.map(([k, l, v]) => [v, l]), "Click a dot for details"),
+    draw: () => drawExplore()},
+  peers: {range: [65, 83.5], legend: () => legendRows("Big Thompson Canyon", [["--k", "Fatal or serious"]], "Compared with six other canyons"), draw: () => drawPts(CR.filter(c => c.mp >= 65 && c.mp < 83.5 && KA(c)), () => "--k", 4, 0.9)},
+  moto: {range: [64, 88], legend: () => legendRows("Motorcycle crashes", [["--k", "Fatal or serious"], ["--a", "Other injury or damage"]]), draw: () => drawPts(CR.filter(c => c.moto), c => KA(c) ? "--k" : "--a", c => KA(c) ? 5 : 3, 0.9)},
+  when: {range: [61, 92], legend: () => legendRows("Crashes in the dark", [["--s-estes", "Dark, unlighted"], ["--dot", "Dark, lighted"]]), draw: () => drawPts(CR.filter(c => c.light.startsWith("Dark")), c => c.light === "Dark, unlighted" ? "--s-estes" : "--dot", 2.4, 0.8)},
+  alcohol: {range: [61, 92], legend: () => legendRows("Alcohol or drugs suspected", [["--k", "Fatal or serious"], ["--wb", "Other"]]), draw: () => drawPts(CR.filter(c => c.alc), c => KA(c) ? "--k" : "--wb", c => KA(c) ? 5 : 3, 0.9)},
+  wildlife: {range: [83, 91], legend: () => legendRows("Wildlife crashes", [["--elk", "Elk"], ["--deer", "Deer"], ["--dot", "Other or not recorded"]]), draw: () => drawPts(CR.filter(c => c.wild), c => c.sp.toLowerCase() === "elk" ? "--elk" : c.sp.toLowerCase() === "deer" ? "--deer" : "--dot", 4, 0.9)},
+  glare: {range: [83.5, 92], legend: () => legendRows("Crashes with low sun ahead", [["--eb", "Eastbound, morning sun"], ["--wb", "Westbound, evening sun"]], "2007–2025 sun positions; this map shows 2019–2025"), draw: () => drawPts(CR.filter(c => c.glare), c => c.dir === "EB" ? "--eb" : "--wb", 4, 0.9)},
+  lighting: {range: [61, 92], legend: () => legendRows("Dark crashes by lighting", [["--a", "Dark, lighted"], ["--s-estes", "Dark, unlighted"]], "Lit road: MP 88.5 east and downtown Estes Park"), draw: () => {
+    drawPts(CR.filter(c => c.light === "Dark, unlighted"), () => "--s-estes", 2.4, 0.6, "a");
+    drawPts(CR.filter(c => c.light === "Dark, lighted"), () => "--a", 3, 0.95, "b"); }},
+  projects: {range: [61, 92], legend: () => {
+      if (projFocus == null) return legendBars("Project packages", [["--k", "Rural two-lane package, MP 65–88"], ["--s-love", "Loveland intersection package, MP 88–92"]]) + `<div class="row">Click a project to see where it goes</div>`;
+      const p = DATA.priorities[projFocus], rows = projRows(p), ka = rows.filter(KA).length, L = projLayers(p);
+      const shoulderRows = L.has("shoulders") && p.project.startsWith("Shoulder")
+        ? [["treat", "Treated: shoulder 4 ft or wider (CDOT), MP 75.5–88"], ["treat2", "Not treated: shoulder 2–3 ft"], ["treat0", "Not treated: under 2 ft, or MP 65–75.5 where Street View shows 1–3 ft"]]
+        : [["treat", p.show === "curves" ? "Curves this project treats" : "Road this project treats"]];
+      return `<div class="t">${projFocus + 1}. ${shortName(p)}</div>` +
+        shoulderRows.map(([c, l]) => `<div class="row"><i class="bar ${c}key"></i>${l}</div>`).join("") +
+        (L.has("rails") ? `<div class="row"><i class="bar railkey"></i>Guardrail mapped in OpenStreetMap</div><div class="row"><i class="svgkey"></i>Guardrail seen &nbsp;<i class="svgkey no"></i>none seen (Street View)</div>` : "") +
+        (L.has("signals") ? `<div class="row"><i class="sigkey"></i>Traffic signal</div>` : "") +
+        (projSurveyKey(p) ? `<div class="row"><i class="svkey yes"></i>${projSurveyKey(p)} seen (Street View)</div><div class="row"><i class="svkey no"></i>Not seen &nbsp;<i class="svkey unclear"></i>Unclear</div>` : "") +
+        `<div class="row"><i style="background:var(--k)"></i>Fatal or serious &nbsp;<i style="background:var(--dot)"></i>Other target crash</div>` +
+        `<div class="row">${fmt(rows.length)} target crashes, ${ka} fatal or serious (2019–2025)</div>`; },
+    draw: () => {
+      if (projFocus == null) {
+        drawOverlay([[65, 88]], ""); drawOverlay([[88, 92]], "alt");
+        return drawPts(CR.filter(KA), () => "--ink", 2.6, 0.5); }
+      const p = DATA.priorities[projFocus], L = projLayers(p), EX = DATA.existing;
+      const path = d3.line().x(q => q.x).y(q => q.y), ov = gRoot.select(".overlays");
+      const line = (a, b) => LINE.filter(q => q.mp >= a && q.mp <= b);
+      const band = (pts, cls) => ov.append("path").attr("class", cls).attr("d", path(pts)).attr("vector-effect", "non-scaling-stroke");
+      // 1. the road the project treats, drawn as a wide colored band (by shoulder width for shoulder rumble strips)
+      if (L.has("shoulders") && p.project.startsWith("Shoulder"))
+        EX.shoulders.filter(([a, b]) => b > 65 && a < 88).forEach(([a, b, w]) => {
+          const in0 = Math.max(a, 65), in1 = Math.min(b, 88), cut = p.ranges[0][0];      // left out below MP 75.5
+          if (in0 < cut) band(curvePts(in0, Math.min(in1, cut)), "treat treat0");
+          if (in1 > cut) band(curvePts(Math.max(in0, cut), in1), w >= 4 ? "treat" : w >= 2 ? "treat treat2" : "treat treat0"); });
+      else (p.show === "curves" ? DATA.curves.filter(([a, b]) => p.ranges.some(([r0, r1]) => (a + b) / 2 >= r0 && (a + b) / 2 <= r1)).map(([a, b]) => curvePts(a, b))
+        : p.ranges.map(([a, b]) => line(a, b))).forEach(pts => band(pts, "treat"));
+      // 2. what is on the road now
+      if (L.has("rails")) EX.rails.forEach(r => ov.append("path").attr("class", "rail").attr("vector-effect", "non-scaling-stroke")
+        .attr("d", "M" + r.pts.map(q => proj(q).join(",")).join("L")).append("title").text(`Guardrail near MP ${r.mp} (OpenStreetMap way ${r.id})`));
+      const pins = gRoot.select(".pins");
+      if (L.has("signals")) EX.signals.forEach(sg => { const [x, y] = proj([sg.lon, sg.lat]);
+        const g = pins.append("g").attr("class", "scalable sig").attr("data-x", x).attr("data-y", y).attr("transform", `translate(${x},${y}) scale(${1 / kNow})`);
+        g.append("rect").attr("x", -4.5).attr("y", -11).attr("width", 9).attr("height", 22).attr("rx", 2.5);
+        ["#e5483b", "#f2b632", "#3fb26b"].forEach((c, i) => g.append("circle").attr("cy", -6 + i * 6).attr("r", 2.2).attr("style", `fill:${c};stroke:none`));
+        g.append("title").text(`Traffic signal, MP ${sg.mp.toFixed(1)} (OpenStreetMap)`); });
+      if (L.has("rails")) EX.survey.forEach(sv => { const m = curvePts(sv.mp, sv.mp)[0], yes = /^yes/.test(sv.guardrail);
+        const g = pins.append("g").attr("class", `scalable svg ${yes ? "yes" : "no"}`).attr("data-x", m.x).attr("data-y", m.y).attr("transform", `translate(${m.x},${m.y}) scale(${1 / kNow})`);
+        g.append("rect").attr("x", -4).attr("y", 9).attr("width", 8).attr("height", 8).attr("rx", 1);
+        g.append("title").text(`Street View ${sv.imagery || "(date not shown)"}, MP ${sv.mp} ${sv.direction}: guardrail ${sv.guardrail}`); });
+      const key = projSurveyField(p);
+      if (key) EX.survey.forEach(sv => { const m = curvePts(sv.mp, sv.mp)[0], v = String(sv[key]).toLowerCase();
+        const st = v.startsWith("yes") ? "yes" : v === "unclear" ? "unclear" : v === "n/a" || v === "" ? null : "no";
+        if (!st) return;
+        const g = pins.append("g").attr("class", `scalable sv ${st}`).attr("data-x", m.x).attr("data-y", m.y).attr("transform", `translate(${m.x},${m.y}) scale(${1 / kNow})`);
+        g.append("rect").attr("x", -6).attr("y", -22).attr("width", 12).attr("height", 12).attr("rx", 2);
+        g.append("text").attr("y", -12.5).attr("text-anchor", "middle").attr("font-size", 10).text(st === "yes" ? "✓" : st === "no" ? "✕" : "?");
+        g.append("title").text(`Street View ${sv.imagery || "(date not shown)"}, MP ${sv.mp} ${sv.direction}: ${projSurveyKey(p).toLowerCase()} ${sv[key]}${sv.notes ? ". " + sv.notes : ""}`); });
+      // 3. the crashes it targets, kept small so the road reads first
+      const order = {O: 0, C: 1, B: 2, A: 3, K: 4};
+      drawPts(p.crashes.map(i => CR[i]).sort((x, y) => order[x.sev] - order[y.sev]), c => KA(c) ? "--k" : "--dot", c => KA(c) ? 3.6 : 2, c => KA(c) ? 0.9 : 0.55, "b"); }},
+  goals: {range: [61, 92], legend: () => legendRows("Fatal and serious, 2019–2025", [["--k", "72 crashes, 17 killed"]], "Goal: 5 or fewer a year"), draw: () => drawPts(CR.filter(KA), () => "--k", 3.5, 0.9)},
+};
+
+function legendSections(t) {
+  const ramp = `linear-gradient(90deg, ${sevColor(0)}, ${sevColor(SEV_MAX)})`;
+  return `<div class="t">${t}</div><div class="row">Fatal + serious per 100M vehicle-miles</div><div class="ramp" style="background:${ramp}"></div>` +
+    [...SEGS.keys()].sort((a, b) => SEGS[b].ka_per_100mvmt - SEGS[a].ka_per_100mvmt).map(i => { const s = SEGS[i];
+      return `<div class="row"><i class="bar" style="background:${segSev(i)}"></i>${s.name}: ${s.ka_per_100mvmt.toFixed(1)} (${(s.ka_per_100mvmt / CORR_RATE).toFixed(1)}× corridor)</div>`; }).join("");
+}
+function legendRows(t, rows, note) {
+  return `<div class="t">${t}</div>` + rows.map(([c, l]) => `<div class="row"><i style="background:var(${c})"></i>${l}</div>`).join("") + (note ? `<div class="row">${note}</div>` : "");
+}
+function legendBars(t, rows) {
+  return `<div class="t">${t}</div>` + rows.map(([c, l]) => `<div class="row"><i class="bar" style="background:var(${c})"></i>${l}</div>`).join("");
+}
+
+function buildMap() {
+  const box = document.querySelector(".mapbox").getBoundingClientRect();
+  W = Math.max(200, box.width); H = Math.max(160, box.height);
+  mapSvg.attr("viewBox", `0 0 ${W} ${H}`);
+  mapSvg.selectAll("*").remove();
+  const gj = {type: "LineString", coordinates: LINE.map(p => [p.lon, p.lat])};
+  proj = d3.geoMercator().fitExtent([[24, 24], [W - 24, H - 24]], gj);
+  LINE.forEach(p => { [p.x, p.y] = proj([p.lon, p.lat]); });
+  CR.forEach(c => { [c.x, c.y] = proj([c.lon, c.lat]); });
+  gRoot = mapSvg.append("g");
+  if (DATA.terrain) {
+    const t = DATA.terrain, [x0, y0] = proj([t.w, t.n]), [x1, y1] = proj([t.e, t.s]);
+    gRoot.append("image").attr("class", "terrain").attr("href", t.src).attr("x", x0).attr("y", y0)
+      .attr("width", x1 - x0).attr("height", y1 - y0).attr("preserveAspectRatio", "none");
+  }
+  const path = d3.line().x(p => p.x).y(p => p.y);
+  // town limits and side roads, under the highway
+  const PL = DATA.places || {towns: [], points: []}, pj = ll => proj(ll);
+  const placesLow = gRoot.append("g").attr("class", "placeslayer");
+  PL.towns.forEach(t => placesLow.append("path").attr("class", "town").attr("fill-rule", "evenodd").attr("vector-effect", "non-scaling-stroke")
+    .attr("d", t.rings.map(r => "M" + r.map(pj).map(p => p.join(",")).join("L") + "Z").join(""))
+    .append("title").text(`${t.name} town limits (US Census Bureau, TIGERweb)`));
+  PL.points.filter(p => p.road).forEach(p => placesLow.append("path").attr("class", "sideroad").attr("vector-effect", "non-scaling-stroke")
+    .attr("d", "M" + p.road.map(pj).map(q => q.join(",")).join("L")));
+  gRoot.append("path").attr("class", "road-halo").attr("d", path(LINE)).attr("stroke-width", 11).attr("vector-effect", "non-scaling-stroke");
+  [[61, 65], [65, 83.5], [83.5, 88], [88, 92.1]].forEach(([a, b], i) => {
+    gRoot.append("path").attr("class", "road").attr("stroke", segSev(i)).attr("d", path(LINE.filter(p => p.mp >= a - 0.05 && p.mp <= b + 0.05)))
+      .attr("stroke-width", 4.5).attr("vector-effect", "non-scaling-stroke");
+  });
+  gRoot.append("g").attr("class", "overlays");
+  gRoot.append("g").attr("class", "pts-a");
+  gRoot.append("g").attr("class", "pts");
+  gRoot.append("g").attr("class", "pts-b");
+  gRoot.append("g").attr("class", "pins");
+  const labels = gRoot.append("g").attr("class", "labels");
+  const at = mp => LINE.reduce((a, b) => Math.abs(b.mp - mp) < Math.abs(a.mp - mp) ? b : a);
+  [61, 65, 70, 75, 80, 85, 90, 92].forEach(mp => {
+    const p = at(mp), g = labels.append("g").attr("class", "mpsign scalable").attr("data-x", p.x).attr("data-y", p.y);
+    g.append("rect").attr("x", -13).attr("y", -19).attr("width", 26).attr("height", 13).attr("rx", 2);
+    g.append("text").attr("x", 0).attr("y", -9.5).attr("text-anchor", "middle").attr("font-size", 9.5).text(mp);
+  });
+  [["Estes Park", 62, "end", -10, 22], ["Drake", 76.3, "middle", 0, 30], ["Canyon mouth", 83.5, "middle", 0, 32], ["Loveland", 91, "middle", 0, 30]].forEach(([t, mp, anchor, dx, dy]) => {
+    const p = at(mp);
+    labels.append("g").attr("class", "scalable").attr("data-x", p.x).attr("data-y", p.y)
+      .append("text").attr("class", "place").attr("x", dx).attr("y", dy).attr("text-anchor", anchor).attr("font-size", 15).attr("stroke-width", 3).text(t);
+  });
+  // landmarks: junction (diamond) and fire station (square), drawn above the crash dots
+  const lmG = gRoot.append("g").attr("class", "placeslayer");
+  PL.points.forEach(p => {
+    const [x, y] = proj([p.lon, p.lat]), fire = p.kind === "fire";
+    const g = lmG.append("g").attr("class", `scalable lm ${fire ? "lm-fire" : "lm-fork"}`).attr("data-x", x).attr("data-y", y);
+    g.append("title").text(`${p.name}, MP ${p.mp.toFixed(1)}. ${p.note}. Source: ${p.source}.`);
+    if (fire) {
+      g.append("rect").attr("x", -7).attr("y", -7).attr("width", 14).attr("height", 14).attr("rx", 2.5);
+      g.append("text").attr("class", "ic").attr("y", 3.5).attr("text-anchor", "middle").attr("font-size", 9.5).text("F");
+      g.append("text").attr("class", "nm").attr("x", 10).attr("y", -8).text(`${p.name} · MP ${p.mp.toFixed(1)}`);
+    } else {
+      g.append("rect").attr("x", -4.5).attr("y", -4.5).attr("width", 9).attr("height", 9).attr("transform", "rotate(45)");
+      const end = p.road ? proj(p.road[p.road.length - 1]) : [x - 30, y - 20], dx = end[0] - x, dy = end[1] - y, len = Math.hypot(dx, dy) || 1;
+      g.append("text").attr("class", "nm").attr("x", 14 * dx / len - 6).attr("y", 14 * dy / len - 6).attr("text-anchor", "end")
+        .text(`${p.name} · MP ${p.mp.toFixed(1)}`);
+    }
+  });
+  mapSvg.classed("noplaces", !$("placesOn").checked);
+  buildProfile();
+  view = null;
+  setStep(curStep, true);
+}
+
+function viewFor([a, b], minW = 40) {
+  const pts = b - a < 2 ? curvePts(a, b) : LINE.filter(p => p.mp >= a && p.mp <= b);
+  const [x0, x1] = d3.extent(pts, p => p.x), [y0, y1] = d3.extent(pts, p => p.y);
+  const w = Math.max(x1 - x0, (y1 - y0) * W / H, minW) * 1.18;
+  return [(x0 + x1) / 2, (y0 + y1) / 2, w];
+}
+function applyView(v) {
+  const k = W / v[2];
+  kNow = k;
+  gRoot.attr("transform", `translate(${W / 2 - k * v[0]},${H / 2 - k * v[1]}) scale(${k})`);
+  gRoot.selectAll(".pts circle, .pts-a circle, .pts-b circle").attr("r", function () { return +this.dataset.r / k; }).attr("stroke-width", 1 / k);
+  gRoot.selectAll(".scalable").attr("transform", function () { return `translate(${this.dataset.x},${this.dataset.y}) scale(${1 / k})`; });
+}
+
+/* ---------------- explore mode ---------------- */
+const SEVS = [["K", "Fatal", "--k"], ["A", "Serious injury", "--a"], ["B", "Minor injury", "--eb"],
+  ["C", "Possible injury", "--s-estes"], ["O", "Property damage only", "--dot"]];
+const SEVCOL = Object.fromEntries(SEVS.map(([k, , v]) => [k, v]));
+const SEVLAB = Object.fromEntries(SEVS.map(([k, l]) => [k, l]));
+const $ = id => document.getElementById(id);
+function initExplore() {
+  const years = [...new Set(CR.map(c => c.year))].sort();
+  const opt = (v, l = v) => `<option value="${v}">${l}</option>`;
+  $("fSeg").innerHTML = opt("all", "Whole corridor") + SEGS.map((s, i) => opt(i, `${s.name}, MP ${s.a}–${s.b}`)).join("");
+  const cats = [...new Set(CR.map(c => c.cat))].filter(Boolean).sort();
+  $("fCat").innerHTML = opt("all", "All types") + cats.map(c => opt(c)).join("");
+  $("fY0").innerHTML = years.map(y => opt(y)).join(""); $("fY1").innerHTML = years.map(y => opt(y)).join("");
+  $("fY0").value = years[0]; $("fY1").value = years[years.length - 1];
+  $("fSev").innerHTML = SEVS.map(([k, l, v]) => `<label class="chk"><input type="checkbox" data-sev="${k}" checked><i style="background:var(${v})"></i>${l}</label>`).join("");
+  $("filters").addEventListener("change", () => {
+    $("crashCard").hidden = true;
+    if (curStep !== "explore") activate("explore"); else setStep("explore");
+  });
+}
+function exploreRange() {
+  const v = $("fSeg").value;
+  return v === "all" ? [61, 92] : [SEGS[+v].a, SEGS[+v].b];
+}
+function exploreRows() {
+  const [a, b] = exploreRange(), y0 = +$("fY0").value, y1 = +$("fY1").value, cat = $("fCat").value;
+  const sev = new Set([...document.querySelectorAll("#fSev input:checked")].map(i => i.dataset.sev));
+  return CR.filter(c => c.mp >= a && c.mp <= b && c.year >= Math.min(y0, y1) && c.year <= Math.max(y0, y1)
+    && (cat === "all" || c.cat === cat) && sev.has(c.sev)
+    && (!$("fMoto").checked || c.moto) && (!$("fAlc").checked || c.alc)
+    && (!$("fDark").checked || c.light.startsWith("Dark")) && (!$("fCurve").checked || c.curve));
+}
+function drawExplore() {
+  const order = {O: 0, C: 1, B: 2, A: 3, K: 4};
+  const rows = exploreRows().sort((p, q) => order[p.sev] - order[q.sev]);
+  const ka = rows.filter(KA).length;
+  $("fCount").textContent = `${fmt(rows.length)} crashes · ${ka} fatal or serious`;
+  drawPts(rows, c => SEVCOL[c.sev], c => c.sev === "K" ? 5.5 : c.sev === "A" ? 4.5 : 3, 0.9);
+  gRoot.select(".pts").selectAll("circle").classed("hit", true).on("click", (e, c) => showCard(c, e.currentTarget));
+}
+function showCard(c, el) {
+  gRoot.selectAll("circle.sel").classed("sel", false);
+  d3.select(el).classed("sel", true).raise();
+  const flags = [c.moto && "motorcycle", c.alc && "alcohol or drugs suspected", c.curve && "on a curve",
+    c.glare && "low sun ahead", c.wild && (c.sp ? c.sp.toLowerCase() : "wild animal")].filter(Boolean);
+  const hour = c.hour >= 0 ? ` · ${c.hour === 0 ? 12 : c.hour > 12 ? c.hour - 12 : c.hour} ${c.hour < 12 ? "am" : "pm"}` : "";
+  const rows = [["Where", `MP ${c.mp.toFixed(2)} · ${c.seg}`], ["Severity", SEVLAB[c.sev] || c.sev], ["Type", c.cat],
+    ["Vehicles", c.veh || "–"], ["Light", c.light], ["Surface", c.surf || "–"],
+    ["Direction", c.dir === "EB" ? "Eastbound" : c.dir === "WB" ? "Westbound" : "–"]];
+  if (flags.length) rows.push(["Also", flags.join(", ")]);
+  const card = $("crashCard");
+  card.innerHTML = `<h3>${c.date || c.year}${hour}</h3><dl>` + rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("") + "</dl>";
+  card.hidden = false;
+  if (window.innerWidth >= 900) card.scrollIntoView({block: "nearest", behavior: reduce ? "auto" : "smooth"});
+}
+
+const CURVE_MAX = 12;
+/* ---------------- severe crashes: pick a crash type (and severity) from the bar chart ---------------- */
+/* ---------------- project detail: zoom to one project and its target crashes ---------------- */
+let projFocus = null;
+const shortName = p => p.project.replace(" where shoulders allow", "").replace(" (roundabout or RCUT)", "");
+const projCol = p => /Loveland/.test(p.where) ? "--s-love" : "--k";
+const projRows = p => p.crashes.map(i => CR[i]);
+const projRange = p => [d3.min(p.ranges, r => r[0]), d3.max(p.ranges, r => r[1])];
+function projMoney(n) { return n >= 1e6 ? `$${(n / 1e6).toFixed(n % 1e6 ? 2 : 0).replace(/\.?0+$/, "")}M` : `$${Math.round(n / 1e3)}K`; }
+const projLayers = p => new Set((p.existing || []).filter(x => !x.startsWith("none:")));
+const SV_FIELD = {clrs: ["centerline_rumble", "Center-line rumble strip"], srs: ["shoulder_rumble", "Shoulder rumble strip"], chevrons: ["chevrons_visible", "Chevrons"]};
+const projSurveyField = p => { const k = (p.existing || []).find(x => SV_FIELD[x]); return k ? SV_FIELD[k][0] : null; };
+const projSurveyKey = p => { const k = (p.existing || []).find(x => SV_FIELD[x]); return k ? SV_FIELD[k][1] : null; };
+/* survey MPs as ranges: points with a "yes" and no "no" between them join up */
+function svRuns(rows, test) {
+  const pts = [...rows].sort((a, b) => a.mp - b.mp), out = []; let cur = null;
+  pts.forEach(s => { if (test(s)) { if (cur) cur[1] = s.mp; else cur = [s.mp, s.mp]; } else if (cur) { out.push(cur); cur = null; } });
+  if (cur) out.push(cur);
+  return out.map(([a, b]) => a === b ? `${a}` : `${a}–${b}`).join(", ");
+}
+/* plain-language summary of what is on the road now, and how complete the data is */
+function existingText(p) {
+  const EX = DATA.existing, out = [], [a0, b0] = projRange(p);
+  const sv = (field, label) => { const r = EX.survey.filter(s => s[field] && s[field] !== "n/a"), y = r.filter(s => String(s[field]).startsWith("yes")), u = r.filter(s => s[field] === "unclear");
+    return `${label}: seen at ${y.length} of ${r.length} Street View points${y.length ? ` (MP ${svRuns(r, s => String(s[field]).startsWith("yes"))})` : ""}${u.length ? `, unclear at ${u.length}` : ""}. Street View points every half mile plus the top curves (2023–2024 imagery), not a full inventory.`; };
+  (p.existing || []).forEach(x => {
+    if (SV_FIELD[x]) out.push(sv(...SV_FIELD[x]));
+    else if (x === "shoulders") { const mi = {w4: 0, w2: 0, w0: 0};
+      EX.shoulders.forEach(([a, b, w]) => { const l = Math.max(0, Math.min(b, 88) - Math.max(a, 65)); mi[w >= 4 ? "w4" : w >= 2 ? "w2" : "w0"] += l; });
+      out.push(`Shoulder width (CDOT, 2025, every segment): ${mi.w4.toFixed(1)} mi of MP 65–88 is 4 ft or wider, ${mi.w2.toFixed(1)} mi is 2–3 ft, ${mi.w0.toFixed(1)} mi is under 2 ft. CDOT records one side; the other side can differ.`); }
+    else if (x === "rails") { const r = EX.rails.filter(q => q.mp >= a0 - 0.2 && q.mp <= b0 + 0.2), svr = EX.survey.filter(s => /^yes/.test(s.guardrail));
+      out.push(`Guardrail: OpenStreetMap maps ${r.length} short run${r.length === 1 ? "" : "s"} here (MP ${[...new Set(r.map(q => q.mp))].join(", ") || "none"}); Street View saw guardrail at ${svr.length} of ${EX.survey.length} points, mostly on the river side (MP ${svRuns(EX.survey, s => /^yes/.test(s.guardrail))}). Both are partial; CDOT publishes no guardrail inventory.`); }
+    else if (x === "signals") { const g = EX.signals.filter(q => q.mp >= a0 && q.mp <= b0);
+      out.push(`Traffic signals: ${g.length} signalized intersections in this stretch (MP ${g.map(q => q.mp.toFixed(1)).join(", ")}), from OpenStreetMap.`); }
+    else if (x.startsWith("none:")) out.push(`No public data on ${x.slice(5)}.`);
+  });
+  return out.join("<br>");
+}
+function focusProject(i) {
+  projFocus = i === projFocus ? null : i;
+  d3.select("#chPri").selectAll("g").filter(function () { return this.querySelector(":scope > .prihit"); })
+    .classed("on", (v, j) => j === projFocus);
+  const card = $("projCard");
+  if (projFocus == null) card.hidden = true;
+  else {
+    const p = DATA.priorities[projFocus], rows = projRows(p), n = d3.rollup(rows, v => v.length, c => c.sev);
+    const ka = (n.get("K") || 0) + (n.get("A") || 0), inj = ka + (n.get("B") || 0) + (n.get("C") || 0);
+    const rng = (lo, hi) => lo === hi ? `${Math.round(lo)}` : lo === 0 ? `up to ${Math.round(hi)}` : `${Math.round(lo)}–${Math.round(hi)}`;
+    const pct = p.reduction_low_pct === p.reduction_high_pct ? `${p.reduction_low_pct}%` : `${p.reduction_low_pct === 0 ? "up to " : p.reduction_low_pct + "–"}${p.reduction_high_pct}%`;
+    const bc = v => v === 0 ? "0" : v >= 100 ? Math.round(v).toLocaleString() : v.toFixed(v < 10 ? 1 : 0);
+    const adj = [p.eb_adjust_ka && p.eb_adjust_ka < 1 && `Fatal and serious counts scaled by ${p.eb_adjust_ka.toFixed(2)} (Empirical Bayes), because these sites were picked for their high counts`,
+      p.untreated_share && p.untreated_share < 1 && `Benefits cut to ${Math.round(p.untreated_share * 100)}% because part of the road may already have it`].filter(Boolean);
+    const dl = [["Where", p.where.replace(/-/g, "–")],
+      ["Targets", `${p.targets}: ${fmt(rows.length)} crashes in 2019–2025, ${inj} with injuries, ${ka} fatal or serious${n.get("K") ? ` (${n.get("K")} fatal)` : ""}`],
+      ["Crash reduction", `${pct} (${p.basis})`],
+      ["Prevented in 10 years", `${rng(p.ka_prevented_10yr_low, p.ka_prevented_10yr_high)} fatal or serious; ${rng(p.injury_prevented_10yr_low, p.injury_prevented_10yr_high)} injury crashes`],
+      ["Cost", `${projMoney(p.cost_low)}–${projMoney(p.cost_high)}. ${p.cost_basis}`],
+      ["Service life", `${p.life_yr} years`],
+      ["Benefit-cost", `${bc(p.bc_mid)} at the midpoint (range ${bc(p.bc_low)}–${bc(p.bc_high)})`],
+      ...(adj.length ? [["Adjusted", adj.join(". ")]] : []),
+      ["On the road now", existingText(p)],
+      ...(p.status ? [["Status", p.status]] : [])];
+    card.innerHTML = `<h3>${projFocus + 1}. ${p.project}</h3><p>${p.what}</p><dl>` + dl.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("") + `</dl>` +
+      `<div class="src">${p.sources.map(([t, u]) => `<a href="${u}" target="_blank" rel="noopener">${t} ↗</a>`).join("")}` +
+      `<span>Benefits use FHWA crash costs (MnDOT 2025 table), a 3.1% discount rate, and planning-level costs.</span></div>` +
+      `<div class="btns"><button type="button" data-go="-1">← Previous</button><button type="button" data-go="1">Next →</button><button type="button" data-go="0">Back to all projects</button></div>`;
+    card.querySelectorAll("button").forEach(b => b.addEventListener("click", e => {
+      e.stopPropagation(); const g = +b.dataset.go, N = DATA.priorities.length;
+      focusProject(g === 0 ? projFocus : (projFocus + g + N) % N); }));
+    card.hidden = false;
+  }
+  if (picker.value !== "projects") picker.value = "projects";
+  STEP_EL.forEach(s => s.classList.toggle("active", s.dataset.step === "projects"));
+  setStep("projects");
+}
+
+function focusProjectClear() { projFocus = null; $("projCard").hidden = true; d3.select("#chPri").selectAll("g.on").classed("on", false); }
+
+let kaSel = null;   // {cat, sev: "K" | "A" | null for both}
+const kaMatch = c => kaSel && KA(c) && (c.cat || "Other") === kaSel.cat && (!kaSel.sev || c.sev === kaSel.sev);
+function selectKa(cat, sev) {
+  kaSel = kaSel && kaSel.cat === cat && kaSel.sev === sev ? null : {cat, sev};
+  paintKaChart();
+  if (picker.value !== "severe") picker.value = "severe";
+  STEP_EL.forEach(s => s.classList.toggle("active", s.dataset.step === "severe"));
+  setStep("severe");
+}
+function paintKaChart() {
+  const s = d3.select("#chKaType").classed("picking", !!kaSel);
+  s.selectAll(".kaseg").classed("on", function () { return kaSel && this.dataset.cat === kaSel.cat && (!kaSel.sev || this.dataset.sev === kaSel.sev); });
+  s.selectAll(".kalbl").classed("on", v => kaSel && v.cat === kaSel.cat);
+}
+/* ---------------- curve focus: zoom to one of the top curves ---------------- */
+let curveFocus = null;
+function focusRange() {
+  const c = DATA.topCurves[curveFocus], pad = Math.max(0.12, (c.mp_end - c.mp_start) * 0.6);
+  return [c.mp_start - pad, c.mp_end + pad];
+}
+function focusCurve(i) {
+  curveFocus = i === curveFocus ? null : i;
+  document.querySelectorAll("#curvetable tbody tr").forEach(tr => tr.classList.toggle("on", +tr.dataset.i === curveFocus));
+  const card = $("curveCard");
+  if (curveFocus == null) card.hidden = true;
+  else {
+    const c = DATA.topCurves[curveFocus], len = Math.round((c.mp_end - c.mp_start) * 5280);
+    const rows = [["Where", `MP ${c.mp_start.toFixed(2)}–${c.mp_end.toFixed(2)}, about ${fmt(len)} ft long`],
+      ["Tightest radius", `${c.min_radius_ft} ft`], ["Turns through", `${Math.round(c.deflection_deg)}°`],
+      ["Crashes", `${c.crashes} (about ${c.exp_crashes.toFixed(1)} expected)`],
+      ["Fatal or serious", `${c.ka}${c.k ? `, ${c.k} fatal` : ""} (about ${c.exp_ka.toFixed(1)} expected)`],
+      ["Ran off the road", `${c.departure} of ${c.crashes}`]];
+    card.innerHTML = `<h3>Curve ${curveFocus + 1}</h3><dl>` + rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("") +
+      `</dl><button type="button" id="curveBack">Back to all curves</button>`;
+    card.hidden = false;
+    $("curveBack").addEventListener("click", e => { e.stopPropagation(); focusCurve(curveFocus); });
+  }
+  if (picker.value !== "curves") picker.value = "curves";
+  STEP_EL.forEach(s => s.classList.toggle("active", s.dataset.step === "curves"));
+  setStep("curves");
+}
+function initCurveClicks() {
+  document.querySelectorAll("#curvetable tbody tr").forEach(tr => {
+    tr.addEventListener("click", () => focusCurve(+tr.dataset.i));
+    tr.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); focusCurve(+tr.dataset.i); } });
+  });
+}
+/* points along the centerline for a curve, interpolated so short curves still draw */
+function curvePts(a, b) {
+  const out = [], n = 8;
+  for (let i = 0; i <= n; i++) {
+    const mp = a + (b - a) * i / n, j = d3.bisector(p => p.mp).left(LINE, mp);
+    const p0 = LINE[Math.max(0, j - 1)], p1 = LINE[Math.min(LINE.length - 1, j)], t = p1.mp === p0.mp ? 0 : (mp - p0.mp) / (p1.mp - p0.mp);
+    out.push({x: p0.x + (p1.x - p0.x) * t, y: p0.y + (p1.y - p0.y) * t});
+  }
+  return out;
+}
+function drawNone() {}
+function drawPts(rows, col, r, op, layer) {
+  const g = gRoot.select(layer === "a" ? ".pts-a" : layer === "b" ? ".pts-b" : ".pts");
+  const rf = typeof r === "function" ? r : () => r;
+  g.selectAll("circle").data(rows).join("circle").attr("cx", c => c.x).attr("cy", c => c.y)
+    .attr("data-r", rf).attr("r", c => rf(c) / kNow).attr("stroke-width", 1 / kNow)
+    .attr("style", c => `fill:var(${col(c)});opacity:${typeof op === "function" ? op(c) : op}`);
+}
+function drawOverlay(ranges, cls) {
+  const path = d3.line().x(p => p.x).y(p => p.y);
+  ranges.forEach(([a, b]) => gRoot.select(".overlays").append("path").attr("class", `overlay ${cls}`)
+    .attr("d", path(LINE.filter(p => p.mp >= a && p.mp <= b))).attr("stroke-width", 14).attr("vector-effect", "non-scaling-stroke"));
+}
+
+function setStep(id, instant) {
+  const st = STEPS[id] || STEPS.overview;
+  curStep = id;
+  document.getElementById("legend").innerHTML = st.legend();
+  gRoot.selectAll(".pts circle, .pts-a circle, .pts-b circle").remove();
+  gRoot.select(".overlays").selectAll("*").remove();
+  gRoot.select(".pins").selectAll("*").remove();
+  gRoot.selectAll(".road").classed("muted-road", ["density", "severe", "moto", "when", "alcohol", "lighting", "projects", "goals", "wildlife", "glare", "canyon", "curves", "explore"].includes(id));
+  st.draw();
+  const target = id === "curves" && curveFocus != null ? viewFor(focusRange(), 12)
+    : id === "projects" && projFocus != null ? viewFor(projRange(DATA.priorities[projFocus]))
+    : viewFor(id === "explore" ? exploreRange() : st.range);
+  if (!view || instant || reduce) { view = target; applyView(view); }
+  else {
+    const from = view, interp = d3.interpolateZoom(from, target);
+    gRoot.interrupt().transition().duration(Math.min(1400, interp.duration * 0.9)).ease(d3.easeCubicInOut)
+      .tween("zoom", () => t => { view = interp(t); applyView(view); });
+  }
+  profWindow(id === "curves" && curveFocus != null ? focusRange() : id === "projects" && projFocus != null ? projRange(DATA.priorities[projFocus]) : st.range);
+}
+
+/* elevation profile under the map */
+let profX, profG;
+function buildProfile() {
+  const box = document.querySelector(".profile").getBoundingClientRect();
+  const w = Math.max(200, box.width), h = Math.max(50, box.height), m = {l: 4, r: 4, t: 6, b: 16};
+  const s = d3.select("#prof").attr("viewBox", `0 0 ${w} ${h}`);
+  s.selectAll("*").remove();
+  const pts = LINE.filter(p => p.el != null);
+  profX = d3.scaleLinear().domain([61, 92]).range([m.l, w - m.r]);
+  const y = d3.scaleLinear().domain(d3.extent(pts, p => p.el)).nice().range([h - m.b, m.t]);
+  s.append("path").attr("class", "area").attr("d", d3.area().x(p => profX(p.mp)).y0(h - m.b).y1(p => y(p.el))(pts));
+  s.append("path").attr("class", "ln").attr("d", d3.line().x(p => profX(p.mp)).y(p => y(p.el))(pts));
+  profG = s.append("rect").attr("class", "win").attr("y", m.t - 4).attr("height", h - m.b - m.t + 4).attr("rx", 2);
+  s.append("g").selectAll("text").data([61, 65, 70, 75, 80, 85, 92]).join("text").attr("x", profX).attr("y", h - 3)
+    .attr("text-anchor", (d, i, a) => i === 0 ? "start" : i === a.length - 1 ? "end" : "middle").text(d => "MP " + d);
+  const top = pts[0], bot = pts[pts.length - 1];
+  s.append("text").attr("x", profX(top.mp) + 4).attr("y", y(top.el) + 12).text(`${Math.round(top.el * 3.281).toLocaleString()} ft`);
+  s.append("text").attr("x", profX(bot.mp) - 4).attr("y", y(bot.el) - 4).attr("text-anchor", "end").text(`${Math.round(bot.el * 3.281).toLocaleString()} ft`);
+}
+function profWindow([a, b]) {
+  if (!profG) return;
+  const full = a <= 61 && b >= 92;
+  profG.attr("opacity", full ? 0 : 1).attr("x", profX(a)).attr("width", Math.max(2, profX(b) - profX(a)));
+}
+
+/* scroll driving */
+/* Scroll position is read directly (no IntersectionObserver rootMargin, which
+   browsers ignore inside embedded frames). The picker also sets the view. */
+const STEP_EL = [...document.querySelectorAll("[data-step]")];
+const picker = document.getElementById("viewPick");
+function activate(id) {
+  STEP_EL.forEach(s => s.classList.toggle("active", s.dataset.step === id));
+  if (picker.value !== id) picker.value = id;
+  if (id !== "severe" && kaSel) { kaSel = null; paintKaChart(); }   // leaving the step clears the pick
+  if (id !== "projects" && projFocus != null) focusProjectClear();
+  if (id !== "curves" && curveFocus != null) {   // leaving the curves step drops the zoomed curve
+    curveFocus = null; $("curveCard").hidden = true;
+    document.querySelectorAll("#curvetable tbody tr.on").forEach(tr => tr.classList.remove("on"));
+  }
+  if (id !== curStep) setStep(id);
+}
+function pickFromScroll() {
+  const mapH = window.innerWidth < 900 ? document.querySelector(".mapcol").getBoundingClientRect().bottom : 0;
+  const line = mapH + (window.innerHeight - mapH) * 0.45;
+  let best = STEP_EL[0];
+  for (const s of STEP_EL) { if (s.getBoundingClientRect().top <= line) best = s; }
+  activate(best.dataset.step);
+}
+function initScroll() {
+  picker.innerHTML = STEP_EL.map(s => `<option value="${s.dataset.step}">${s.dataset.label}</option>`).join("");
+  picker.addEventListener("change", () => {
+    const el = STEP_EL.find(s => s.dataset.step === picker.value);
+    activate(picker.value);
+    try { el.scrollIntoView({block: "start", behavior: reduce ? "auto" : "smooth"}); } catch (e) {}
+  });
+  STEP_EL.forEach(s => s.addEventListener("click", e => { if (!e.target.closest("a")) activate(s.dataset.step); }));
+  let ticking = false;
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; pickFromScroll(); }); } };
+  window.addEventListener("scroll", onScroll, {passive: true});
+  window.addEventListener("resize", onScroll);
+  pickFromScroll();
+}
+
+initExplore();
+initCurveClicks();
+$("terrOn").addEventListener("change", e => mapSvg.classed("noterrain", !e.target.checked));
+$("placesOn").addEventListener("change", e => mapSvg.classed("noplaces", !e.target.checked));
+
+/* ---------------- manual zoom and pan ---------------- */
+/* view = [center x, center y, visible width] in base map units. Buttons zoom about the
+   center; pinch (or ctrl/cmd + wheel) zooms about the pointer; drag pans with a mouse.
+   Scrolling to another step, or the reset button, returns to that step's view. */
+const ZMIN = 2, ZMAX = 2400;   // visible width limits in base units
+function zoomAbout(f, px = W / 2, py = H / 2) {
+  if (!view) return;
+  gRoot.interrupt();
+  const k = W / view[2], mx = view[0] + (px - W / 2) / k, my = view[1] + (py - H / 2) / k;
+  const w = Math.min(ZMAX, Math.max(ZMIN, view[2] / f)), k2 = W / w;
+  view = [mx - (px - W / 2) / k2, my - (py - H / 2) / k2, w];
+  applyView(view);
+}
+function svgPoint(e) { const r = mapSvg.node().getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; }
+$("zIn").addEventListener("click", () => zoomAbout(1.6));
+$("zOut").addEventListener("click", () => zoomAbout(1 / 1.6));
+$("zReset").addEventListener("click", () => { view = null; setStep(curStep, true); });
+mapSvg.node().addEventListener("wheel", e => {
+  if (!e.ctrlKey && !e.metaKey) return;   // plain wheel scrolls the story
+  e.preventDefault();
+  zoomAbout(Math.exp(-e.deltaY * 0.01), ...svgPoint(e));
+}, {passive: false});
+mapSvg.on("dblclick", e => { e.preventDefault(); zoomAbout(e.shiftKey ? 1 / 2 : 2, ...svgPoint(e)); });
+let drag = null;
+mapSvg.classed("grab", true);
+mapSvg.node().addEventListener("pointerdown", e => {
+  if (e.pointerType !== "mouse" || e.button !== 0) return;
+  drag = {x: e.clientX, y: e.clientY, moved: false, id: e.pointerId};
+});
+window.addEventListener("pointermove", e => {
+  if (!drag || e.pointerId !== drag.id) return;
+  const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+  if (!drag.moved && Math.hypot(dx, dy) < 4) return;
+  if (!drag.moved) { drag.moved = true; gRoot.interrupt(); mapSvg.classed("grabbing", true); }
+  const r = mapSvg.node().getBoundingClientRect(), k = W / view[2];
+  view = [view[0] - dx * W / r.width / k, view[1] - dy * H / r.height / k, view[2]];
+  drag.x = e.clientX; drag.y = e.clientY;
+  applyView(view);
+});
+window.addEventListener("pointerup", () => { if (drag) { mapSvg.classed("grabbing", false); setTimeout(() => { drag = null; }, 0); } });
+// a drag should not count as a click on a crash dot or pin
+mapSvg.node().addEventListener("click", e => { if (drag && drag.moved) { e.stopPropagation(); e.preventDefault(); } }, true);
+// two-finger pinch on touch screens
+const touches = new Map();
+let pinch0 = null;
+mapSvg.node().addEventListener("pointerdown", e => { if (e.pointerType === "touch") touches.set(e.pointerId, e); });
+mapSvg.node().addEventListener("pointermove", e => {
+  if (e.pointerType !== "touch" || !touches.has(e.pointerId)) return;
+  touches.set(e.pointerId, e);
+  if (touches.size !== 2) return;
+  const [a, b] = [...touches.values()], d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+  const mid = svgPoint({clientX: (a.clientX + b.clientX) / 2, clientY: (a.clientY + b.clientY) / 2});
+  if (pinch0) zoomAbout(d / pinch0, ...mid);
+  pinch0 = d;
+});
+const endTouch = e => { touches.delete(e.pointerId); if (touches.size < 2) pinch0 = null; };
+mapSvg.node().addEventListener("pointerup", endTouch);
+mapSvg.node().addEventListener("pointercancel", endTouch);
+chartSeg(); chartTrend(); chartKaType(); chartMonth(); chartHour(); chartPri(); chartPeer();
+buildMap();
+initScroll();
+let rt, lastSize = "";
+new ResizeObserver(([e]) => {
+  const sz = `${Math.round(e.contentRect.width)}x${Math.round(e.contentRect.height)}`;
+  if (sz === lastSize) return;
+  lastSize = sz; clearTimeout(rt); rt = setTimeout(buildMap, 150);
+}).observe(document.querySelector(".mapbox"));
+// colors computed from tokens are redrawn when the color scheme changes
+const reColor = () => { d3.select("#chSeg").selectAll("*").remove(); chartSeg();
+  document.querySelectorAll("#segtable .swatch").forEach((e, i) => e.style.background = segSev(i)); buildMap(); };
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", reColor);
+new MutationObserver(reColor).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
+</script>

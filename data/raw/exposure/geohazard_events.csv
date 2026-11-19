@@ -1,0 +1,58 @@
+FID,Source,Date,Year,Route,Event_Type,Rockfall_S,Begin_MP,End_MP,F10th_MP,VLookUp_ID,Lat,Long,GeoHaz_ID,Partial_Cl,Full_Closu,Vehicle_Da,Injuries,Fatalities,Length,Reporting_,Cost,Notes,segment
+3,Complete GeoHaz Events,891648000000,1998,34,Rockfall, ,71.0,71.0,71.0,3471.0,40.41140747,-105.403183,Rockfall_34_71_1998,0,-,0,0,0, ,CDOT,"$25,000-$100,000","Wedge rockfall made it to the road, upon a site visit the remaining rock was determined to be unstable. Situation was mitigated, report and photos on drive. Historical.",Big Thompson Canyon
+253,State Patrol Rockfall,1179014400000,2007,34,Rockfall,Small,65.7,0.0,65.7,3465.7,40.3817749,-105.4706955,Rockfall_34_65.7_2007,0, ,0,0,0, ,State Patrol, ,weather was dry and mid 70s,Big Thompson Canyon
+287,State Patrol Rockfall,1195171200000,2007,34,Rockfall, ,66.8,0.0,66.8,3466.8,40.39122391,-105.4559097,Rockfall_34_66.8_2007,0, ,0,0,0, ,State Patrol, , ,Big Thompson Canyon
+291,State Patrol Rockfall,1197849600000,2007,34,Rockfall,Medium,72.05,0.0,72.1,3472.1,40.40979004,-105.3852158,Rockfall_34_72.1_2007,0, ,0,0,0, ,State Patrol, ,called out by dispatch,Big Thompson Canyon
+292,State Patrol Rockfall,1197849600000,2007,34,Rockfall,Medium,72.05,0.0,72.1,3472.1,40.40979004,-105.3852158,Rockfall_34_72.1_2007,0, ,0,0,0, ,State Patrol, ,called out by dispatch,Big Thompson Canyon
+115,State Patrol Rockfall,1170806400000,2007,34,Rockfall, ,72.2,0.0,72.2,3472.2,40.40956879,-105.3834152,Rockfall_34_72.2_2007,0, ,0,0,0, ,State Patrol, ,Submitted by R. Wenzel based on data submitted to the Rockfall Program via an email.,Big Thompson Canyon
+262,State Patrol Rockfall,1180396800000,2007,34,Rockfall,Large,72.8,0.0,72.8,3472.8,40.414505,-105.3757324,Rockfall_34_72.8_2007,0, ,0,0,0, ,State Patrol, , ,Big Thompson Canyon
+284,State Patrol Rockfall,1192406400000,2007,34,Rockfall,Small,73.5,0.0,73.5,3473.5,40.41483688,-105.3641586,Rockfall_34_73.5_2007,0, ,0,0,0, ,State Patrol, ,"rocks were on the  west bound driving lane, just west of Waltonia Bridge.",Big Thompson Canyon
+268,State Patrol Rockfall,1182988800000,2007,34,Rockfall,Medium,77.4,0.0,77.4,3477.4,40.43015671,-105.310524,Rockfall_34_77.4_2007,0, ,1,0,0, ,State Patrol, , ,Big Thompson Canyon
+273,State Patrol Rockfall,1185753600000,2007,34,Rockfall,Medium,77.4,0.0,77.4,3477.4,40.43015671,-105.310524,Rockfall_34_77.4_2007,0, ,0,0,0, ,State Patrol, ,Boulder 4'X4' landed in west bound lane.  Heavy rain w/hail.,Big Thompson Canyon
+263,State Patrol Rockfall,1180396800000,2007,34,Rockfall,Small,82.1,0.0,82.1,3482.1,40.42181396,-105.2377243,Rockfall_34_82.1_2007,0, ,1,0,0, ,State Patrol, ,punched hole in oil pan.,Big Thompson Canyon
+293,State Patrol Rockfall,1199491200000,2008,34,Rockfall, ,79.1,0.0,79.1,3479.1,40.42191315,-105.2860336,Rockfall_34_79.1_2008,0, ,0,0,0, ,State Patrol, , ,Big Thompson Canyon
+677,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,65.0,65.0,65.0,3465.0,40.37711716,-105.4793777,Rockfall_34_65_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+651,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,66.7,66.7,66.7,3466.7,40.39081192,-105.4577942,Rockfall_34_66.7_2011,0,-,0,0,0,50,-,"$50,000",Historic,Big Thompson Canyon
+663,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,66.8,66.8,66.8,3466.8,40.39122391,-105.4559097,Rockfall_34_66.8_2011,0,-,0,0,0,50,-,"$5,000",Historic,Big Thompson Canyon
+665,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,67.0,67.0,67.0,3467.0,40.39070892,-105.4524002,Rockfall_34_67_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+666,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,69.0,69.0,69.0,3469.0,40.39375687,-105.4244461,Rockfall_34_69_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+681,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,70.0,70.0,70.0,3470.0,40.40454102,-105.4153976,Rockfall_34_70_2011,0,-,0,0,0,50,-,"$50,000",Historic,Big Thompson Canyon
+672,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,70.4,70.4,70.4,3470.4,40.40844727,-105.4124222,Rockfall_34_70.4_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+649,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,70.6,70.6,70.6,3470.6,40.4079361,-105.4090042,Rockfall_34_70.6_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+678,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,70.6,70.6,70.6,3470.6,40.4079361,-105.4090042,Rockfall_34_70.6_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+669,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,70.8,70.8,70.8,3470.8,40.40885544,-105.4052963,Rockfall_34_70.8_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+685,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,71.3,71.3,71.3,3471.3,40.40964508,-105.3987427,Rockfall_34_71.3_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+664,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,71.5,71.5,71.5,3471.5,40.40939713,-105.3955231,Rockfall_34_71.5_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+683,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,72.1,72.1,72.1,3472.1,40.40979004,-105.3852158,Rockfall_34_72.1_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+661,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,72.5,72.5,72.5,3472.5,40.41090393,-105.3784485,Rockfall_34_72.5_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+657,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,72.7,72.7,72.7,3472.7,40.41340637,-105.3768692,Rockfall_34_72.7_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+673,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,73.0,73.0,73.0,3473.0,40.41627884,-105.3729477,Rockfall_34_73_2011,0,-,0,0,0,50,-,"$5,000",Historic,Big Thompson Canyon
+668,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,73.4,73.4,73.4,3473.4,40.41474533,-105.3659897,Rockfall_34_73.4_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+682,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,73.7,73.7,73.7,3473.7,40.41641235,-105.3610764,Rockfall_34_73.7_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+646,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,74.2,74.2,74.2,3474.2,40.42133713,-105.3558502,Rockfall_34_74.2_2011,0,-,0,0,0,50,-,"$50,000",Historic,Big Thompson Canyon
+659,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,74.4,74.4,74.4,3474.4,40.42248154,-105.3525009,Rockfall_34_74.4_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+680,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,75.3,75.3,75.3,3475.3,40.42803574,-105.340004,Rockfall_34_75.3_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+650,Complete GeoHaz Events,1293840000000,2011,34,Debris Flow, ,76.7,76.7,76.7,3476.7,40.43009567,-105.3216934,Debris Flow_34_76.7_2011,0,-,0,0,0,100,-,"$5,000",Historic,Big Thompson Canyon
+656,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,77.1,77.1,77.1,3477.1,40.42978287,-105.3158035,Rockfall_34_77.1_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+662,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,77.2,77.2,77.2,3477.2,40.42946243,-105.3140259,Rockfall_34_77.2_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+676,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,77.2,77.2,77.2,3477.2,40.42946243,-105.3140259,Rockfall_34_77.2_2011,0,-,0,0,0,500,-,"$50,000",Historic,Big Thompson Canyon
+648,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,77.4,77.4,77.4,3477.4,40.43015671,-105.310524,Rockfall_34_77.4_2011,0,-,0,0,0,50,-,"$50,000",Historic,Big Thompson Canyon
+674,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,77.5,77.5,77.5,3477.5,40.42987061,-105.3087463,Rockfall_34_77.5_2011,0,-,0,0,0,50,-,"$5,000",Historic,Big Thompson Canyon
+671,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,78.7,78.7,78.7,3478.7,40.42408371,-105.2919235,Rockfall_34_78.7_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+660,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,79.4,79.4,79.4,3479.4,40.41904068,-105.2820435,Rockfall_34_79.4_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+675,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,81.3,81.3,81.3,3481.3,40.41569901,-105.2475281,Rockfall_34_81.3_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+684,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,81.4,81.4,81.4,3481.4,40.41662598,-105.2460251,Rockfall_34_81.4_2011,0,-,0,0,0,50,-,"$5,000",Historic,Big Thompson Canyon
+655,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,81.5,81.5,81.5,3481.5,40.41769028,-105.2446899,Rockfall_34_81.5_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+647,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,81.7,81.7,81.7,3481.7,40.42021561,-105.2430038,Rockfall_34_81.7_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+667,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,82.0,82.0,82.0,3482.0,40.42126083,-105.2391281,Rockfall_34_82_2011,0,-,0,0,0,50,-,"$5,000",Historic,Big Thompson Canyon
+658,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,82.4,82.4,82.4,3482.4,40.42409515,-105.2356262,Rockfall_34_82.4_2011,0,-,0,0,0,50,-,"$5,000",Historic,Big Thompson Canyon
+679,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,82.6,82.6,82.6,3482.6,40.4224968,-105.2338715,Rockfall_34_82.6_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+652,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,82.7,82.7,82.7,3482.7,40.42348099,-105.2326126,Rockfall_34_82.7_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+670,Complete GeoHaz Events,1293840000000,2011,34,Rockfall, ,83.1,83.1,83.1,3483.1,40.42160797,-105.2263489,Rockfall_34_83.1_2011,0,-,0,0,0,500,-,"$5,000",Historic,Big Thompson Canyon
+653,Complete GeoHaz Events,1293840000000,2011,34,Debris Flow, ,83.6,83.6,83.6,3483.6,40.41640091,-105.2191544,Debris Flow_34_83.6_2011,0,-,0,0,0,500,-,"$5,000",Historic,Canyon mouth to Loveland
+1166,Complete GeoHaz Events,1406678400000,2014,34,Rockfall, ,76.3,76.3,76.3,3476.3,40.43151855,-105.3288651,Rockfall_34_76.3_2014,0,-,1,0,0,50,CDOT,"$5,000",VEHICLE #1 WESTBOUND CO 34 AROUND A CURVE. VEHICLE #1 STRUCK A ROCK IN THE ROADWAY.  VEHICLE #1 BRAKE LINES WERE DISABLED. VEHICLE #1 TRAVELED A SHORT DISTANCE AND CAME TO REST ON THE SHOULDER. NO PASSENGERS WERE ON BOARD.,Big Thompson Canyon
+1254,Complete GeoHaz Events,1427760000000,2015,34,Rockfall, ,72.6,72.6,72.6,3472.6,40.41212463,-105.3775635,Rockfall_34_72.6_2015,0,-,0,0,0,50,CDOT,"$5,000",It is estimated at about 3.5 yards with about a yard out in the travel lanes.,Big Thompson Canyon
+1270,Complete GeoHaz Events,1430870400000,2015,34,Rockslide, ,77.1,77.1,77.1,3477.1,40.42978287,-105.3158035,Rockslide_34_77.1_2015,0,2,0,0,0,50,CDOT,"$5,000",Big Thompson Canyon.  Several other events have occurred at this site over the years.,Big Thompson Canyon
+1586,Complete GeoHaz Events,1475712000000,2016,34,Rockfall, ,77.1,77.1,77.1,3477.1,40.42978287,-105.3158035,Rockfall_34_77.1_2016,0,-,0,0,0,50,-, ,-,Big Thompson Canyon
+2361,Complete GeoHaz Events,1512777600000,2017,34,Rockslide, ,83.0,83.1,83.0,3483.0,40.42224503,-105.2279968,Rockslide_34_83_2017,12,6,0,0,0,50,CDOT,"$5,000",-,Big Thompson Canyon
+2362,Complete GeoHaz Events,1512777600000,2017,34,Rockslide, ,83.1,83.1,83.1,3483.1,40.42160797,-105.2263489,Rockslide_34_83.1_2017,12,6,0,0,0,50,CDOT,"$5,000",Data from Monte Malik (CDOT Region 4) and Todd Schlittenhart (Yeh & Associates),Big Thompson Canyon

@@ -1,0 +1,332 @@
+REFPT,lat,lon,segment,elk_overall_range,elk_winter_range,elk_severe_winter_range,elk_winter_concentration,elk_migration_corridor,elk_highway_crossing
+60.0,40.38471227356507,-105.55667428354184,,True,True,True,True,False,True
+60.1,40.383695475489006,-105.55596622833508,,True,True,True,True,False,True
+60.2,40.38284164698771,-105.55490744159165,,True,True,True,True,False,True
+60.3,40.382372472181366,-105.55353190661326,,True,True,True,True,False,True
+60.4,40.38270107592898,-105.55207397974905,,True,True,True,True,False,True
+60.5,40.383280113372166,-105.5507311170061,,True,True,True,True,False,True
+60.6,40.383785282500796,-105.54934337245913,,True,True,True,True,False,True
+60.7,40.384134304304816,-105.54788082049276,,True,True,True,True,False,True
+60.8,40.384187165723404,-105.54634386921342,,True,True,True,True,False,True
+60.9,40.383937329479636,-105.54483979116397,,True,True,True,True,False,True
+61.0,40.383413529314424,-105.54187760305781,Estes Park (town),True,True,True,True,False,True
+61.1,40.38306445237356,-105.54032358281772,Estes Park (town),True,True,True,True,False,True
+61.2,40.38257129825211,-105.53883531885126,Estes Park (town),True,True,True,True,False,True
+61.3,40.38207335733763,-105.53734975169623,Estes Park (town),True,True,True,True,False,True
+61.4,40.38157893448293,-105.53586218911573,Estes Park (town),True,True,True,True,False,True
+61.5,40.381031658557944,-105.53421545150819,Estes Park (town),True,True,True,True,False,True
+61.6,40.38051360077878,-105.53220711695926,Estes Park (town),True,True,True,True,False,True
+61.7,40.38023516727714,-105.52972841234244,Estes Park (town),True,True,True,True,False,True
+61.8,40.38015813941387,-105.52862009309966,Estes Park (town),True,True,True,True,False,True
+61.9,40.38011699529138,-105.52666675219079,Estes Park (town),True,True,True,True,False,True
+62.0,40.380266683390694,-105.52392990512456,Estes Park (town),True,True,True,True,False,True
+62.1,40.3804353769543,-105.52202902750821,Estes Park (town),True,True,True,True,False,True
+62.2,40.38061152366356,-105.5201893325173,Estes Park (town),True,True,True,True,False,True
+62.3,40.38058659883591,-105.51834128456876,Estes Park (town),True,True,True,True,False,True
+62.4,40.37944153547134,-105.51736760998882,Estes Park (town),True,True,True,True,False,True
+62.5,40.378063005445966,-105.51710532293244,Estes Park (town),True,True,True,True,False,True
+62.6,40.37876833785664,-105.51535728636246,Estes Park (town),True,True,True,True,False,True
+62.7,40.37960480720398,-105.51382543392315,Estes Park (town),True,True,True,True,False,True
+62.8,40.38041286228467,-105.51230105536013,Estes Park (town),True,True,True,True,False,True
+62.9,40.38063471396618,-105.51188979308624,Estes Park (town),True,True,True,True,False,True
+63.0,40.380853534029086,-105.51147576380511,Estes Park (town),True,True,True,True,False,True
+63.1,40.381726666205864,-105.50971517647801,Estes Park (town),True,True,True,True,False,True
+63.2,40.38245715252233,-105.50819422150816,Estes Park (town),True,True,True,True,False,True
+63.3,40.38302505942936,-105.50700731172056,Estes Park (town),True,True,True,True,False,True
+63.4,40.3837174013656,-105.50461419941476,Estes Park (town),True,True,True,True,False,True
+63.5,40.383754180847596,-105.50253984801849,Estes Park (town),True,True,True,True,False,True
+63.6,40.383420552207276,-105.50084283386671,Estes Park (town),True,True,True,True,False,True
+63.7,40.38294189663979,-105.49920210119248,Estes Park (town),True,True,True,True,False,True
+63.8,40.38238430754494,-105.49752365592363,Estes Park (town),True,True,True,True,False,True
+63.9,40.38164577422181,-105.49584200077305,Estes Park (town),True,True,True,True,False,True
+64.0,40.38099003382377,-105.49436544656159,Estes Park (town),True,True,True,True,False,True
+64.1,40.38021371023338,-105.49261869978051,Estes Park (town),True,True,True,True,False,True
+64.2,40.37965719937448,-105.49137544170301,Estes Park (town),True,True,True,True,False,True
+64.3,40.37892534411845,-105.48972859025837,Estes Park (town),True,True,True,True,False,True
+64.4,40.37805794634268,-105.4877969986597,Estes Park (town),True,True,True,True,False,True
+64.5,40.37734078294271,-105.48617508887567,Estes Park (town),True,True,True,True,False,True
+64.6,40.37663353572211,-105.48454604452466,Estes Park (town),True,True,True,True,False,True
+64.7,40.37634823371845,-105.4827340736262,Estes Park (town),True,True,True,True,False,True
+64.8,40.37668328142967,-105.48091932393879,Estes Park (town),True,True,True,True,False,True
+64.9,40.376886165499215,-105.4801252337812,Estes Park (town),True,True,True,True,False,True
+65.0,40.37711853903815,-105.479377917022,Big Thompson Canyon,True,True,True,True,False,True
+65.1,40.37832266623018,-105.47863724671195,Big Thompson Canyon,True,True,True,True,False,True
+65.2,40.379740871962284,-105.47861204866929,Big Thompson Canyon,True,True,True,True,False,True
+65.3,40.38078643470325,-105.47731590396842,Big Thompson Canyon,True,True,True,True,False,True
+65.4,40.380801070415366,-105.4754413337183,Big Thompson Canyon,True,True,True,True,False,True
+65.5,40.38053748913315,-105.47357027597255,Big Thompson Canyon,True,True,True,True,False,True
+65.6,40.38076758029523,-105.4717957628016,Big Thompson Canyon,True,True,True,True,False,True
+65.7,40.38177442747688,-105.4706952725892,Big Thompson Canyon,True,True,False,False,False,True
+65.8,40.383073960234384,-105.47023032846451,Big Thompson Canyon,True,True,False,False,False,True
+65.9,40.38442693666736,-105.47026679860839,Big Thompson Canyon,True,True,False,False,False,True
+66.0,40.385070333251434,-105.46895374530698,Big Thompson Canyon,True,True,False,False,False,True
+66.1,40.38620819699159,-105.46741108925409,Big Thompson Canyon,True,True,False,False,False,True
+66.2,40.38803223084915,-105.46686655589374,Big Thompson Canyon,True,True,False,False,False,True
+66.3,40.38949177908685,-105.46535017110793,Big Thompson Canyon,True,True,False,False,False,True
+66.4,40.38985650797531,-105.46321515609581,Big Thompson Canyon,True,True,False,False,False,True
+66.5,40.39051302395734,-105.46147617952134,Big Thompson Canyon,True,True,False,False,False,True
+66.6,40.39106725621543,-105.45973202450989,Big Thompson Canyon,True,True,False,False,False,True
+66.7,40.39081199189954,-105.45779772262975,Big Thompson Canyon,True,True,False,False,False,True
+66.8,40.39122377419844,-105.45590608399674,Big Thompson Canyon,True,True,False,False,False,True
+66.9,40.39151023445996,-105.45397612126378,Big Thompson Canyon,True,True,False,False,False,True
+67.0,40.39070945481369,-105.45240345348347,Big Thompson Canyon,True,True,False,False,False,True
+67.1,40.38964818426308,-105.45124664655174,Big Thompson Canyon,True,True,False,False,False,True
+67.2,40.39030899929001,-105.44977563751861,Big Thompson Canyon,True,True,False,False,False,True
+67.3,40.391572268286374,-105.44901345184527,Big Thompson Canyon,True,True,False,False,False,True
+67.4,40.39295512327599,-105.44925733666604,Big Thompson Canyon,True,True,False,False,False,True
+67.5,40.39392206839505,-105.44800063042999,Big Thompson Canyon,True,True,False,False,False,True
+67.6,40.393419656791195,-105.44636743385782,Big Thompson Canyon,True,True,False,False,False,True
+67.7,40.39307403899702,-105.44468547253379,Big Thompson Canyon,True,True,False,False,False,True
+67.8,40.393270420433886,-105.44285953410916,Big Thompson Canyon,True,True,False,False,False,True
+67.9,40.39347395725799,-105.44103374834175,Big Thompson Canyon,True,True,False,False,False,True
+68.0,40.393925654052765,-105.43929112506167,Big Thompson Canyon,True,True,False,False,False,True
+68.1,40.39348568306548,-105.43740132997908,Big Thompson Canyon,True,True,False,False,False,True
+68.2,40.39244945440274,-105.43593267223669,Big Thompson Canyon,True,True,False,False,False,True
+68.3,40.39235949388724,-105.43403190825397,Big Thompson Canyon,True,True,False,False,False,True
+68.4,40.39177680415102,-105.43220663264736,Big Thompson Canyon,True,True,False,False,False,False
+68.5,40.39063915620954,-105.4308830288814,Big Thompson Canyon,True,True,False,False,False,False
+68.6,40.39053228192147,-105.42910336478465,Big Thompson Canyon,True,True,False,False,False,False
+68.7,40.39173691906715,-105.42787776426371,Big Thompson Canyon,True,True,False,False,False,False
+68.8,40.392515956214964,-105.42651319292806,Big Thompson Canyon,True,True,False,False,False,False
+68.9,40.392803412738346,-105.42513122247831,Big Thompson Canyon,True,True,False,False,False,False
+69.0,40.39375727419796,-105.42444608943646,Big Thompson Canyon,True,True,False,False,False,False
+69.1,40.39438712497548,-105.42294266368854,Big Thompson Canyon,True,True,False,False,False,False
+69.2,40.394707814815376,-105.42112954163841,Big Thompson Canyon,True,True,False,False,False,False
+69.3,40.396082174931735,-105.42079810464683,Big Thompson Canyon,True,True,False,False,False,False
+69.4,40.39753378159878,-105.42101565078707,Big Thompson Canyon,True,True,False,False,False,False
+69.5,40.39892076553356,-105.42076015230734,Big Thompson Canyon,True,True,False,False,False,False
+69.6,40.39963010464528,-105.41909609689681,Big Thompson Canyon,True,True,False,False,False,False
+69.7,40.40091713096756,-105.418352864931,Big Thompson Canyon,True,True,False,False,False,False
+69.8,40.402287155533614,-105.4177781486175,Big Thompson Canyon,True,True,False,False,False,False
+69.9,40.40335373511042,-105.41647762676347,Big Thompson Canyon,True,True,False,False,False,False
+70.0,40.40454276374619,-105.41539936104272,Big Thompson Canyon,True,True,False,False,False,False
+70.1,40.40537318614889,-105.41407640451816,Big Thompson Canyon,True,True,False,False,False,False
+70.2,40.40646927638525,-105.41326869651257,Big Thompson Canyon,True,True,False,False,False,False
+70.3,40.40774718172752,-105.41373127909951,Big Thompson Canyon,True,True,False,False,False,False
+70.4,40.408446944303165,-105.41242699203842,Big Thompson Canyon,True,True,False,False,False,False
+70.5,40.40836908532319,-105.41066969542527,Big Thompson Canyon,True,True,False,False,False,False
+70.6,40.407941222401426,-105.40902078200399,Big Thompson Canyon,True,True,False,False,False,False
+70.7,40.408004593675244,-105.40712867629445,Big Thompson Canyon,True,True,False,False,False,False
+70.8,40.40884258902831,-105.40531482516123,Big Thompson Canyon,True,True,False,False,False,False
+70.9,40.409963536835455,-105.40382800325874,Big Thompson Canyon,True,True,False,False,False,False
+71.0,40.41138653798816,-105.40316514007645,Big Thompson Canyon,True,True,False,False,False,False
+71.1,40.41154399702861,-105.40138715546063,Big Thompson Canyon,True,True,False,False,False,False
+71.2,40.41061945020422,-105.40007354417932,Big Thompson Canyon,True,True,False,False,False,False
+71.3,40.40964208357181,-105.39873757644685,Big Thompson Canyon,True,True,False,False,False,False
+71.4,40.40896196660012,-105.39726264869515,Big Thompson Canyon,True,True,False,False,False,False
+71.5,40.40939858287148,-105.39552124799229,Big Thompson Canyon,True,True,False,False,False,False
+71.6,40.40931902168963,-105.39365182943982,Big Thompson Canyon,True,True,False,False,False,False
+71.7,40.40932353125834,-105.39178697707209,Big Thompson Canyon,True,True,False,False,False,False
+71.8,40.41009055952978,-105.39031631892952,Big Thompson Canyon,True,True,False,False,False,False
+71.9,40.41063032177247,-105.38874387443985,Big Thompson Canyon,True,True,False,False,False,False
+72.0,40.41018369115801,-105.38696868681407,Big Thompson Canyon,True,True,False,False,False,False
+72.1,40.40979048783931,-105.38521734588545,Big Thompson Canyon,True,True,False,False,False,False
+72.2,40.40956958830337,-105.38341083210776,Big Thompson Canyon,True,True,False,False,False,False
+72.3,40.40975278827907,-105.38163197801788,Big Thompson Canyon,True,True,False,False,False,False
+72.4,40.41021422191675,-105.37991522637245,Big Thompson Canyon,True,True,False,False,False,False
+72.5,40.410909528227904,-105.37844285464386,Big Thompson Canyon,True,True,False,False,False,False
+72.6,40.412129708568465,-105.37756212254465,Big Thompson Canyon,True,True,False,False,False,False
+72.7,40.413411243069554,-105.37686084475726,Big Thompson Canyon,True,True,False,False,False,False
+72.8,40.41450879459847,-105.37573355117986,Big Thompson Canyon,True,True,False,False,False,False
+72.9,40.415503946138,-105.37445639285798,Big Thompson Canyon,True,True,False,False,False,False
+73.0,40.416280562766445,-105.37294605604555,Big Thompson Canyon,True,True,False,False,False,False
+73.1,40.41632476449348,-105.3711308376891,Big Thompson Canyon,True,True,False,False,False,False
+73.2,40.415752286686875,-105.36943543935833,Big Thompson Canyon,True,True,False,False,False,False
+73.3,40.41516373759191,-105.36774802909599,Big Thompson Canyon,True,True,False,False,False,False
+73.4,40.4147439682925,-105.36598874337774,Big Thompson Canyon,True,True,False,False,False,False
+73.5,40.414835158453236,-105.36415700343953,Big Thompson Canyon,True,True,False,False,False,False
+73.6,40.415569247738226,-105.36257819350047,Big Thompson Canyon,True,True,False,False,False,False
+73.7,40.416411721501774,-105.36107924209804,Big Thompson Canyon,True,True,False,False,False,False
+73.8,40.41731396950409,-105.35964858702312,Big Thompson Canyon,True,True,False,False,False,False
+73.9,40.41856289199544,-105.358791887189,Big Thompson Canyon,True,True,False,False,False,False
+74.0,40.419978625095325,-105.35876221586537,Big Thompson Canyon,True,True,False,False,False,False
+74.1,40.421043385412965,-105.35765533589866,Big Thompson Canyon,True,True,False,False,False,False
+74.2,40.42133832339936,-105.35585118313291,Big Thompson Canyon,True,True,False,False,False,False
+74.3,40.42178820947427,-105.35409629302372,Big Thompson Canyon,True,True,False,False,False,False
+74.4,40.42248111097343,-105.35250441622863,Big Thompson Canyon,True,True,False,False,False,False
+74.5,40.42318832137188,-105.35092201757415,Big Thompson Canyon,True,True,False,False,False,False
+74.6,40.424427915026854,-105.35005460963748,Big Thompson Canyon,True,True,False,False,False,False
+74.7,40.4258271567683,-105.34981072399523,Big Thompson Canyon,True,True,False,False,False,False
+74.8,40.42693419920429,-105.34873262718916,Big Thompson Canyon,True,True,False,False,False,False
+74.9,40.42741840742192,-105.34699865306798,Big Thompson Canyon,True,True,False,False,False,False
+75.0,40.42765332779482,-105.34517703922441,Big Thompson Canyon,True,True,False,False,False,False
+75.1,40.42758950328401,-105.34329421536455,Big Thompson Canyon,True,True,False,False,False,False
+75.2,40.42721679776563,-105.34148582083411,Big Thompson Canyon,True,True,False,False,False,False
+75.3,40.42803792718326,-105.3400047011921,Big Thompson Canyon,True,True,False,False,False,False
+75.4,40.429409502189536,-105.340375379511,Big Thompson Canyon,True,True,False,False,False,False
+75.5,40.43079765961065,-105.34091291954414,Big Thompson Canyon,True,True,False,False,False,False
+75.6,40.43210539294875,-105.34045079251847,Big Thompson Canyon,True,True,False,False,False,False
+75.7,40.43269236103537,-105.33885566429487,Big Thompson Canyon,True,True,False,False,False,False
+75.8,40.432883282635274,-105.33727275299032,Big Thompson Canyon,True,True,False,False,False,False
+75.9,40.43305097404786,-105.33571254834608,Big Thompson Canyon,True,True,False,False,False,False
+76.0,40.43292817911622,-105.33415954354426,Big Thompson Canyon,True,True,False,False,False,False
+76.1,40.432432943788164,-105.33241963059142,Big Thompson Canyon,True,True,False,False,False,False
+76.2,40.43193943947781,-105.33067891337285,Big Thompson Canyon,True,True,False,False,False,False
+76.3,40.431518688964175,-105.32886725695043,Big Thompson Canyon,True,True,False,False,False,False
+76.4,40.431027701445,-105.32692361697238,Big Thompson Canyon,True,True,False,False,False,False
+76.5,40.43029090160126,-105.3253218721294,Big Thompson Canyon,True,True,False,False,False,False
+76.6,40.430240363600475,-105.32348326331538,Big Thompson Canyon,True,True,False,False,False,False
+76.7,40.43009508304546,-105.32169212385023,Big Thompson Canyon,True,True,False,False,False,False
+76.8,40.42890320474731,-105.32072677152112,Big Thompson Canyon,True,True,False,False,False,False
+76.9,40.42848189516342,-105.31904345540359,Big Thompson Canyon,True,True,False,False,False,False
+77.0,40.4290565137664,-105.31738021830928,Big Thompson Canyon,True,True,False,False,False,False
+77.1,40.42978137585347,-105.31580671456744,Big Thompson Canyon,True,True,False,False,False,False
+77.2,40.429463313760536,-105.31402528064952,Big Thompson Canyon,True,True,False,False,False,False
+77.3,40.42950524374827,-105.31218174944405,Big Thompson Canyon,True,True,False,False,False,False
+77.4,40.43019221278959,-105.31049698992273,Big Thompson Canyon,True,True,False,False,False,False
+77.5,40.4299875117884,-105.30866893084374,Big Thompson Canyon,True,True,False,False,False,False
+77.6,40.42887384302999,-105.30743483391228,Big Thompson Canyon,True,True,False,False,False,False
+77.7,40.42782154049655,-105.30613827255135,Big Thompson Canyon,True,True,False,False,False,False
+77.8,40.42683128118419,-105.30480325360347,Big Thompson Canyon,True,True,False,False,False,False
+77.9,40.42668758475409,-105.30295888347354,Big Thompson Canyon,True,True,False,False,False,False
+78.0,40.42687067024428,-105.30104593858218,Big Thompson Canyon,True,True,False,False,False,False
+78.1,40.42670273450268,-105.29913916752032,Big Thompson Canyon,True,True,False,False,False,False
+78.2,40.426407007927224,-105.29725488449023,Big Thompson Canyon,True,True,False,False,False,False
+78.3,40.4268672553384,-105.29580543661567,Big Thompson Canyon,True,True,False,False,False,False
+78.4,40.42679130343105,-105.29437893141963,Big Thompson Canyon,True,True,False,False,False,False
+78.5,40.42604836031336,-105.29336621897762,Big Thompson Canyon,True,True,False,False,False,False
+78.6,40.42501048595623,-105.29286063179946,Big Thompson Canyon,True,True,False,False,False,False
+78.7,40.424080402927736,-105.29192343298247,Big Thompson Canyon,True,True,False,False,False,False
+78.8,40.42339360122084,-105.2905526253811,Big Thompson Canyon,True,True,False,False,False,False
+78.9,40.42258828778256,-105.28934463632754,Big Thompson Canyon,True,True,False,False,False,False
+79.0,40.42182154519552,-105.28810004338415,Big Thompson Canyon,True,True,False,False,False,False
+79.1,40.421915218110456,-105.2860268455229,Big Thompson Canyon,True,True,False,False,False,False
+79.2,40.42096394479883,-105.28473381569184,Big Thompson Canyon,True,True,False,False,False,False
+79.3,40.41948950210363,-105.28401786371552,Big Thompson Canyon,True,True,False,False,False,False
+79.4,40.41904060679944,-105.28203451273933,Big Thompson Canyon,True,True,False,False,False,False
+79.5,40.41919111653282,-105.27997256485855,Big Thompson Canyon,True,True,False,False,False,False
+79.6,40.41980832456172,-105.27802758937703,Big Thompson Canyon,True,True,False,False,False,False
+79.7,40.41993702175676,-105.27595102581881,Big Thompson Canyon,True,True,False,False,False,False
+79.8,40.41922744668559,-105.27407181640568,Big Thompson Canyon,True,True,False,False,False,False
+79.9,40.41848896466317,-105.27219690427626,Big Thompson Canyon,True,True,False,False,False,False
+80.0,40.41757369991988,-105.27046998373669,Big Thompson Canyon,True,True,False,False,False,False
+80.1,40.41658916468722,-105.26911889444,Big Thompson Canyon,True,True,False,False,False,False
+80.2,40.415728309608234,-105.26763366361503,Big Thompson Canyon,True,True,False,False,False,False
+80.3,40.41501419270503,-105.2660147986103,Big Thompson Canyon,True,True,False,False,False,False
+80.4,40.415098295821394,-105.26418250275032,Big Thompson Canyon,True,True,False,False,False,False
+80.5,40.41544325197242,-105.2623633605778,Big Thompson Canyon,True,True,False,False,False,False
+80.6,40.41572812921868,-105.26053016087721,Big Thompson Canyon,True,True,False,False,False,False
+80.7,40.41562282449379,-105.25866491623844,Big Thompson Canyon,True,True,False,False,False,False
+80.8,40.41530073541487,-105.25684254346444,Big Thompson Canyon,True,True,False,False,False,False
+80.9,40.4147439666628,-105.25511559966006,Big Thompson Canyon,True,True,False,False,False,False
+81.0,40.414381921205745,-105.25331696796464,Big Thompson Canyon,True,True,False,False,False,False
+81.1,40.41475587224252,-105.25122492709784,Big Thompson Canyon,True,True,False,True,False,False
+81.2,40.41523141665121,-105.24935898593863,Big Thompson Canyon,True,True,False,True,False,False
+81.3,40.4157000895485,-105.24752537545558,Big Thompson Canyon,True,True,False,True,False,False
+81.4,40.41662492522439,-105.24602665082048,Big Thompson Canyon,True,True,False,True,False,False
+81.5,40.41768822218819,-105.24468995779662,Big Thompson Canyon,True,True,False,True,False,False
+81.6,40.41904808303658,-105.24417347319881,Big Thompson Canyon,True,True,False,True,False,False
+81.7,40.42021479788004,-105.24300596316878,Big Thompson Canyon,True,True,True,True,False,False
+81.8,40.42120354700812,-105.2415789825205,Big Thompson Canyon,True,True,True,True,False,False
+81.9,40.42174447699606,-105.24012325536386,Big Thompson Canyon,True,True,True,True,False,False
+82.0,40.42126252043892,-105.23912624215168,Big Thompson Canyon,True,True,True,True,False,False
+82.1,40.421825275170434,-105.2377281845537,Big Thompson Canyon,True,True,True,True,False,False
+82.2,40.423086695136796,-105.23839542085602,Big Thompson Canyon,True,True,True,True,False,False
+82.3,40.42419760868975,-105.23733374225586,Big Thompson Canyon,True,True,True,True,False,False
+82.4,40.42409236466661,-105.2356217651528,Big Thompson Canyon,True,True,True,True,False,False
+82.5,40.42286231818525,-105.23535776620434,Big Thompson Canyon,True,True,True,True,False,False
+82.6,40.4225078716536,-105.2338336086267,Big Thompson Canyon,True,True,True,True,False,False
+82.7,40.42351619250472,-105.23257721141351,Big Thompson Canyon,True,True,True,True,False,False
+82.8,40.423736076647714,-105.23107602427781,Big Thompson Canyon,True,True,True,True,False,False
+82.9,40.423038812602826,-105.2295031540378,Big Thompson Canyon,True,True,True,True,False,False
+83.0,40.42224555967383,-105.22799531340688,Big Thompson Canyon,True,True,True,True,False,False
+83.1,40.42158328217538,-105.22635927042099,Big Thompson Canyon,True,True,True,True,False,False
+83.2,40.42105753287627,-105.22460408140338,Big Thompson Canyon,True,True,True,True,False,False
+83.3,40.42025674373223,-105.22301814873785,Big Thompson Canyon,True,True,True,True,False,True
+83.4,40.41930875612593,-105.22151106348039,Big Thompson Canyon,True,True,True,True,False,True
+83.5,40.41791368207037,-105.22025368543851,Canyon mouth to Loveland,True,True,True,True,False,True
+83.6,40.41640647875944,-105.2191475240447,Canyon mouth to Loveland,True,True,True,True,False,True
+83.7,40.41489926434281,-105.21804141211899,Canyon mouth to Loveland,True,True,True,True,False,True
+83.8,40.41369139684946,-105.21715502582856,Canyon mouth to Loveland,True,True,True,True,False,True
+83.9,40.4125243443097,-105.21629862616852,Canyon mouth to Loveland,True,True,True,True,False,True
+84.0,40.41141780735773,-105.21532587817045,Canyon mouth to Loveland,True,True,True,True,False,True
+84.1,40.410679796874824,-105.21369792025062,Canyon mouth to Loveland,True,True,True,True,False,True
+84.2,40.410693478996535,-105.21179570391318,Canyon mouth to Loveland,True,True,True,True,False,True
+84.3,40.41103478833305,-105.20955964291804,Canyon mouth to Loveland,True,True,True,True,False,True
+84.4,40.41116216587358,-105.2071579620012,Canyon mouth to Loveland,True,True,True,True,False,True
+84.5,40.41108881754505,-105.20505001914486,Canyon mouth to Loveland,True,True,True,True,False,True
+84.6,40.411520271499754,-105.2030450974183,Canyon mouth to Loveland,True,True,True,True,False,True
+84.7,40.411913508583844,-105.20121184207548,Canyon mouth to Loveland,True,True,True,True,False,True
+84.8,40.412257067549454,-105.19964307318168,Canyon mouth to Loveland,True,True,True,True,False,True
+84.9,40.4126321443123,-105.1984736758866,Canyon mouth to Loveland,True,True,True,True,False,True
+85.0,40.41321122845451,-105.19745691636798,Canyon mouth to Loveland,True,True,True,True,False,False
+85.1,40.41444208867339,-105.19621085069926,Canyon mouth to Loveland,True,True,True,True,False,False
+85.2,40.415677757155485,-105.19507254480496,Canyon mouth to Loveland,True,True,True,True,False,False
+85.3,40.41672786919011,-105.19375037184423,Canyon mouth to Loveland,True,True,True,True,False,False
+85.4,40.41748704289222,-105.19212847697126,Canyon mouth to Loveland,True,True,True,True,False,False
+85.5,40.41781235377862,-105.19027033431892,Canyon mouth to Loveland,True,True,True,True,False,False
+85.6,40.41805306510886,-105.18838451926604,Canyon mouth to Loveland,True,True,True,True,False,False
+85.7,40.41824454379983,-105.18655302533314,Canyon mouth to Loveland,True,True,True,True,False,False
+85.8,40.41826915290698,-105.18471773704249,Canyon mouth to Loveland,True,True,True,True,False,False
+85.9,40.41828687925542,-105.18288211402502,Canyon mouth to Loveland,True,True,True,True,False,False
+86.0,40.41852763523228,-105.18125663956987,Canyon mouth to Loveland,True,True,True,True,False,False
+86.1,40.4189684492311,-105.17924776030529,Canyon mouth to Loveland,True,True,True,True,False,False
+86.2,40.41907373485326,-105.17740877160658,Canyon mouth to Loveland,True,True,True,True,False,False
+86.3,40.41829573256047,-105.17592154045595,Canyon mouth to Loveland,True,True,True,True,False,False
+86.4,40.41723864665993,-105.17471757124719,Canyon mouth to Loveland,True,True,True,True,False,False
+86.5,40.41630527281564,-105.17335298229337,Canyon mouth to Loveland,True,True,True,True,False,True
+86.6,40.41551078203468,-105.17184365524106,Canyon mouth to Loveland,True,True,True,True,False,True
+86.7,40.41472165140824,-105.17033145882695,Canyon mouth to Loveland,True,True,True,True,False,True
+86.8,40.41358310962187,-105.16928888315057,Canyon mouth to Loveland,True,True,True,True,False,True
+86.9,40.4116553856256,-105.16787651216528,Canyon mouth to Loveland,True,True,True,True,False,True
+87.0,40.41059674312891,-105.16523465466587,Canyon mouth to Loveland,True,True,True,True,False,True
+87.1,40.41017860113461,-105.16307768999273,Canyon mouth to Loveland,True,True,True,True,False,True
+87.2,40.409790768935586,-105.1610772888079,Canyon mouth to Loveland,True,True,True,True,False,True
+87.3,40.40944955784925,-105.15934513006954,Canyon mouth to Loveland,True,True,True,True,False,False
+87.4,40.409105960181584,-105.15761378113773,Canyon mouth to Loveland,True,True,True,True,False,False
+87.5,40.408762337436784,-105.15588244974023,Canyon mouth to Loveland,True,True,True,True,False,False
+87.6,40.40841868781558,-105.15415113469608,Canyon mouth to Loveland,True,True,True,True,False,False
+87.7,40.40798629268072,-105.15195987152165,Canyon mouth to Loveland,True,True,True,True,False,False
+87.8,40.407710043624185,-105.15049555257649,Canyon mouth to Loveland,True,True,True,True,False,False
+87.9,40.40743793336838,-105.14890564399884,Canyon mouth to Loveland,True,True,True,True,False,False
+88.0,40.407192439981124,-105.14730830717507,Loveland (urban),True,True,True,True,False,False
+88.1,40.40686596883273,-105.14516463904857,Loveland (urban),True,True,True,True,False,False
+88.2,40.4066639501683,-105.1431985748356,Loveland (urban),True,True,False,True,False,False
+88.3,40.40702766349041,-105.14136464651234,Loveland (urban),True,True,False,False,False,False
+88.4,40.407336132407806,-105.13951274941985,Loveland (urban),True,True,False,False,False,False
+88.5,40.407311719133816,-105.1376093489497,Loveland (urban),True,True,False,False,False,False
+88.6,40.40730332827971,-105.1357141163263,Loveland (urban),True,True,False,False,False,False
+88.7,40.40728383170338,-105.13380693999896,Loveland (urban),True,True,False,False,False,False
+88.8,40.40727218314714,-105.13180490018125,Loveland (urban),True,True,False,False,False,False
+88.9,40.407259245377475,-105.13016712649173,Loveland (urban),True,True,False,False,False,False
+89.0,40.40723740020973,-105.12858145049299,Loveland (urban),True,True,False,False,False,False
+89.1,40.40716754671064,-105.12657771517235,Loveland (urban),True,True,False,False,False,False
+89.2,40.40712758303799,-105.12450063949122,Loveland (urban),True,True,False,False,False,False
+89.3,40.40715320112125,-105.12258691434843,Loveland (urban),True,True,False,False,False,False
+89.4,40.407191126143836,-105.1207011364656,Loveland (urban),True,True,False,False,False,False
+89.5,40.40725849405437,-105.1188862010079,Loveland (urban),True,True,False,False,False,False
+89.6,40.40732727314905,-105.11689672296734,Loveland (urban),True,True,False,False,False,False
+89.7,40.40733975986177,-105.11506349333885,Loveland (urban),True,True,False,False,False,False
+89.8,40.40730774482903,-105.1131914496632,Loveland (urban),True,True,False,False,False,False
+89.9,40.4072741023522,-105.11123120750672,Loveland (urban),True,True,False,False,False,False
+90.0,40.407207315132034,-105.10819807980013,Loveland (urban),True,True,False,False,False,False
+90.1,40.40719223296976,-105.1074918797151,Loveland (urban),True,True,False,False,False,False
+90.2,40.40718177815566,-105.10556705740332,Loveland (urban),True,True,False,False,False,False
+90.3,40.407174942949794,-105.10356756639155,Loveland (urban),True,True,False,False,False,False
+90.4,40.407162931816046,-105.10167550746202,Loveland (urban),True,True,False,False,False,False
+90.5,40.40713046481581,-105.09979832400016,Loveland (urban),True,True,False,False,False,False
+90.6,40.407141850544704,-105.09795463876232,Loveland (urban),True,False,False,False,False,False
+90.7,40.40714644710891,-105.09609492212527,Loveland (urban),True,False,False,False,False,False
+90.8,40.407055759765946,-105.0949533269299,Loveland (urban),True,False,False,False,False,False
+90.9,40.40647795744326,-105.0936701734152,Loveland (urban),True,False,False,False,False,False
+91.0,40.40512944998761,-105.09127713073342,Loveland (urban),True,False,False,False,False,False
+91.1,40.40481014004757,-105.08942389453253,Loveland (urban),True,False,False,False,False,False
+91.2,40.40463101989947,-105.08754106977523,Loveland (urban),True,False,False,False,False,False
+91.3,40.404810570624086,-105.08565391784518,Loveland (urban),True,False,False,False,False,False
+91.4,40.40511766840427,-105.08377685350963,Loveland (urban),True,False,False,False,False,False
+91.5,40.40596776666082,-105.08231133247696,Loveland (urban),True,False,False,False,False,False
+91.6,40.4068921523405,-105.08078737497779,Loveland (urban),True,False,False,False,False,False
+91.7,40.407160013310495,-105.07901493844152,Loveland (urban),True,False,False,False,False,False
+91.8,40.4072018304414,-105.07708873123266,Loveland (urban),True,False,False,False,False,False
+91.9,40.407230769405174,-105.07510692245515,Loveland (urban),True,False,False,False,False,False
+92.0,40.4072137495441,-105.07328690808843,,True,False,False,False,False,False
+92.1,40.40723281520869,-105.07125371651202,,True,False,False,False,False,False
+92.2,40.40723105457399,-105.0694010400495,,True,False,False,False,False,False
+92.3,40.40722952571067,-105.06781739012446,,True,False,False,False,False,False
+92.4,40.40723157153085,-105.0666431345829,,True,False,False,False,False,False
+92.5,40.407244662386674,-105.06489992035043,,True,False,False,False,False,False
+92.6,40.40725871233837,-105.06302502637939,,True,False,False,False,False,False
+92.7,40.40727836347995,-105.0603959776198,,True,False,False,False,False,False
+92.8,40.40729510132704,-105.05815040218181,,True,False,False,False,False,False
+92.9,40.407306945529484,-105.05655776867091,,True,False,False,False,False,False
+93.0,40.40731876779574,-105.05496513457678,,True,False,False,False,False,False

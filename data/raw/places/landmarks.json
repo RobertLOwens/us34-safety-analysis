@@ -1,0 +1,80 @@
+[
+ {
+  "kind": "fork",
+  "name": "CR 43 to Glen Haven",
+  "lat": 40.43199,
+  "lon": -105.34064,
+  "note": "Junction of US 34 and Larimer County Road 43 (Devils Gulch Road) at Drake",
+  "source": "OpenStreetMap way 845782154",
+  "mp": 75.6,
+  "dist_m": 21,
+  "road": [
+   [
+    -105.34064,
+    40.43199
+   ],
+   [
+    -105.34747,
+    40.43389
+   ],
+   [
+    -105.35127,
+    40.43682
+   ],
+   [
+    -105.36254,
+    40.43898
+   ],
+   [
+    -105.36452,
+    40.43884
+   ],
+   [
+    -105.3671,
+    40.43915
+   ],
+   [
+    -105.37171,
+    40.44076
+   ],
+   [
+    -105.37595,
+    40.44084
+   ],
+   [
+    -105.37956,
+    40.44319
+   ],
+   [
+    -105.38219,
+    40.44347
+   ],
+   [
+    -105.3839,
+    40.44456
+   ],
+   [
+    -105.38419,
+    40.44511
+   ],
+   [
+    -105.38346,
+    40.44655
+   ],
+   [
+    -105.38349,
+    40.44731
+   ]
+  ]
+ },
+ {
+  "kind": "fire",
+  "name": "Fire Station 8",
+  "lat": 40.42896,
+  "lon": -105.31831,
+  "note": "Loveland Fire Rescue Authority, 1461 Big Thompson Canyon Road (the canyon station)",
+  "source": "OpenStreetMap way 467982723",
+  "mp": 77.0,
+  "dist_m": 80
+ }
+]

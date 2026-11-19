@@ -1,0 +1,5 @@
+segment,count,mean,std,min,25%,50%,75%,max
+Big Thompson Canyon,2.0,72.7,9.5,66.0,69.3,72.7,76.0,79.4
+Canyon mouth to Loveland,3.0,85.9,1.2,84.8,85.3,85.8,86.5,87.2
+Estes Park (town),13.0,62.7,0.8,62.1,62.1,62.5,62.7,64.8
+Loveland (urban),128.0,90.8,0.8,88.5,90.3,90.7,91.7,92.0
