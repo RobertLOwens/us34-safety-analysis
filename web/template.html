@@ -201,6 +201,8 @@ label.chk i { width: 10px; height: 10px; border-radius: 50%; display: inline-blo
 .legend .heatkey i { display: inline-block; border-radius: 50%; background: var(--heat); opacity: 0.75; filter: blur(1.5px); }
 #map .unlitlbl text.big { font-family: var(--f-display); font-size: 22px; font-weight: 700; fill: var(--a); stroke-width: 4px; }
 #map .unlitlbl text.sm { font-size: 10px; stroke-width: 3px; }
+#map .rateband { fill: none; stroke-width: 9px; stroke-linecap: round; stroke-linejoin: round; }
+#map .ratelbl text { font-family: var(--f-display); font-size: 17px; font-weight: 700; stroke-width: 4px; }
 #map text.place { font-family: var(--f-display); font-weight: 600; }
 #map .mpsign rect { fill: var(--sign); }
 #map .mpsign text { fill: var(--sign-ink); stroke: none; font-weight: 500; }
@@ -247,7 +249,7 @@ a:focus-visible { outline: 2px solid var(--sign); outline-offset: 2px; }
       <div class="tbl"><table id="segtable"></table></div>
     </section>
 
-    <section class="step" data-step="density" data-label="All crashes">
+    <section class="step" data-step="density" data-label="Severe-crash rate">
       <div class="num">WHERE CRASHES HAPPEN</div>
       <h2>Most crashes are in Loveland. The worst ones are in the canyon.</h2>
       <p><span id="loveShare"></span> Loveland's crashes are mostly low-speed rear-end and turning crashes. Mile for mile the canyon has fewer crashes, but nearly half of them injure someone.</p>
@@ -408,6 +410,9 @@ const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).
 const SEV_MAX = d3.max(DATA.segments, d => d.ka_per_100mvmt);
 const CORR_RATE = DATA.totals.corridor_ka_rate;
 const sevColor = v => d3.interpolateLab(css("--sev-lo"), css("--sev-hi"))(Math.min(1, v / SEV_MAX));
+/* same ramp for the 3-mile map, stretched to its own worst section */
+const R3_MAX = d3.max(DATA.rate3, r => r.rate);
+const rate3Color = v => d3.interpolateLab(css("--sev-lo"), css("--sev-hi"))(Math.min(1, v / R3_MAX));
 const segSev = i => sevColor(DATA.segments[i].ka_per_100mvmt);
 
 // crash rows: [lat, lon, mp, sev, cat, light, flags, species, dir, year]
@@ -604,12 +609,24 @@ const STEPS = {
   overview: {range: [61, 92], legend: () => legendSections("US 34 corridor"), draw: drawNone},
   sections: {range: [61, 92], legend: () => legendSections("Four sections"), draw: drawNone},
   density: {range: [61, 92], legend: () => {
-      const H = heatBins(), size = n => (2 * heatR(n, H.max)).toFixed(0);
-      return `<div class="t">All crashes, 2019–2025</div><div class="row">Red glow: crashes per ¼ mile</div>` +
-        `<div class="heatkey">${[10, 50, H.max].map(n => `<span><i style="width:${size(n)}px;height:${size(n)}px"></i>${n}</span>`).join("")}</div>` +
-        `<div class="row">Busiest: ${H.peaks.map(b => `MP ${b.mp.toFixed(2)}–${(b.mp + 0.25).toFixed(2)} (${b.n})`).join(", ")}</div>` +
-        `<div class="row"><i style="background:var(--dot)"></i>One crash</div>`; },
-    draw: () => { drawHeat(); drawPts(CR, c => "--dot", 1.6, 0.55); }},
+      const R = DATA.rate3;
+      return `<div class="t">Fatal + serious per 100M vehicle-miles, 2019–2025</div><div class="row">Road color and numbers: 3-mile sections (MP 88–92 is 4 mi)</div>` +
+        `<div class="ramp" style="background:linear-gradient(90deg, ${rate3Color(0)}, ${rate3Color(R3_MAX)})"></div><div class="row"><span>0</span><span style="margin-left:auto">${Math.round(R3_MAX)}</span></div>` +
+        `<div class="row"><i style="background:var(--ink)"></i>Fatal or serious crash</div>` +
+        `<div class="row">Each section has ${d3.min(R, r => r.ka)}–${d3.max(R, r => r.ka)} severe crashes, so single sections are uncertain. Corridor average: ${CORR_RATE.toFixed(1)}</div>`; },
+    draw: () => {
+      const path = d3.line().x(p => p.x).y(p => p.y), ov = gRoot.select(".overlays");
+      DATA.rate3.forEach((r, i) => {
+        const seg = path(LINE.filter(p => p.mp >= r.a && p.mp <= r.b + 0.05));
+        ov.append("path").attr("class", "rateband").attr("vector-effect", "non-scaling-stroke").attr("stroke", rate3Color(r.rate))
+          .attr("d", path(LINE.filter(p => p.mp >= r.a && p.mp <= r.b + 0.05)))
+          .append("title").text(`MP ${r.a}–${r.b}: ${r.ka} fatal or serious crashes (${r.k} fatal) over ${r.mvmt} million vehicle-miles = ${r.rate} per 100M`);
+        const at = (r.a + r.b) / 2, m = curvePts(at, at)[0], dy = i % 2 ? 30 : -22;   // start spot; placeRateLabels moves it clear of other labels
+        const g = gRoot.select(".pins").append("g").attr("class", "scalable ratelbl").attr("data-x", m.x).attr("data-y", m.y)
+          .attr("transform", `translate(${m.x},${m.y}) scale(${1 / kNow})`);
+        g.append("text").attr("y", dy).attr("text-anchor", "middle").text(r.rate.toFixed(1));
+        g.append("title").text(`MP ${r.a}–${r.b}: ${r.ka} fatal or serious (${r.k} fatal), ${r.rate} per 100M vehicle-miles`); });
+      drawPts(CR.filter(KA), () => "--ink", 2.4, 0.85); placeRateLabels(); }},
   severe: {range: [61, 92], legend: () => {
       if (!kaSel) return legendRows("Fatal and serious", [["--k", "Fatal (K)"], ["--a", "Serious injury (A)"]], "Click a bar in the crash-type chart to pick out those crashes");
       const n = CR.filter(kaMatch).length, what = kaSel.sev === "K" ? "fatal" : kaSel.sev === "A" ? "serious-injury" : "fatal or serious";
@@ -814,6 +831,27 @@ function applyView(v) {
   gRoot.attr("transform", `translate(${W / 2 - k * v[0]},${H / 2 - k * v[1]}) scale(${k})`);
   gRoot.selectAll(".pts circle, .pts-a circle, .pts-b circle").attr("r", function () { return +this.dataset.r / k; }).attr("stroke-width", 1 / k);
   gRoot.selectAll(".scalable").attr("transform", function () { return `translate(${this.dataset.x},${this.dataset.y}) scale(${1 / k})`; });
+  placeRateLabels();
+}
+/* Rate labels: try spots above, below and to the sides of the section's middle
+   and keep the first that overlaps no other map text. Rerun on every zoom. */
+const RATE_SPOTS = [[0, -22], [0, 30], [-34, -22], [34, -22], [-34, 30], [34, 30], [0, -44], [0, 52]];
+function placeRateLabels() {
+  const labels = gRoot.selectAll(".ratelbl text").nodes();
+  if (!labels.length) return;
+  const others = gRoot.selectAll("text").nodes().filter(t => !t.closest(".ratelbl")).map(t => t.getBoundingClientRect());
+  const free = (b, list) => list.every(o => b.right + 2 < o.left || o.right + 2 < b.left || b.bottom + 1 < o.top || o.bottom + 1 < b.top);
+  const placed = [];
+  labels.forEach(t => {
+    let best = null;
+    for (const [dx, dy] of RATE_SPOTS) {
+      t.setAttribute("x", dx); t.setAttribute("y", dy);
+      const b = t.getBoundingClientRect();
+      if (free(b, others) && free(b, placed)) { best = b; break; }
+    }
+    if (!best) { t.setAttribute("x", RATE_SPOTS[0][0]); t.setAttribute("y", RATE_SPOTS[0][1]); best = t.getBoundingClientRect(); }
+    placed.push(best);
+  });
 }
 
 /* ---------------- explore mode ---------------- */

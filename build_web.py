@@ -179,6 +179,19 @@ def main():
         p.update(det[p["project"]])
         p["crashes"] = sorted(pos[r] for r in tg[tg.project == p["project"]].row if r in pos)
 
+    # fatal + serious per 100M vehicle-miles in 3-mile sections (last one MP 88-92 = Loveland)
+    ah = pd.read_csv(RAW / "roadway" / "aadt_history_long.csv")
+    ah = ah[ah.year.between(*CUR)]
+    edges = [61, 64, 67, 70, 73, 76, 79, 82, 85, 88, 92]
+    rate3 = []
+    for a, b in zip(edges[:-1], edges[1:]):
+        mv = float((ah.aadt * (ah.endRefPt.clip(upper=b) - ah.refPt.clip(lower=a)).clip(lower=0) * 365).sum() / 1e6)
+        s = c[(c.mp >= a) & ((c.mp < b) | ((b == 92) & (c.mp <= 92)))]
+        ka = int(s.severity.isin(["K", "A"]).sum())
+        rate3.append({"a": a, "b": b, "crashes": int(len(s)), "ka": ka, "k": int((s.severity == "K").sum()),
+                      "mvmt": round(mv, 1), "rate": round(ka / mv * 100, 1)})
+    assert sum(r["ka"] for r in rate3) == int(c.severity.isin(["K", "A"]).sum())
+
     pf = EDA / "peer_corridors.csv"
     peers = pd.read_csv(pf).to_dict("records") if pf.exists() else []
     data = {
@@ -189,6 +202,7 @@ def main():
         "line": line,
         "crashes": crashes,
         "segments": segments,
+        "rate3": rate3,
         "byYear": by_year[["year", "crashes", "ka", "k", "rate_per_mvmt", "ka_per_100mvmt"]]
         .round(2).to_dict("records"),
         "byMonth": by_month[["month", "crashes", "ka", "rate_per_mvmt"]].round(2).to_dict("records"),
