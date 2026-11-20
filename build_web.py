@@ -109,6 +109,34 @@ def existing(cl):
     return {"shoulders": merged, "survey": survey, "rails": rails, "signals": inter}
 
 
+def curve_assets(a, b, sv):
+    """Chevrons and guardrail seen in the Street View survey within 0.15 mi of a curve
+    (chevrons only from points approaching it)."""
+    near = sv[sv.mp.between(a - 0.15, b + 0.15)]
+    # a chevron sighting only counts from a point approaching the curve in its direction of travel
+    approach = near[((near.direction == "EB") & (near.mp <= a + 0.02)) | ((near.direction == "WB") & (near.mp >= b - 0.02))]
+    def seen(col):
+        v = (approach if col == "chevrons_visible" else near)[col].astype(str).str.lower()
+        v = v[~v.isin(["", "nan", "n/a"])]
+        return "not checked" if v.empty else "yes" if v.str.startswith("yes").any() else "no"
+    return {"chevrons": seen("chevrons_visible"), "guardrail": seen("guardrail")}
+
+
+def top_curves(t, other):
+    """Top-curve records for the page, with what is on the road and whether the
+    curve is also in the other ranking."""
+    sv = pd.read_csv(RAW / "roadway" / "streetview_survey.csv")
+    cols = ["mp_start", "mp_end", "min_radius_ft", "deflection_deg", "crashes",
+            "exp_crashes", "ka", "exp_ka", "k", "departure"]
+    out = []
+    for row in t.itertuples():
+        d = {k: getattr(row, k) for k in cols}
+        d.update(curve_assets(row.mp_start, row.mp_end, sv))
+        d["in_other"] = bool((other.curve_id == row.curve_id).any())
+        out.append(d)
+    return out
+
+
 def main():
     cl = centerline()
     line = [[r(m, 1), round(la, 5), round(lo, 5), r(e, 0)]
@@ -161,8 +189,10 @@ def main():
     gl = pd.read_csv(EDA / "glare_by_segment.csv")
     cv = pd.read_csv(EDA / "curves_inventory.csv")
     cv = cv[(cv.mp_mid >= 65) & (cv.mp_mid < 88)]
-    rk = pd.read_csv(EDA / "curves_ranked.csv")
-    rk = rk[(rk.mp_mid >= 65) & (rk.mp_mid < 88)].head(7)
+    rk_all = pd.read_csv(EDA / "curves_ranked.csv")
+    rk_all = rk_all[(rk_all.mp_mid >= 65) & (rk_all.mp_mid < 88)]
+    rk = rk_all.head(7)                                   # ranked by fatal + serious, then crashes
+    rk_n = rk_all.sort_values(["crashes", "ka", "injury"], ascending=False).head(7)   # by all crashes
 
     # per-project detail and the positions (in `crashes`) of the crashes each targets
     pos = {idx: i for i, idx in enumerate(c.index)}
@@ -214,8 +244,8 @@ def main():
         "glare": gl.round(2).to_dict("records"),
         "curves": [[r(a, 3), r(b, 3), int(rad), int(n), int(ka)] for a, b, rad, n, ka in
                    zip(cv.mp_start, cv.mp_end, cv.min_radius_ft, cv.crashes, cv.ka)],
-        "topCurves": rk[["mp_start", "mp_end", "min_radius_ft", "deflection_deg", "crashes",
-                         "exp_crashes", "ka", "exp_ka", "k", "departure"]].to_dict("records"),
+        "topCurves": top_curves(rk, rk_n),
+        "topCurvesAll": top_curves(rk_n, rk),
         "totals": {"crashes": int(len(c)), "ka": int(c.severity.isin(["K", "A"]).sum()),
                    "k": int((c.severity == "K").sum()), "killed": int(c.inj4.sum()),
                    "all_years_crashes": int(cr.year.between(2007, 2026).sum()),

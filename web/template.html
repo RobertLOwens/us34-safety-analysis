@@ -128,6 +128,12 @@ label.chk i { width: 10px; height: 10px; border-radius: 50%; display: inline-blo
 #map .rankpin circle { fill: var(--ink); stroke: var(--halo); stroke-width: 1.5; }
 #map .rankpin text { fill: var(--bg); stroke: none; font-weight: 600; }
 #curvetable td:first-child { white-space: nowrap; }
+.ranktoggle { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin: 6px 0 2px; }
+.ranktoggle button { font: inherit; font-size: 13px; color: var(--muted); background: var(--bg); border: 0; padding: 6px 12px; cursor: pointer; }
+.ranktoggle button + button { border-left: 1px solid var(--rule); }
+.newtag { font-size: 10px; font-weight: 600; color: var(--bg); background: var(--a); border-radius: 3px; padding: 1px 4px; margin-left: 4px; vertical-align: 1px; }
+.ranktoggle button.on { color: var(--ink); background: var(--hi); font-weight: 600; }
+#curvetable td.n { white-space: nowrap; } #curvetable .c { text-align: center; } #curvetable td.miss { color: var(--k); font-weight: 700; } #curvetable td.ok { color: var(--muted); }
 #curvetable tbody tr { cursor: pointer; }
 #curvetable tbody tr:hover td { background: var(--hi); }
 #curvetable tbody tr.on td { background: var(--hi); font-weight: 600; }
@@ -281,7 +287,10 @@ a:focus-visible { outline: 2px solid var(--sign); outline-offset: 2px; }
       <div class="num">CURVE BY CURVE · <span class="mp">MP 65</span>–<span class="mp">MP 88</span></div>
       <h2>The tightest curves crash most, and a few stand out</h2>
       <p>A curve inventory from CDOT's centerline finds 89 curves in the canyon, 4.8 per mile. Curves under 250 ft averaged 6.8 crashes each, more than three times the gentler ones. Curves that bend to the driver's left had twice the severe crashes of right-hand curves (21 against 11), mostly vehicles leaving the outside edge.</p>
-      <p class="muted" style="font-size:13px">Click a numbered pin or a row to zoom to that curve.</p>
+      <div class="ranktoggle" id="curveRank" role="group" aria-label="Rank curves by">
+        <button type="button" data-r="severe" class="on" aria-pressed="true">Most fatal or serious</button><button type="button" data-r="all" aria-pressed="false">Most crashes</button>
+      </div>
+      <p class="muted" style="font-size:13px" id="curveRankNote"></p>
       <div class="tbl"><table id="curvetable"></table></div>
       <div class="card" id="curveCard" hidden></div>
       <p class="muted" style="font-size:13px">2019–2025. Expected = the average for curves of that length in MP 65–88. Counts at one curve are small; a road safety audit should confirm these on site.</p>
@@ -447,8 +456,27 @@ document.getElementById("glaretable").innerHTML = `<thead><tr><th>Section</th><t
     const x = v => `${v.toFixed(1)}×`;
     return `<tr><td>${s.name}</td><td class="n">${e.sun_ahead}</td><td class="n">${x(e.ratio)}</td><td class="n">${w.sun_ahead}</td><td class="n">${x(w.ratio)}</td></tr>`; }).join("") + `</tbody>`;
 
-document.getElementById("curvetable").innerHTML = `<thead><tr><th>Curve</th><th class="n">Radius</th><th class="n">Crashes (exp.)</th><th class="n">Fatal or serious (exp.)</th></tr></thead><tbody>` +
-  DATA.topCurves.map((c, i) => `<tr tabindex="0" data-i="${i}" aria-label="Zoom to curve ${i + 1}"><td><span class="rank">${i + 1}</span>MP ${c.mp_start.toFixed(2)}–${c.mp_end.toFixed(2)}</td><td class="n">${c.min_radius_ft} ft</td><td class="n">${c.crashes} (${c.exp_crashes.toFixed(0)})</td><td class="n">${c.ka}${c.k ? ", " + c.k + " fatal" : ""} (${c.exp_ka.toFixed(1)})</td></tr>`).join("") + `</tbody>`;
+/* two rankings of the canyon's curves: by fatal + serious crashes, and by all crashes */
+let curveRank = "severe";
+const TOP = () => curveRank === "all" ? DATA.topCurvesAll : DATA.topCurves;
+const assetMark = v => v === "yes" ? `<td class="c ok" title="seen in Street View">✓</td>` : v === "no" ? `<td class="c miss" title="none seen in Street View">✕</td>` : `<td class="c" title="not checked">–</td>`;
+const CURVE_NOTES = {
+  severe: "Ranked by fatal and serious (severe) crashes, then all crashes. Chev. and Rail: chevrons and guardrail seen in Street View (✓) or not (✕). Click a numbered pin or a row to zoom to that curve.",
+  all: "Ranked by all crashes. Busy curves warn of severe crashes to come, most of all where chevrons and guardrail are missing (✕). Click a pin or a row to zoom in."};
+function renderCurveTable() {
+  document.getElementById("curveRankNote").textContent = CURVE_NOTES[curveRank];
+  document.getElementById("curvetable").innerHTML = `<thead><tr><th>Curve</th><th class="n">Crashes (exp.)</th><th class="n">Severe (exp.)</th><th class="c" title="Chevron signs seen approaching the curve">Chev.</th><th class="c" title="Guardrail seen at the curve">Rail</th></tr></thead><tbody>` +
+    TOP().map((c, i) => `<tr tabindex="0" data-i="${i}" aria-label="Zoom to curve ${i + 1}"><td><span class="rank">${i + 1}</span>MP ${c.mp_start.toFixed(2)}–${c.mp_end.toFixed(2)}${curveRank === "all" && !c.in_other ? "<span class='newtag' title='Not in the fatal-or-serious top 7'>new</span>" : ""}</td><td class="n">${c.crashes} (${c.exp_crashes.toFixed(0)})</td><td class="n" title="${c.k} fatal">${c.ka} (${c.exp_ka.toFixed(1)})</td>${assetMark(c.chevrons)}${assetMark(c.guardrail)}</tr>`).join("") + `</tbody>`;
+  initCurveClicks();
+}
+renderCurveTable();
+document.querySelectorAll("#curveRank button").forEach(b => b.addEventListener("click", () => {
+  if (curveRank === b.dataset.r) return;
+  curveRank = b.dataset.r; curveFocus = null; $("curveCard").hidden = true;
+  document.querySelectorAll("#curveRank button").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-pressed", x === b); });
+  renderCurveTable();
+  if (curStep === "curves") setStep("curves");
+}));
 
 const pk = DATA.packages;
 { const r = n => Math.round(n), rng = q => r(q.ka_10yr_low) === r(q.ka_10yr_high) ? `about ${r(q.ka_10yr_mid)}` : `${r(q.ka_10yr_low)}–${r(q.ka_10yr_high)} (midpoint ${r(q.ka_10yr_mid)})`;
@@ -640,7 +668,7 @@ const STEPS = {
     drawPts(CR.filter(c => c.mp >= 65 && c.mp < 83.5 && c.curve && !KA(c)), () => "--dot", 2, 0.5, "a");
     drawPts(CR.filter(c => c.mp >= 65 && c.mp < 83.5 && KA(c)), () => "--k", 4.5, 0.95, "b");
     drawOverlay([[70, 72]], ""); }},
-  curves: {range: [65, 83.5], legend: () => curveFocus != null ? legendRows(`Curve ${curveFocus + 1}, MP ${DATA.topCurves[curveFocus].mp_start.toFixed(2)}–${DATA.topCurves[curveFocus].mp_end.toFixed(2)}`, SEVS.map(([k, l, v]) => [v, l]), "All crashes nearby, 2019–2025") : `<div class="t">Crashes per curve, 2019–2025</div><div class="row">Curve color: crashes on it</div><div class="ramp" style="background:linear-gradient(90deg, ${[0, 3, 6, 9, 12].map(n => { const q = d3.color(curveColor(n)); q.opacity = curveOpacity(n); return q.formatRgb(); }).join(", ")})"></div><div class="row"><span>0</span><span style="margin-left:auto">${CURVE_MAX}+</span></div><div class="row"><i style="background:var(--ink)"></i>Fatal or serious crash</div><div class="row">Numbers: top 7 curves</div>`,
+  curves: {range: [65, 83.5], legend: () => curveFocus != null ? legendRows(`Curve ${curveFocus + 1}, MP ${TOP()[curveFocus].mp_start.toFixed(2)}–${TOP()[curveFocus].mp_end.toFixed(2)}`, SEVS.map(([k, l, v]) => [v, l]), "All crashes nearby, 2019–2025") : `<div class="t">Crashes per curve, 2019–2025</div><div class="row">Curve color: crashes on it</div><div class="ramp" style="background:linear-gradient(90deg, ${[0, 3, 6, 9, 12].map(n => { const q = d3.color(curveColor(n)); q.opacity = curveOpacity(n); return q.formatRgb(); }).join(", ")})"></div><div class="row"><span>0</span><span style="margin-left:auto">${CURVE_MAX}+</span></div><div class="row"><i style="background:var(--ink)"></i>Fatal or serious crash</div><div class="row">Numbers: top 7 curves</div>`,
     draw: () => {
       const path = d3.line().x(p => p.x).y(p => p.y);
       DATA.curves.forEach(([a, b, rad, n]) => gRoot.select(".overlays").append("path").attr("class", "curve")
@@ -649,7 +677,7 @@ const STEPS = {
       if (curveFocus == null) drawPts(CR.filter(c => c.mp >= 65 && c.mp < 88 && KA(c)), () => "--ink", 3, 0.85, "b");
       else { const [a, b] = focusRange(), order = {O: 0, C: 1, B: 2, A: 3, K: 4};
         drawPts(CR.filter(c => c.mp >= a && c.mp <= b).sort((p, q) => order[p.sev] - order[q.sev]), c => SEVCOL[c.sev], c => KA(c) ? 6 : 4.5, 0.95, "b"); }
-      DATA.topCurves.forEach((c, i) => { const p = curvePts(c.mp_start, c.mp_end), m = p[Math.floor(p.length / 2)];
+      TOP().forEach((c, i) => { const p = curvePts(c.mp_start, c.mp_end), m = p[Math.floor(p.length / 2)];
         const g = gRoot.select(".pins").append("g").attr("class", "scalable rankpin").classed("on", i === curveFocus).attr("data-x", m.x).attr("data-y", m.y)
           .attr("transform", `translate(${m.x},${m.y}) scale(${1 / kNow})`).on("click", () => focusCurve(i));
         g.append("title").text(`Curve ${i + 1}: zoom in`);
@@ -1008,7 +1036,7 @@ function paintKaChart() {
 /* ---------------- curve focus: zoom to one of the top curves ---------------- */
 let curveFocus = null;
 function focusRange() {
-  const c = DATA.topCurves[curveFocus], pad = Math.max(0.12, (c.mp_end - c.mp_start) * 0.6);
+  const c = TOP()[curveFocus], pad = Math.max(0.12, (c.mp_end - c.mp_start) * 0.6);
   return [c.mp_start - pad, c.mp_end + pad];
 }
 function focusCurve(i) {
@@ -1017,13 +1045,14 @@ function focusCurve(i) {
   const card = $("curveCard");
   if (curveFocus == null) card.hidden = true;
   else {
-    const c = DATA.topCurves[curveFocus], len = Math.round((c.mp_end - c.mp_start) * 5280);
+    const c = TOP()[curveFocus], len = Math.round((c.mp_end - c.mp_start) * 5280);
     const rows = [["Where", `MP ${c.mp_start.toFixed(2)}–${c.mp_end.toFixed(2)}, about ${fmt(len)} ft long`],
       ["Tightest radius", `${c.min_radius_ft} ft`], ["Turns through", `${Math.round(c.deflection_deg)}°`],
       ["Crashes", `${c.crashes} (about ${c.exp_crashes.toFixed(1)} expected)`],
       ["Fatal or serious", `${c.ka}${c.k ? `, ${c.k} fatal` : ""} (about ${c.exp_ka.toFixed(1)} expected)`],
-      ["Ran off the road", `${c.departure} of ${c.crashes}`]];
-    card.innerHTML = `<h3>Curve ${curveFocus + 1}</h3><dl>` + rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("") +
+      ["Ran off the road", `${c.departure} of ${c.crashes}`],
+      ["On the road now", `Chevrons: ${c.chevrons}; guardrail: ${c.guardrail} (Street View, 2023–2024)`]];
+    card.innerHTML = `<h3>Curve ${curveFocus + 1}${curveRank === "all" ? " by crash count" : ""}</h3><dl>` + rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("") +
       `</dl><button type="button" id="curveBack">Back to all curves</button>`;
     card.hidden = false;
     $("curveBack").addEventListener("click", e => { e.stopPropagation(); focusCurve(curveFocus); });
@@ -1183,7 +1212,6 @@ function initScroll() {
 }
 
 initExplore();
-initCurveClicks();
 $("terrOn").addEventListener("change", e => mapSvg.classed("noterrain", !e.target.checked));
 $("placesOn").addEventListener("change", e => mapSvg.classed("noplaces", !e.target.checked));
 
