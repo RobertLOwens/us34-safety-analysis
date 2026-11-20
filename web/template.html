@@ -647,16 +647,16 @@ const STEPS = {
   alcohol: {range: [61, 92], legend: () => legendRows("Alcohol or drugs suspected", [["--k", "Fatal or serious"], ["--wb", "Other"]]), draw: () => drawPts(CR.filter(c => c.alc), c => KA(c) ? "--k" : "--wb", c => KA(c) ? 5 : 3, 0.9)},
   wildlife: {range: [83, 91], legend: () => legendRows("Wildlife crashes", [["--elk", "Elk"], ["--deer", "Deer"], ["--dot", "Other or not recorded"]]), draw: () => drawPts(CR.filter(c => c.wild), c => c.sp.toLowerCase() === "elk" ? "--elk" : c.sp.toLowerCase() === "deer" ? "--deer" : "--dot", 4, 0.9)},
   glare: {range: [83.5, 92], legend: () => legendRows("Crashes with low sun ahead", [["--eb", "Eastbound, morning sun"], ["--wb", "Westbound, evening sun"]], "2007–2025 sun positions; this map shows 2019–2025"), draw: () => drawPts(CR.filter(c => c.glare), c => c.dir === "EB" ? "--eb" : "--wb", 4, 0.9)},
-  lighting: {range: [61, 92], legend: () => {
-      const u = CR.filter(UNLIT), uk = u.filter(KA), ka = CR.filter(KA);
-      return `<div class="t">Crashes at night on an unlit road, 2019–2025</div>` +
-        `<div class="row"><i style="background:var(--a)"></i>${fmt(u.length)} crashes, ${pct(u.length, CR.length)} of all crashes</div>` +
-        `<div class="row"><i style="background:var(--k)"></i>${uk.length} fatal or serious (${uk.filter(c => c.sev === "K").length} fatal), ${pct(uk.length, ka.length)} of all severe</div>` +
+  lighting: {range: [65, 88], legend: () => {
+      const all = CR.filter(RURAL), u = all.filter(UNLIT), uk = u.filter(KA), ka = all.filter(KA);
+      return `<div class="t">Night crashes on unlit road, MP 65–88, 2019–2025</div>` +
+        `<div class="row"><i style="background:var(--a)"></i>${fmt(u.length)} of ${fmt(all.length)} crashes (${pct(u.length, all.length)})</div>` +
+        `<div class="row"><i style="background:var(--k)"></i>${uk.length} of ${ka.length} fatal or serious (${pct(uk.length, ka.length)}), ${uk.filter(c => c.sev === "K").length} of them fatal</div>` +
         `<div class="row">Big numbers: share of each section's crashes</div>`; },
     draw: () => {
-      drawPts(CR.filter(c => UNLIT(c) && !KA(c)), () => "--a", 2.6, 0.9, "a");
-      drawPts(CR.filter(c => UNLIT(c) && KA(c)), () => "--k", 4, 1, "b");
-      unlitShares().forEach(sh => { const m = curvePts(sh.mid, sh.mid)[0];
+      drawPts(CR.filter(c => RURAL(c) && UNLIT(c) && !KA(c)), () => "--a", 2.6, 0.9, "a");
+      drawPts(CR.filter(c => RURAL(c) && UNLIT(c) && KA(c)), () => "--k", 4, 1, "b");
+      unlitShares().filter(sh => RURAL({seg: sh.seg})).forEach(sh => { const m = curvePts(sh.mid, sh.mid)[0];
         const g = gRoot.select(".pins").append("g").attr("class", "scalable unlitlbl").attr("data-x", m.x).attr("data-y", m.y)
           .attr("transform", `translate(${m.x},${m.y}) scale(${1 / kNow})`);
         g.append("text").attr("class", "big").attr("y", sh.dy).attr("text-anchor", "middle").text(pct(sh.unlit, sh.n));
@@ -1009,6 +1009,7 @@ function curvePts(a, b) {
 }
 function drawNone() {}
 const UNLIT = c => c.light === "Dark, unlighted";
+const RURAL = c => c.seg === "Big Thompson Canyon" || c.seg === "Canyon mouth to Loveland";
 const pct = (a, b) => `${Math.round(100 * a / b)}%`;
 /* unlit-night share per section, with label positions (above or below the road) */
 function unlitShares() {
@@ -1018,7 +1019,7 @@ function unlitShares() {
 { const sh = unlitShares(), by = n => sh.find(x => x.seg === n), can = by("Big Thompson Canyon"), mo = by("Canyon mouth to Loveland"),
     lv = by("Loveland (urban)"), rural = {n: can.n + mo.n, unlit: can.unlit + mo.unlit}, u = CR.filter(UNLIT);
   document.getElementById("unlitCanyonPct").textContent = Math.abs(can.unlit / can.n - 1 / 3) < 0.03 ? "About one in three canyon crashes" : `${pct(can.unlit, can.n)} of canyon crashes`;
-  document.getElementById("unlitText").textContent = `From the canyon to Loveland (MP 65–88), ${rural.unlit} of ${rural.n} crashes (${pct(rural.unlit, rural.n)}) happened after dark on an unlit road, against ${pct(lv.unlit, lv.n)} in Loveland, where the streets are lit. Corridor-wide that is ${u.length} crashes and ${u.filter(KA).length} of the ${CR.filter(KA).length} fatal or serious ones. Most are drivers hitting a fixed object, an animal or rocks in the road, which are the crashes lighting and better delineation are most likely to help.`; }
+  document.getElementById("unlitText").textContent = `From the canyon to Loveland (MP 65–88), ${rural.unlit} of ${rural.n} crashes (${pct(rural.unlit, rural.n)}) happened after dark on an unlit road, against ${pct(lv.unlit, lv.n)} in Loveland, where the streets are lit. On that stretch, ${CR.filter(c => RURAL(c) && UNLIT(c) && KA(c)).length} of the ${CR.filter(c => RURAL(c) && KA(c)).length} fatal or serious crashes (${pct(CR.filter(c => RURAL(c) && UNLIT(c) && KA(c)).length, CR.filter(c => RURAL(c) && KA(c)).length)}) were at night on an unlit road. Most are drivers hitting a fixed object, an animal or rocks in the road, which are the crashes lighting and better delineation are most likely to help.`; }
 /* hot spots: crashes per quarter mile, drawn as blurred circles that keep their
    screen size at every zoom; the 3 biggest peaks (at least 1 mi apart) get labels */
 let HEAT = null;
