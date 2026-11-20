@@ -199,6 +199,8 @@ label.chk i { width: 10px; height: 10px; border-radius: 50%; display: inline-blo
 .legend .heatkey { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
 .legend .heatkey span { display: inline-flex; align-items: center; gap: 4px; }
 .legend .heatkey i { display: inline-block; border-radius: 50%; background: var(--heat); opacity: 0.75; filter: blur(1.5px); }
+#map .unlitlbl text.big { font-family: var(--f-display); font-size: 22px; font-weight: 700; fill: var(--a); stroke-width: 4px; }
+#map .unlitlbl text.sm { font-size: 10px; stroke-width: 3px; }
 #map text.place { font-family: var(--f-display); font-weight: 600; }
 #map .mpsign rect { fill: var(--sign); }
 #map .mpsign text { fill: var(--sign-ink); stroke: none; font-weight: 500; }
@@ -327,8 +329,9 @@ a:focus-visible { outline: 2px solid var(--sign); outline-offset: 2px; }
 
     <section class="step" data-step="lighting" data-label="Lighting">
       <div class="num">LIGHTING</div>
-      <h2>Street lights stop at <span class="mp">MP 88.5</span></h2>
-      <p>Crash reports show lit roadway only in Loveland from MP 88.5 east and in downtown Estes Park. Only 5 of 146 "dark, lighted" crashes fall between MP 65 and 88.5. Everything between is dark at night.</p>
+      <h2><span id="unlitCanyonPct"></span> happen at night on an unlit road</h2>
+      <p id="unlitText"></p>
+      <p class="muted" style="font-size:13px">Lighting is from the officer's crash report. Street lights show up only in Loveland from MP 88.5 east and in downtown Estes Park; the road between is dark at night.</p>
     </section>
 
     <section class="step" data-step="projects" data-label="Projects">
@@ -644,9 +647,20 @@ const STEPS = {
   alcohol: {range: [61, 92], legend: () => legendRows("Alcohol or drugs suspected", [["--k", "Fatal or serious"], ["--wb", "Other"]]), draw: () => drawPts(CR.filter(c => c.alc), c => KA(c) ? "--k" : "--wb", c => KA(c) ? 5 : 3, 0.9)},
   wildlife: {range: [83, 91], legend: () => legendRows("Wildlife crashes", [["--elk", "Elk"], ["--deer", "Deer"], ["--dot", "Other or not recorded"]]), draw: () => drawPts(CR.filter(c => c.wild), c => c.sp.toLowerCase() === "elk" ? "--elk" : c.sp.toLowerCase() === "deer" ? "--deer" : "--dot", 4, 0.9)},
   glare: {range: [83.5, 92], legend: () => legendRows("Crashes with low sun ahead", [["--eb", "Eastbound, morning sun"], ["--wb", "Westbound, evening sun"]], "2007–2025 sun positions; this map shows 2019–2025"), draw: () => drawPts(CR.filter(c => c.glare), c => c.dir === "EB" ? "--eb" : "--wb", 4, 0.9)},
-  lighting: {range: [61, 92], legend: () => legendRows("Dark crashes by lighting", [["--a", "Dark, lighted"], ["--s-estes", "Dark, unlighted"]], "Lit road: MP 88.5 east and downtown Estes Park"), draw: () => {
-    drawPts(CR.filter(c => c.light === "Dark, unlighted"), () => "--s-estes", 2.4, 0.6, "a");
-    drawPts(CR.filter(c => c.light === "Dark, lighted"), () => "--a", 3, 0.95, "b"); }},
+  lighting: {range: [61, 92], legend: () => {
+      const u = CR.filter(UNLIT), uk = u.filter(KA), ka = CR.filter(KA);
+      return `<div class="t">Crashes at night on an unlit road, 2019–2025</div>` +
+        `<div class="row"><i style="background:var(--a)"></i>${fmt(u.length)} crashes, ${pct(u.length, CR.length)} of all crashes</div>` +
+        `<div class="row"><i style="background:var(--k)"></i>${uk.length} fatal or serious (${uk.filter(c => c.sev === "K").length} fatal), ${pct(uk.length, ka.length)} of all severe</div>` +
+        `<div class="row">Big numbers: share of each section's crashes</div>`; },
+    draw: () => {
+      drawPts(CR.filter(c => UNLIT(c) && !KA(c)), () => "--a", 2.6, 0.9, "a");
+      drawPts(CR.filter(c => UNLIT(c) && KA(c)), () => "--k", 4, 1, "b");
+      unlitShares().forEach(sh => { const m = curvePts(sh.mid, sh.mid)[0];
+        const g = gRoot.select(".pins").append("g").attr("class", "scalable unlitlbl").attr("data-x", m.x).attr("data-y", m.y)
+          .attr("transform", `translate(${m.x},${m.y}) scale(${1 / kNow})`);
+        g.append("text").attr("class", "big").attr("y", sh.dy).attr("text-anchor", "middle").text(pct(sh.unlit, sh.n));
+        g.append("title").text(`${sh.seg}: ${sh.unlit} of ${sh.n} crashes at night on an unlit road`); }); }},
   projects: {range: [61, 92], legend: () => {
       if (projFocus == null) return legendBars("Project packages", [["--k", "Rural two-lane package, MP 65–88"], ["--s-love", "Loveland intersection package, MP 88–92"]]) + `<div class="row">Click a project to see where it goes</div>`;
       const p = DATA.priorities[projFocus], rows = projRows(p), ka = rows.filter(KA).length, L = projLayers(p);
@@ -994,6 +1008,17 @@ function curvePts(a, b) {
   return out;
 }
 function drawNone() {}
+const UNLIT = c => c.light === "Dark, unlighted";
+const pct = (a, b) => `${Math.round(100 * a / b)}%`;
+/* unlit-night share per section, with label positions (above or below the road) */
+function unlitShares() {
+  return [["Estes Park (town)", 63.5, 36], ["Big Thompson Canyon", 71, 38], ["Canyon mouth to Loveland", 86.2, 40], ["Loveland (urban)", 91.5, -40]]
+    .map(([seg, mid, dy]) => { const r = CR.filter(c => c.seg === seg); return {seg, mid, dy, n: r.length, unlit: r.filter(UNLIT).length}; });
+}
+{ const sh = unlitShares(), by = n => sh.find(x => x.seg === n), can = by("Big Thompson Canyon"), mo = by("Canyon mouth to Loveland"),
+    lv = by("Loveland (urban)"), rural = {n: can.n + mo.n, unlit: can.unlit + mo.unlit}, u = CR.filter(UNLIT);
+  document.getElementById("unlitCanyonPct").textContent = Math.abs(can.unlit / can.n - 1 / 3) < 0.03 ? "About one in three canyon crashes" : `${pct(can.unlit, can.n)} of canyon crashes`;
+  document.getElementById("unlitText").textContent = `From the canyon to Loveland (MP 65–88), ${rural.unlit} of ${rural.n} crashes (${pct(rural.unlit, rural.n)}) happened after dark on an unlit road, against ${pct(lv.unlit, lv.n)} in Loveland, where the streets are lit. Corridor-wide that is ${u.length} crashes and ${u.filter(KA).length} of the ${CR.filter(KA).length} fatal or serious ones. Most are drivers hitting a fixed object, an animal or rocks in the road, which are the crashes lighting and better delineation are most likely to help.`; }
 /* hot spots: crashes per quarter mile, drawn as blurred circles that keep their
    screen size at every zoom; the 3 biggest peaks (at least 1 mi apart) get labels */
 let HEAT = null;
